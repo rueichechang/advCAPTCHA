@@ -5,534 +5,93 @@
   <meta charset="UTF-8">
   <title>AdvCAPTCHA survey</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">  
-      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="../static/css/style.css">
 </head>
 
 <body>
-
-  <form method="post" action="submit">
-  <div id="msform">
-    <!-- progressbar -->
-    <ul id="progressbar">
-      <li class="active">Introduction</li>
-      <li>Prototype 0</li>
-      <li>Prototype 1</li>
-      <li>Feedback 1</li>
-      <li>Prototype 2</li>
-      <li>Feedback 2</li>
-      <li>Prototype 3</li>
-      <li>Feedback 3</li>
-      <li>Prototype 4</li>
-      <li>Feedback 4</li>
-      <li>Finish</li>
-    </ul>
-    <!-- fieldsets -->
-    <fieldset>
-      <h2 class="fs-title">Terms and Conditions</h2>
-      <h3 class="fs-subtitle">Please review our privacy notice and press next if you agree to it</h3>
-      <div class="termsx">
-        <p style="margin-top: 4.0pt; text-align: center; line-height: normal;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">CONSENT DOCUMENT FOR ENROLLING PARTICIPANTS IN A RESEARCH STUDY</span></strong></p>
-        <p style="text-align: center; line-height: normal;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
-        <p style="text-align: center; line-height: normal;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Georgia Institute of Technology</span></strong></p>
-        <p style="text-align: center; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-        <p style="text-align: center; line-height: 200%;"><em><span style="font-size: 12.0pt; line-height: 200%; font-family: 'Times New Roman',serif;">Exploring Cognitively Lighter Audio CAPTCHAs</span></em></p>
-        <p style="margin-top: 1.0pt; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Investigators: Valerie Fanelle, Sepideh Karimi, Aditi Shah, and Bharath Subramanian</span></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 14.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">You are being asked to be a volunteer in a research study. You are encouraged to take your time in making your decision regarding your participation in this study.</span></p>
-        <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-        <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Purpose:</span></u></strong></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">The purpose of this study is to contrast the usability and security of current audio CAPTCHAs to a series of new audio CAPTCHA designs. </span></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-        <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Exclusion/Inclusion Criteria:</span></u></strong></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Participants must be above 18 years of age, and have legally blind vision.</span></p>
-        <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-        <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Procedures:</span></u></strong></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">If you decide to be in this study, your part will involve one online interview session lasting no more than 45 minutes. Remember, you are free to leave at any time throughout the duration of the study. Upon initiation, you will first be presented with a link to a web-platform containing a series of audio clips and questions. As you listen to these clips and complete the survey questions, we ask for you to communicate to us your reactions and feelings towards each design. Upon completion, you will navigate to a given page that presents you with a demographic survey. Your individual demographic information, time to complete each question, and question scores will be recorded and kept separated from personally identifying information. Your data will be coded by your participant number, not your name. After completing the demographic survey, you will be debriefed by one of the researchers, explaining the procedure and importance of the study in more detail and answering any further questions you might have. </span></p>
-        <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-        <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Risks or Discomforts:</span></u></strong></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">The risks involved are no greater than those involved in daily activities such as normal electronic device usage, similar to logging into a website.</span></p>
-        <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-        <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Benefits:</span></u></strong></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">You are not likely to benefit in any tangible way from joining this study, apart from research enhancing the possibility of more comfortable and user friendly CAPTCHA designs.</span></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-        <p style="margin-top: 4.0pt; text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Compensation to You:</span></u></strong></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">There will be a compensation for participation in this study of 10$ (USD).</span></p>
-        <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-        <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Storing and Sharing your Information:</span></u></strong></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Your participation in this study is gratefully acknowledged.&nbsp; It is possible that your</span></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">information/data will be enormously valuable for other research purposes.&nbsp; By signing below, you consent for your de-identified information/data to be stored by the researcher and to be shared with other researchers in future studies.&nbsp; If you agree to allow such future sharing and use, your identity will be completely separated from your information/data.&nbsp; Future researchers will not have a way to identify you.&nbsp; Any future research must be approved by an ethics committee before being undertaken.</span></p>
-        <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-        <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Confidentiality:</span></u></strong></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">The following procedures will be followed to keep your personal information confidential in this study:&nbsp; Your privacy will be protected to the extent required by law.&nbsp; To protect your privacy, your records will be kept under a participant number rather than by name.&nbsp; Your records will be kept in locked files and unless you give specific consent otherwise, only members of this research group will be allowed to look at them.&nbsp; Your name and any other fact that might point to you will not appear when results of this study are presented or published. The Georgia Institute of Technology IRB, the Office of Human Research Protections, and/or the Food and Drug Administration may look over study records during required reviews.</span></p>
-        <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">You should be aware that the experiment is not being run from a &lsquo;secure&rsquo; https server of the kind typically used to handle credit card transactions, so there is a small possibility that responses could be viewed by unauthorized third parties such as computer hackers.&nbsp; In general, the web page software will log as header lines the IP address of the machine you use to access this page, e.g.,102.403.506.807, but otherwise no other information will be stored unless you explicitly enter it.</span></p>
-        <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-        <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Costs to You:</span></u></strong></p>
-        <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">There are no costs to you, other than your time, for being in this study. </span></p>
-      </div>
-      <input name="group" id="group" type="hidden" value={{group}} />
-      <input name="order" id="order" type="hidden" value={{order}} />
-      <input name="id1" id="id1" type="hidden" value={{id1}} />
-      <input name="id2" id="id2" type="hidden" value={{id2}} />
-      <input name="id3" id="id3" type="hidden" value={{id3}} />
-
-      <input type="button" name="next" class="next action-button" value="Next" />
-    </fieldset>
-
+  <form method="post" action="demographic_control">
+    <div id="msform">   
+      <ul id="progressbar">
+        <li class="active">Demographic</li>
+        <li>練習</li>
+        <li>Prototype 1</li>
+        <li>Feedback 1</li>
+        <li>Prototype 2</li>
+        <li>Feedback 2</li>
+        <li>Prototype 3</li>
+        <li>Feedback 3</li>
+        <li>Prototype 4</li>
+        <li>Feedback 4</li>
+        <li>Finish</li>
+      </ul>
+      
       <fieldset>
-          <h2 class="fs-title">Prototype - Control</h2>
-          <h3 id="sub0" class="fs-subtitle">Existing CAPTCHA</h3>
-          After you press play, please record each letter or number that you hear.<br/>
-          <audio id="0_1" controls preload src={{practice}} onplay="audio_play('0'); focustext('pro0');">
-              Your browser does not support the audio element.
-          </audio>
-          <br/>
-          <input type="text" name="pro0" id="pro0" onblur="record_end('0')" onfocus="playonCtrl(this, '0_1')"/><br/>
-          <input name="0" id="0" type="hidden" value=""/>
-          <input name="c0" id="c0" type="hidden" value=""/>
-          <input type="button" id="pronext0" name="next" class="next action-button" value="Next"/>
-      </fieldset>x
-
-      <fieldset class="prototypecard">
-          <h2 class="fs-title">Prototype - Math</h2>
-          <h3 id="sub1" class="fs-subtitle">Challenge 1</h3>
-          <div id="instance1_1">
-              After you press play, please perform all of the calculations and provide one total at the end.<br/>
-              <audio id="1_1" controls preload src={{instance1_1}} onplay="audio_play('11'); focustext('pro1_1');">
-                  Your browser does not support the audio element.
-              </audio>
-              <br/>
-              <input type="text" name="pro1_1" id="pro1_1" onblur="record_end('11')" onfocus="playonCtrl(this, '1_1')"/><br/>
-              <input name="11" id="11" type="hidden" value=""/>
-              <input name="c11" id="c11" type="hidden" value=""/>
-          </div>
-          <div id="instance1_2" style="display: none;">
-              After you press play, please perform all of the calculations and provide one total at the end.<br/>
-              <audio id="1_2" controls preload onplay="audio_play('12');focustext('pro1_2');">
-                  <source src={{instance1_2}} type="audio/mpeg">
-                  Your browser does not support the audio element.
-              </audio>
-              <input type="text" name="pro1_2" id="pro1_2" onblur="record_end('12')" onfocus="playonCtrl(this, '1_2')"/><br/>
-              <input name="12" id="12" type="hidden" value=""/>
-              <input name="c12" id="c12" type="hidden" value=""/>
-          </div>
-          <div id="instance1_3" style="display: none;">
-              After you press play, please perform all of the calculations and provide one total at the end.<br/>
-              <audio id="1_3" controls preload onplay="audio_play('13');focustext('pro1_3');">
-                  <source src={{instance1_3}} type="audio/mpeg">
-                  Your browser does not support the audio element.
-              </audio>
-              <input type="text" name="pro1_3" id="pro1_3" onblur="record_end('13')" onfocus="playonCtrl(this, '1_3')"/><br/>
-              <input name="13" id="13" type="hidden" value=""/>
-              <input name="c13" id="c13" type="hidden" value=""/>
-          </div>
-
-          <input type="button" id="instance1" name="next" class="prototype action-button" value="Next"
-                 onclick="hideCaptcha1()"/>
-          <input type="button" id="pronext1" name="next" class="next action-button" value="Next"
-                 style="display: none;"/>
+        <h2 class="fs-title">Terms and Conditions</h2>
+        <h3 class="fs-subtitle">Please review our privacy notice and press next if you agree to it</h3>
+        <div class="termsx">
+          <p style="margin-top: 4.0pt; text-align: center; line-height: normal;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">CONSENT DOCUMENT FOR ENROLLING PARTICIPANTS IN A RESEARCH STUDY</span></strong></p>
+          <p style="text-align: center; line-height: normal;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
+          <p style="text-align: center; line-height: normal;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Georgia Institute of Technology</span></strong></p>
+          <p style="text-align: center; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+          <p style="text-align: center; line-height: 200%;"><em><span style="font-size: 12.0pt; line-height: 200%; font-family: 'Times New Roman',serif;">Exploring Cognitively Lighter Audio CAPTCHAs</span></em></p>
+          <p style="margin-top: 1.0pt; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Investigators: Valerie Fanelle, Sepideh Karimi, Aditi Shah, and Bharath Subramanian</span></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 14.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">You are being asked to be a volunteer in a research study. You are encouraged to take your time in making your decision regarding your participation in this study.</span></p>
+          <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+          <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Purpose:</span></u></strong></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">The purpose of this study is to contrast the usability and security of current audio CAPTCHAs to a series of new audio CAPTCHA designs. </span></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+          <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Exclusion/Inclusion Criteria:</span></u></strong></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Participants must be above 18 years of age, and have legally blind vision.</span></p>
+          <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+          <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Procedures:</span></u></strong></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">If you decide to be in this study, your part will involve one online interview session lasting no more than 45 minutes. Remember, you are free to leave at any time throughout the duration of the study. Upon initiation, you will first be presented with a link to a web-platform containing a series of audio clips and questions. As you listen to these clips and complete the survey questions, we ask for you to communicate to us your reactions and feelings towards each design. Upon completion, you will navigate to a given page that presents you with a demographic survey. Your individual demographic information, time to complete each question, and question scores will be recorded and kept separated from personally identifying information. Your data will be coded by your participant number, not your name. After completing the demographic survey, you will be debriefed by one of the researchers, explaining the procedure and importance of the study in more detail and answering any further questions you might have. </span></p>
+          <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+          <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Risks or Discomforts:</span></u></strong></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">The risks involved are no greater than those involved in daily activities such as normal electronic device usage, similar to logging into a website.</span></p>
+          <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+          <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Benefits:</span></u></strong></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">You are not likely to benefit in any tangible way from joining this study, apart from research enhancing the possibility of more comfortable and user friendly CAPTCHA designs.</span></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+          <p style="margin-top: 4.0pt; text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Compensation to You:</span></u></strong></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">There will be a compensation for participation in this study of 10$ (USD).</span></p>
+          <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+          <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Storing and Sharing your Information:</span></u></strong></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Your participation in this study is gratefully acknowledged.&nbsp; It is possible that your</span></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">information/data will be enormously valuable for other research purposes.&nbsp; By signing below, you consent for your de-identified information/data to be stored by the researcher and to be shared with other researchers in future studies.&nbsp; If you agree to allow such future sharing and use, your identity will be completely separated from your information/data.&nbsp; Future researchers will not have a way to identify you.&nbsp; Any future research must be approved by an ethics committee before being undertaken.</span></p>
+          <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+          <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Confidentiality:</span></u></strong></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">The following procedures will be followed to keep your personal information confidential in this study:&nbsp; Your privacy will be protected to the extent required by law.&nbsp; To protect your privacy, your records will be kept under a participant number rather than by name.&nbsp; Your records will be kept in locked files and unless you give specific consent otherwise, only members of this research group will be allowed to look at them.&nbsp; Your name and any other fact that might point to you will not appear when results of this study are presented or published. The Georgia Institute of Technology IRB, the Office of Human Research Protections, and/or the Food and Drug Administration may look over study records during required reviews.</span></p>
+          <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">You should be aware that the experiment is not being run from a &lsquo;secure&rsquo; https server of the kind typically used to handle credit card transactions, so there is a small possibility that responses could be viewed by unauthorized third parties such as computer hackers.&nbsp; In general, the web page software will log as header lines the IP address of the machine you use to access this page, e.g.,102.403.506.807, but otherwise no other information will be stored unless you explicitly enter it.</span></p>
+          <p style="margin-top: 1.0pt; text-align: justify; line-height: normal;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+          <p style="text-align: justify; line-height: normal;"><strong><u><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Costs to You:</span></u></strong></p>
+          <p style="text-align: justify; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">There are no costs to you, other than your time, for being in this study. </span></p>
+        
+        <!-- <input name="group" id="group" type="hidden" value={{group}} />
+        <input name="order" id="order" type="hidden" value={{order}} />
+        <input name="id1" id="id1" type="hidden" value={{id1}} />
+        <input name="id2" id="id2" type="hidden" value={{id2}} />
+        <input name="id3" id="id3" type="hidden" value={{id3}} /> -->
+  
+        
+          <h2 class="fs-title">Personal Detail</h2>
+          <h3 class="fs-subtitle">We will never sell it</h3>
+          <label for="fname">First Name</label><input type="text" id="fname" name="fname" placeholder="First Name" required/>
+          <label for="lname">Last Name</label><input type="text" id="lname" name="lname" placeholder="Last Name" required/>
+          <label for="age">Age</label><input type="number" id="age" name="age" placeholder="Age"required/>
+          <select name="gender" required>
+            <option value="male">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <label for="email">Email</label><input type="email" id="email" name="email" placeholder="Email" required/>
+          <input type="submit" name="submit" class="submit action-button" value="Submit&Next"/>
+        </div>
       </fieldset>
-
-      <fieldset class="feedbackcard">
-          <h2 class="fs-title">Feedback - Maths</h2>
-          <h3 class="fs-subtitle">How did you feel about the CAPTCHA?</h3>
-          <label class="statement">Rate your level of satisfaction with this design:</label>
-          <ul class='likert'>
-          <li>
-            <input type="radio" name="likert_fb1_1" value="strong_agree" checked>
-            <label>Very satisfied</label>
-          </li>
-          <li>
-            <input type="radio" name="likert_fb1_1" value="strong_agree">
-            <label>Satisfied</label>
-          </li>
-          <li>
-            <input type="radio" name="likert_fb1_1" value="strong_agree">
-            <label>Neutral</label>
-          </li>
-          <li>
-            <input type="radio" name="likert_fb1_1" value="disagree">
-            <label>Unsatisfied</label>
-          </li>
-          <li>
-            <input type="radio" name="likert_fb1_1" value="strong_agree">
-            <label>Very unsatisfied</label>
-          </li>
-          </ul>
-          <label class="statement">Do you think this design was usable?</label>
-          <ul class='likert'>
-            <li>
-              <input type="radio" name="likert_fb1_2" value="strong_agree" checked>
-              <label>Strongly agree</label>
-            </li>
-            <li>
-              <input type="radio" name="likert_fb1_2" value="strong_agree">
-              <label>Agree</label>
-            </li>
-            <li>
-              <input type="radio" name="likert_fb1_2" value="strong_agree">
-              <label>Neutral</label>
-            </li>
-            <li>
-              <input type="radio" name="likert_fb1_2" value="disagree">
-              <label>Disagree</label>
-            </li>
-            <li>
-              <input type="radio" name="likert_fb1_2" value="strong_agree">
-              <label>Strongly disagree</label>
-            </li>
-          </ul>
-
-          <label class="statement">Please explain your answer to the previous question.</label>
-          <input type="text" name="text_fb1_1" />
-
-          <label class="statement">Do you prefer the current alphanumeric audio CAPTCHAs you already use relative to this design?</label>
-          <ul class='likert'>
-            <li>
-              <input type="radio" name="likert_fb1_3" value="yes"  checked>
-              <label>Yes</label>
-            </li>
-            <li>
-              <input type="radio" name="likert_fb1_3" value="no">
-              <label>No</label>
-            </li>
-          </ul>
-          <label class="statement">If you could wave a magic wand and do anything, what would you change about this design?</label>
-          <input type="text" name="text_fb1_2" />
-          <input type="button" name="next" class="next action-button" value="Next" />
-    </fieldset>
-
-    <fieldset class="prototypecard">
-      <h2 class="fs-title">Prototype - Count</h2>
-      <h3 id="sub2" class="fs-subtitle">Challenge 1</h3>
-      <div id="instance2_1">
-        You must count the number of times '9' is spoken throughout the audio clip. Type the sum in the text box at the end. <br/>
-        <audio id="2_1" controls preload  onplay="audio_play('21');focustext('pro2_1');">
-          <source src={{instance2_1}} type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio><br />
-        <input type="text" name="pro2_1" id="pro2_1" onblur="record_end('21')" onfocus="playonCtrl(this, '2_1')"/><br />
-        <input name="21" id="21" type="hidden" value=""/>
-        <input name="c21" id="c21" type="hidden" value=""/>
-      </div>
-      <div id="instance2_2" style="display: none;">
-        You must count the number of times 'H' is spoken throughout the audio clip. Type the sum in the text box at the end. <br/>
-        <audio id="2_2" controls preload  onplay="audio_play('22');focustext('pro2_2');">
-          <source src={{instance2_2}} type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-        <input type="text" name="pro2_2" id="pro2_2" onblur="record_end('22')" onfocus="playonCtrl(this, '2_2')"/><br />
-        <input name="22" id="22" type="hidden" value=""/>
-        <input name="c22" id="c22" type="hidden" value=""/>
-      </div>
-      <div id="instance2_3" style="display: none;">
-        You must count the number of times 'I' is spoken throughout the audio clip. Type the sum in the text box at the end. <br/>
-        <audio id="2_3" controls preload  onplay="audio_play('23');focustext('pro2_3');">
-          <source src={{instance2_3}} type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-        <input type="text" name="pro2_3" id="pro2_3" onblur="record_end('23')" onfocus="playonCtrl(this, '2_3')"/><br />
-        <input name="23" id="23" type="hidden" value=""/>
-        <input name="c23" id="c23" type="hidden" value=""/>
-      </div>
-
-      <input type="button" id="instance2" name="next" class="prototype action-button" value="Next" onclick="hideCaptcha2()" />
-      <input type="button" id="pronext2" name="next" class="next action-button" value="Next"  style="display: none;"/>
-    </fieldset>
-
-    <fieldset class="feedbackcard">
-      <h2 class="fs-title">Feedback - Count</h2>
-      <h3 class="fs-subtitle">How did you feel about the CAPTCHA?</h3>
-      <label class="statement">Rate your level of satisfaction with this design:</label>
-      <ul class='likert'>
-        <li>
-          <input type="radio" name="likert_fb2_1" value="strong_agree"  checked>
-          <label>Very satisfied</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb2_1" value="strong_agree">
-          <label>Satisfied</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb2_1" value="strong_agree">
-          <label>Neutral</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb2_1" value="disagree">
-          <label>Unsatisfied</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb2_1" value="strong_agree">
-          <label>Very unsatisfied</label>
-        </li>
-      </ul>
-      <label class="statement">Do you think this design was usable?</label>
-      <ul class='likert'>
-        <li>
-          <input type="radio" name="likert_fb2_2" value="strong_agree"  checked>
-          <label>Strongly agree</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb2_2" value="strong_agree">
-          <label>Agree</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb2_2" value="strong_agree">
-          <label>Neutral</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb2_2" value="disagree">
-          <label>Disagree</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb2_2" value="strong_agree">
-          <label>Strongly disagree</label>
-        </li>
-      </ul>
-      <label class="statement">Please explain your answer to the previous question.</label>
-      <input type="text" name="text_fb2_1" />
-      <label class="statement">Do you prefer the current alphanumeric audio CAPTCHAs you already use relative to this design?</label>
-      <ul class='likert'>
-        <li>
-          <input type="radio" name="likert_fb2_3" value="yes"  checked>
-          <label>Yes</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb2_3" value="no">
-          <label>No</label>
-        </li>
-      </ul>
-      <label class="statement">If you could wave a magic wand and do anything, what would you change about this design?</label>
-      <input type="text" name="text_fb2_2" />
-      <input type="button" name="next" class="next action-button" value="Next" />
-    </fieldset>
-
-    <fieldset class="prototypecard">
-      <h2 class="fs-title">Prototype - Control with pauses</h2>
-      <h3 id="sub3" class="fs-subtitle">Challenge 1</h3>
-      <div id="instance3_1">
-        After you press play, please record each letter or number that you hear. There will be a pause after each character is spoken for you to type what your heard.<br/>
-      <audio id="3_1" controls preload  onplay="audio_play('31');focustext('pro3_1');">
-        <source src={{instance3_1}} type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio><br />
-      <input type="text" name="pro3_1" id="pro3_1" onblur="record_end('31')" onfocus="playonCtrl(this, '3_1')"/><br />
-      <input name="31" id="31" type="hidden" value=""/>
-      <input name="c31" id="c31" type="hidden" value=""/>
-      </div>
-
-      <div id="instance3_2" style="display: none;">
-        After you press play, please record each letter or number that you hear. There will be time after alphanumeric value is spoken for you to type what your heard.<br/>
-      <audio id="3_2" controls preload  onplay="audio_play('32');focustext('pro3_2');">
-        <source src={{instance3_2}} type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-      <input type="text" name="pro3_2" id="pro3_2" onblur="record_end('32')" onfocus="playonCtrl(this, '3_2')"/><br />
-      <input name="32" id="32" type="hidden" value=""/>
-      <input name="c32" id="c32" type="hidden" value=""/>
-      </div>
-      <div id="instance3_3" style="display: none;">
-        After you press play, please record each letter or number that you hear. There will be time after alphanumeric value is spoken for you to type what your heard.<br/>
-      <audio id="3_3" controls preload  onplay="audio_play('33');focustext('pro3_3');">
-        <source src={{instance3_3}} type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-      <input type="text" name="pro3_3" id="pro3_3" onblur="record_end('33')"  onfocus="playonCtrl(this, '3_3')"/><br />
-      <input name="33" id="33" type="hidden" value=""/>
-      <input name="c33" id="c33" type="hidden" value=""/>
-      </div>
-      <input type="button" id="instance3" name="next" class="prototype action-button" value="Next" onclick="hideCaptcha3()" />
-      <input type="button" id="pronext3" name="next" class="next action-button" value="Next"  style="display: none;"/>
-    </fieldset>
-
-    <fieldset class="feedbackcard">
-      <h2 class="fs-title">Feedback -  Control with pauses</h2>
-      <h3 class="fs-subtitle">How did you feel about the CAPTCHA?</h3>
-      <label class="statement">Rate your level of satisfaction with this design:</label>
-      <ul class='likert'>
-        <li>
-          <input type="radio" name="likert_fb3_1" value="strong_agree"  checked>
-          <label>Very satisfied</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb3_1" value="strong_agree">
-          <label>Satisfied</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb3_1" value="strong_agree">
-          <label>Neutral</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb3_1" value="disagree">
-          <label>Unsatisfied</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb3_1" value="strong_agree">
-          <label>Very unsatisfied</label>
-        </li>
-      </ul>
-      <label class="statement">Do you think this design was usable?</label>
-      <ul class='likert'>
-        <li>
-          <input type="radio" name="likert_fb3_2" value="strong_agree"  checked>
-          <label>Strongly agree</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb3_2" value="strong_agree">
-          <label>Agree</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb3_2" value="strong_agree">
-          <label>Neutral</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb3_2" value="disagree">
-          <label>Disagree</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb3_2" value="strong_agree">
-          <label>Strongly disagree</label>
-        </li>
-      </ul>
-      <label class="statement">Please explain your answer to the previous question.</label>
-      <input type="text" name="text_fb3_1" />
-
-      <label class="statement">Do you prefer the current alphanumeric audio CAPTCHAs you already use relative to this design?</label>
-      <ul class='likert'>
-        <li>
-          <input type="radio" name="likert_fb3_3" value="yes"  checked>
-          <label>Yes</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb3_3" value="no">
-          <label>No</label>
-        </li>
-      </ul>
-      <label class="statement">If you could wave a magic wand and do anything, what would you change about this design?</label>
-      <input type="text" name="text_fb3_2" />
-      <input type="button" name="next" class="next action-button" value="Next" />
-    </fieldset>
-
-    <fieldset class="prototypecard">
-      <h2 class="fs-title">Prototype - Sounds</h2>
-      <h3 id="sub4" class="fs-subtitle">Challenge 1</h3>
-      <div id="instance4_1">
-Count the number of times you hear sound associated with those made by animals. After the clip is done playing, enter the count in the given textbox.<br/>
-      <audio id="4_1" controls preload  onplay="audio_play('41');focustext('pro4_1');">
-        <source src={{instance4_1}} type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio><br />
-      <input type="text" name="pro4_1" id="pro4_1" onblur="record_end('41')" onfocus="playonCtrl(this, '4_1')"/><br />
-      <input name="41" id="41" type="hidden" value=""/>
-      <input name="c41" id="c41" type="hidden" value=""/>
-      </div>
-      <div id="instance4_2" style="display: none;">
-Count the number of times you hear sound associated with those made by instrumentss. After the clip is done playing, enter the count in the given textbox.<br/>
-      <audio id="4_2" controls preload  onplay="audio_play('42');focustext('pro4_2');">
-        <source src={{instance4_2}} type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-      <input type="text" name="pro4_2" id="pro4_2" onblur="record_end('42')" onfocus="playonCtrl(this, '4_2')"/><br />
-      <input name="42" id="42" type="hidden" value=""/>
-      <input name="c42" id="c42" type="hidden" value=""/>
-      </div>
-      <div id="instance4_3" style="display: none;">
-Count the number of times you hear sound associated with water. After the clip is done playing, enter the count in the given textbox.<br/>
-      <audio id="4_3" controls preload  onplay="audio_play('43');focustext('pro4_3');">
-        <source src={{instance4_3}} type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-      <input type="text" name="pro4_3" id="pro4_3" onblur="record_end('43')" onfocus="playonCtrl(this, '4_3')"/><br />
-      <input name="43" id="43" type="hidden" value=""/>
-      <input name="c43" id="c43" type="hidden" value=""/>
-      </div>
-      <input type="button" id="instance4" name="next" class="prototype action-button" value="Next" onclick="hideCaptcha4()" />
-      <input type="button" id="pronext4" name="next" class="next action-button" value="Next"  style="display: none;"/>
-    </fieldset>
-
-    <fieldset class="feedbackcard">
-      <h2 class="fs-title">Feedback - Sounds</h2>
-      <h3 class="fs-subtitle">How did you feel about the CAPTCHA?</h3>
-      <label class="statement">Rate your level of satisfaction with this design:</label>
-      <ul class='likert'>
-        <li>
-          <input type="radio" name="likert_fb4_1" value="strong_agree"  checked>
-          <label>Very satisfied</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb4_1" value="strong_agree">
-          <label>Satisfied</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb4_1" value="strong_agree">
-          <label>Neutral</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb4_1" value="disagree">
-          <label>Unsatisfied</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb4_1" value="strong_agree">
-          <label>Very unsatisfied</label>
-        </li>
-      </ul>
-      <label class="statement">Do you think this design was usable?</label>
-      <ul class='likert'>
-        <li>
-          <input type="radio" name="likert_fb4_2" value="strong_agree"  checked>
-          <label>Strongly agree</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb4_2" value="strong_agree">
-          <label>Agree</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb4_2" value="strong_agree">
-          <label>Neutral</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb4_2" value="disagree">
-          <label>Disagree</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb4_2" value="strong_agree">
-          <label>Strongly disagree</label>
-        </li>
-      </ul>
-      <label class="statement">Please explain your answer to the previous question.</label>
-      <input type="text" name="text_fb4_1" />
-      <label class="statement">Do you prefer the current alphanumeric audio CAPTCHAs you already use relative to this design?</label>
-      <ul class='likert'>
-        <li>
-          <input type="radio" name="likert_fb4_3" value="yes"  checked>
-          <label>Yes</label>
-        </li>
-        <li>
-          <input type="radio" name="likert_fb4_3" value="no">
-          <label>No</label>
-        </li>
-      </ul>
-      <label class="statement">If you could wave a magic wand and do anything, what would you change about this design?</label>
-      <input type="text" name="text_fb4_2" />
-      <input type="button" name="next" class="next action-button" value="Next" />
-    </fieldset>
-    <fieldset>
-      <h2 class="fs-title">Personal Detail</h2>
-      <h3 class="fs-subtitle">We will never sell it</h3>
-      <label for="fname">First Name</label><input type="text" id="fname" name="fname" placeholder="First Name" required/>
-      <label for="lname">Last Name</label><input type="text" id="lname" name="lname" placeholder="Last Name" required/>
-      <label for="age">Age</label><input type="number" id="age" name="age" placeholder="Age"required/>
-      <select name="gender" required>
-        <option value="male">Select Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-      <label for="email">Email</label><input type="email" id="email" name="email" placeholder="Email" required/>
-      <input type="submit" name="submit" class="submit action-button" value="Submit" onclick="before_submit();"/>
-    </fieldset>
-  </div>
-</form>
+    </div>
+  </form>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>

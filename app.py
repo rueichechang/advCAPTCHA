@@ -45,6 +45,7 @@ def initialize_counter():
 
 @app.route('/submit',methods=['POST'])
 def submit():
+    print("======== submit success ============")
     time_0 = request.values['0']
     time_11 = request.values['11']
     time_12 = request.values['12']
@@ -111,33 +112,32 @@ def submit():
     text_fb4_1 = request.values['text_fb4_1']
     text_fb4_2 = request.values['text_fb4_2']
 
-    fname   = request.values['fname']
-    lname   = request.values['lname']
-    age     = request.values['age']
-    gender  = request.values['gender']
-    email   = request.values['email']
-    group = request.values['group']
-    order = request.values['order']
-    id1 = request.values['id1']
-    id2 = request.values['id2']
-    id3 = request.values['id3']
+    # fname   = request.values['fname']
+    # lname   = request.values['lname']
+    # age     = request.values['age']
+    # gender  = request.values['gender']
+    # email   = request.values['email']
+    # group = request.values['group']
+    # order = request.values['order']
+    # id1 = request.values['id1']
+    # id2 = request.values['id2']
+    # id3 = request.values['id3']
 
-    if group == "A": groupA_count[order] +=1
-    elif group == "B": groupB_count[order] +=1
-    elif group == "C": groupC_count[order] +=1
-    id_used_record[group].append(id1)
-    id_used_record[group].append(id2)
-    id_used_record[group].append(id3)
-
+    # if group == "A": groupA_count[order] +=1
+    # elif group == "B": groupB_count[order] +=1
+    # elif group == "C": groupC_count[order] +=1
+    # id_used_record[group].append(id1)
+    # id_used_record[group].append(id2)
+    # id_used_record[group].append(id3)
     # print(group, order, id1, id2, id3)
     
     # pack all responses to json
     dataJson = {}
-    dataJson["fname"] = fname
-    dataJson["lname"] = lname
-    dataJson["age"] = age
-    dataJson["gender"] = gender
-    dataJson["email"] = email
+    # dataJson["fname"] = fname
+    # dataJson["lname"] = lname
+    # dataJson["age"] = age
+    # dataJson["gender"] = gender
+    # dataJson["email"] = email
 
     dataJson["practice"] = dict(time=time_0, count=count_0, text=pro0)
     dataJson["instance1_1"] = dict(time=time_11, count=count_11, text=pro1_1)
@@ -166,95 +166,51 @@ def submit():
 
     return render_template('submit.html',**locals())
 
+
+@app.route('/demographic_control',methods=['POST'])
+def demographic_control():
+    fname   = request.values['fname']
+    lname   = request.values['lname']
+    age     = request.values['age']
+    gender  = request.values['gender']
+    email   = request.values['email']
+
+    demographic = {}
+    demographic["fname"]    = fname
+    demographic["lname"]    = lname
+    demographic["age"]      = age
+    demographic["gender"]   = gender
+    demographic["email"]    = email
+
+    print(fname, lname, age,gender, email)
+
+    return render_template('tasks.html', async_mode=socketio.async_mode)
+
+    # return render_template('tasks.html', group = group,
+    #                                     order = order,
+    #                                     id1 = str(ids[0]),
+    #                                     id2 = str(ids[1]),
+    #                                     id3 = str(ids[2]),
+    #                                     practice= "prototypes/prototype1/Math_Only_Add.mp3",
+    #                                     instance1_1 ="prototypes/group"+group+"/"+instance_1+"/"+str(ids[0]), 
+    #                                     instance1_2 ="prototypes/group"+group+"/"+instance_1+"/"+str(ids[1]), 
+    #                                     instance1_3 ="prototypes/group"+group+"/"+instance_1+"/"+str(ids[2]), 
+
+    #                                     instance2_1 ="prototypes/group"+group+"/"+instance_2+"/"+str(ids[0]), 
+    #                                     instance2_2 ="prototypes/group"+group+"/"+instance_2+"/"+str(ids[1]), 
+    #                                     instance2_3 ="prototypes/group"+group+"/"+instance_2+"/"+str(ids[2]), 
+
+    #                                     instance3_1 ="prototypes/group"+group+"/"+instance_3+"/"+str(ids[0]), 
+    #                                     instance3_2 ="prototypes/group"+group+"/"+instance_3+"/"+str(ids[1]), 
+    #                                     instance3_3 ="prototypes/group"+group+"/"+instance_3+"/"+str(ids[2]), 
+
+    #                                     instance4_1 ="prototypes/group"+group+"/"+instance_4+"/"+str(ids[0]), 
+    #                                     instance4_2 ="prototypes/group"+group+"/"+instance_4+"/"+str(ids[1]), 
+    #                                     instance4_3 ="prototypes/group"+group+"/"+instance_4+"/"+str(ids[2]), )
+
 @app.route('/')
 def index():
-    order = 0
-    while order==0:
-        iterate_count = 0
-        iterate_limit = 15
-        group = random.randint(1,3)
-        if group == 1 and sum(list(groupA_count.values())) < 48:
-            temp = random.randint(0,23)
-            while list(groupA_count.values())[temp] > 2:
-                if iterate_count > iterate_limit:
-                    for i,item in enumerate (groupA_count):
-                        if groupA_count[item] < 2:
-                            temp = i
-                            break
-                temp = random.randint(0,23)
-                iterate_count +=1
-            group = 'A'
-            order = list(groupA_count)[temp]
-            # groupA_count[order] += 1
-
-        elif group == 2 and sum(list(groupB_count.values())) < 48:
-            temp = random.randint(0,23)
-            while list(groupB_count.values())[temp] > 2:
-                if iterate_count > iterate_limit:
-                    for i,item in enumerate (groupB_count):
-                        if groupB_count[item] < 2:
-                            temp = i
-                            break
-                temp = random.randint(0,23)
-            group = 'B'
-            order = list(groupB_count)[temp]
-            # groupB_count[order] += 1
-        
-        elif group == 3 and sum(list(groupC_count.values())) < 48:
-            temp = random.randint(0,23)
-            while list(groupC_count.values())[temp] > 2:
-                if iterate_count > iterate_limit:
-                    for i,item in enumerate (groupC_count):
-                        if groupC_count[item] < 2:
-                            temp = i
-                            break
-                temp = random.randint(0,23)
-            group = 'C'
-            order = list(groupC_count)[temp]
-        # groupC_count[order] += 1
-
-    # if group ==0 and order ==0: stop
-
-    ids = []
-    while len(ids) < 3:
-        id = int(1000 * random.uniform(0,1))
-        if id not in id_used_record[group]:
-            ids.append(id)
-    
-    instance_1 = order[0]
-    instance_2 = order[1]
-    instance_3 = order[2]
-    instance_4 = order[3]
-
-    # numberOfParticipants += 1
-
-    # socketio.emit('identification', group+"/"+order+"/"+str(ids[0])+"/"+str(ids[1])+"/"+str(ids[2]))
-
-    return render_template('index.html', async_mode=socketio.async_mode, 
-                                        group = group,
-                                        order = order,
-                                        id1 = str(ids[0]),
-                                        id2 = str(ids[1]),
-                                        id3 = str(ids[2]),
-                                        practice= "prototypes/prototype1/Math_Only_Add.mp3",
-                                        instance1_1 ="prototypes/group"+group+"/"+instance_1+"/"+str(ids[0]), 
-                                        instance1_2 ="prototypes/group"+group+"/"+instance_1+"/"+str(ids[1]), 
-                                        instance1_3 ="prototypes/group"+group+"/"+instance_1+"/"+str(ids[2]), 
-
-                                        instance2_1 ="prototypes/group"+group+"/"+instance_2+"/"+str(ids[0]), 
-                                        instance2_2 ="prototypes/group"+group+"/"+instance_2+"/"+str(ids[1]), 
-                                        instance2_3 ="prototypes/group"+group+"/"+instance_2+"/"+str(ids[2]), 
-
-                                        instance3_1 ="prototypes/group"+group+"/"+instance_3+"/"+str(ids[0]), 
-                                        instance3_2 ="prototypes/group"+group+"/"+instance_3+"/"+str(ids[1]), 
-                                        instance3_3 ="prototypes/group"+group+"/"+instance_3+"/"+str(ids[2]), 
-
-                                        instance4_1 ="prototypes/group"+group+"/"+instance_4+"/"+str(ids[0]), 
-                                        instance4_2 ="prototypes/group"+group+"/"+instance_4+"/"+str(ids[1]), 
-                                        instance4_3 ="prototypes/group"+group+"/"+instance_4+"/"+str(ids[2]), 
-                                        
-                                        
-                                        )
+    return render_template('index.html', async_mode=socketio.async_mode)
 
 
 @app.route('/<path:path>')
