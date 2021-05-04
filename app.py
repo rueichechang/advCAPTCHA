@@ -162,7 +162,7 @@ def submit():
     
     mycol.insert_one(dataJson)
 
-    print(fname, lname, age, gender, email)
+    # print(fname, lname, age, gender, email)
 
     return render_template('submit.html',**locals())
 
