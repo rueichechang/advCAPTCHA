@@ -9,84 +9,153 @@ import numpy as np
 from itertools import permutations
 import random
 import pymongo
+import uuid
 # 'mongodb+srv://advcaptcha:hankhaopinlee@cluster0.j1zm5.gcp.mongodb.net'
 mongo_url = 'mongodb+srv://advcaptcha:hankhaopinlee@cluster0.j1zm5.gcp.mongodb.net'
 my_client = pymongo.MongoClient(mongo_url)
+
+
 mydb = my_client["advcaptcha"]
+task_data = mydb["task"]
+demographic_data = mydb["demographic"]
+preference_data = mydb["preference"]
 
-mycol = mydb["forms"]
+# global participants_num 
+# participants_num = 0
 
-
-groupA_count = {}
-groupB_count = {}
-groupC_count = {}
+# groupA_count = {}
+# groupB_count = {}
+# groupC_count = {}
 
 async_mode = None
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, async_mode=async_mode)
 
-id_used_record = {"A":[], "B":[], "C":[]}
+# id_used_record = {"A":[], "B":[], "C":[]}
 
-def join_tuple_string(strings_tuple) -> str:
-   return ''.join(strings_tuple)
-def initialize_counter():
-    # Baseline -> B
-    # Kenan -> K
-    # Devil -> D
-    # Mix (Kenan+Devil)-> M
-    permutation = list(permutations("BKDM",4))
-    names = map(join_tuple_string, permutation)
+# def join_tuple_string(strings_tuple) -> str:
+#    return ''.join(strings_tuple)
+# def initialize_counter():
+#     # Baseline -> B
+#     # Kenan -> K
+#     # Devil -> D
+#     # Mix (Kenan+Devil)-> M
+#     permutation = list(permutations("BKDM",4))
+#     names = map(join_tuple_string, permutation)
 
-    for name in names:
-        groupA_count[name] = 0
-        groupB_count[name] = 0
-        groupC_count[name] = 0
+#     for name in names:
+#         groupA_count[name] = 0
+#         groupB_count[name] = 0
+#         groupC_count[name] = 0
 
 @app.route('/submit',methods=['POST'])
 def submit():
     print("======== submit success ============")
+    
+    table_id = request.values['table_id']
+    participant_id = request.values['participant_id']
+    group = request.values['group']
+    task_order = request.values['task_order']
+
     time_0 = request.values['0']
-    time_11 = request.values['11']
-    time_12 = request.values['12']
-    time_13 = request.values['13']
-    time_21 = request.values['21']
-    time_22 = request.values['22']
-    time_23 = request.values['23']
-    time_31 = request.values['31']
-    time_32 = request.values['32']
-    time_33 = request.values['33']
-    time_41 = request.values['41']
-    time_42 = request.values['42']
-    time_43 = request.values['43']
+    time1_1 = request.values['11']
+    time1_2 = request.values['12']
+    time1_3 = request.values['13']
+    time2_1 = request.values['21']
+    time2_2 = request.values['22']
+    time2_3 = request.values['23']
+    time3_1 = request.values['31']
+    time3_2 = request.values['32']
+    time3_3 = request.values['33']
+    time4_1 = request.values['41']
+    time4_2 = request.values['42']
+    time4_3 = request.values['43']
 
     count_0 = request.values['c0']
-    count_11 = request.values['c11']
-    count_12 = request.values['c12']
-    count_13 = request.values['c13']
-    count_21 = request.values['c21']
-    count_22 = request.values['c22']
-    count_23 = request.values['c23']
-    count_31 = request.values['c31']
-    count_32 = request.values['c32']
-    count_33 = request.values['c33']
-    count_41 = request.values['c41']
-    count_42 = request.values['c42']
-    count_43 = request.values['c43']
+    count1_1 = request.values['c11']
+    count1_2 = request.values['c12']
+    count1_3 = request.values['c13']
+    count2_1 = request.values['c21']
+    count2_2 = request.values['c22']
+    count2_3 = request.values['c23']
+    count3_1 = request.values['c31']
+    count3_2 = request.values['c32']
+    count3_3 = request.values['c33']
+    count4_1 = request.values['c41']
+    count4_2 = request.values['c42']
+    count4_3 = request.values['c43']
 
-    pro0 = request.values['pro0']
-    pro1_1 = request.values['pro1_1']
-    pro1_2 = request.values['pro1_2']
-    pro1_3 = request.values['pro1_3']
-    pro2_1 = request.values['pro2_1']
-    pro2_2 = request.values['pro2_2']
-    pro2_3 = request.values['pro2_3']
-    pro3_1 = request.values['pro3_1']
-    pro3_2 = request.values['pro3_2']
-    pro3_3 = request.values['pro3_3']
-    pro4_1 = request.values['pro4_1']
-    pro4_2 = request.values['pro4_2']
-    pro4_3 = request.values['pro4_3']
+    user_input0 = request.values['pro0']
+    user_input1_1 = request.values['pro1_1']
+    user_input1_2 = request.values['pro1_2']
+    user_input1_3 = request.values['pro1_3']
+    user_input2_1 = request.values['pro2_1']
+    user_input2_2 = request.values['pro2_2']
+    user_input2_3 = request.values['pro2_3']
+    user_input3_1 = request.values['pro3_1']
+    user_input3_2 = request.values['pro3_2']
+    user_input3_3 = request.values['pro3_3']
+    user_input4_1 = request.values['pro4_1']
+    user_input4_2 = request.values['pro4_2']
+    user_input4_3 = request.values['pro4_3']
+
+    ground_truth0 = request.values['ground_truth0']
+    ground_truth1_1 = request.values['ground_truth1_1']
+    ground_truth1_2 = request.values['ground_truth1_2']
+    ground_truth1_3 = request.values['ground_truth1_3']
+    ground_truth2_1 = request.values['ground_truth2_1']
+    ground_truth2_2 = request.values['ground_truth2_2']
+    ground_truth2_3 = request.values['ground_truth2_3']
+    ground_truth3_1 = request.values['ground_truth3_1']
+    ground_truth3_2 = request.values['ground_truth3_2']
+    ground_truth3_3 = request.values['ground_truth3_3']
+    ground_truth4_1 = request.values['ground_truth4_1']
+    ground_truth4_2 = request.values['ground_truth4_2']
+    ground_truth4_3 = request.values['ground_truth4_3']
+
+    captcha_id0 = request.values['captcha_id0']
+    captcha_id1_1 = request.values['captcha_id1_1']
+    captcha_id1_2 = request.values['captcha_id1_2']
+    captcha_id1_3 = request.values['captcha_id1_3']
+    captcha_id2_1 = request.values['captcha_id2_1']
+    captcha_id2_2 = request.values['captcha_id2_2']
+    captcha_id2_3 = request.values['captcha_id2_3']
+    captcha_id3_1 = request.values['captcha_id3_1']
+    captcha_id3_2 = request.values['captcha_id3_2']
+    captcha_id3_3 = request.values['captcha_id3_3']
+    captcha_id4_1 = request.values['captcha_id4_1']
+    captcha_id4_2 = request.values['captcha_id4_2']
+    captcha_id4_3 = request.values['captcha_id4_3']
+
+    file_address0 = request.values['file_address0']
+    file_address1_1 = request.values['file_address1_1']
+    file_address1_2 = request.values['file_address1_2']
+    file_address1_3 = request.values['file_address1_3']
+    file_address2_1 = request.values['file_address2_1']
+    file_address2_2 = request.values['file_address2_2']
+    file_address2_3 = request.values['file_address2_3']
+    file_address3_1 = request.values['file_address3_1']
+    file_address3_2 = request.values['file_address3_2']
+    file_address3_3 = request.values['file_address3_3']
+    file_address4_1 = request.values['file_address4_1']
+    file_address4_2 = request.values['file_address4_2']
+    file_address4_3 = request.values['file_address4_3']
+
+    task_type0 = request.values['task_type0']
+    task_type1_1 = request.values['task_type1_1']
+    task_type1_2 = request.values['task_type1_2']
+    task_type1_3 = request.values['task_type1_3']
+    task_type2_1 = request.values['task_type2_1']
+    task_type2_2 = request.values['task_type2_2']
+    task_type2_3 = request.values['task_type2_3']
+    task_type3_1 = request.values['task_type3_1']
+    task_type3_2 = request.values['task_type3_2']
+    task_type3_3 = request.values['task_type3_3']
+    task_type4_1 = request.values['task_type4_1']
+    task_type4_2 = request.values['task_type4_2']
+    task_type4_3 = request.values['task_type4_3']
+
 
     likert_fb1_1 = request.values['likert_fb1_1']
     likert_fb1_2 = request.values['likert_fb1_2']
@@ -112,55 +181,30 @@ def submit():
     text_fb4_1 = request.values['text_fb4_1']
     text_fb4_2 = request.values['text_fb4_2']
 
-    # fname   = request.values['fname']
-    # lname   = request.values['lname']
-    # age     = request.values['age']
-    # gender  = request.values['gender']
-    # email   = request.values['email']
-    # group = request.values['group']
-    # order = request.values['order']
-    # id1 = request.values['id1']
-    # id2 = request.values['id2']
-    # id3 = request.values['id3']
-
-    # if group == "A": groupA_count[order] +=1
-    # elif group == "B": groupB_count[order] +=1
-    # elif group == "C": groupC_count[order] +=1
-    # id_used_record[group].append(id1)
-    # id_used_record[group].append(id2)
-    # id_used_record[group].append(id3)
-    # print(group, order, id1, id2, id3)
-    
-    # pack all responses to json
     dataJson = {}
-    # dataJson["fname"] = fname
-    # dataJson["lname"] = lname
-    # dataJson["age"] = age
-    # dataJson["gender"] = gender
-    # dataJson["email"] = email
 
-    dataJson["practice"] = dict(time=time_0, count=count_0, text=pro0)
-    dataJson["instance1_1"] = dict(time=time_11, count=count_11, text=pro1_1)
-    dataJson["instance1_2"] = dict(time=time_12, count=count_12, text=pro1_2)
-    dataJson["instance1_3"] = dict(time=time_13, count=count_13, text=pro1_3)
-    dataJson["feedback1"] = dict(likert_fb1_1=likert_fb1_1, likert_fb1_2=likert_fb1_2, likert_fb1_3=likert_fb1_3, text_fb1_1=text_fb1_1, text_fb1_2=text_fb1_2)
+    dataJson["practice"]    = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address0,captcha_id=captcha_id0,task_type=task_type0,ground_truth=ground_truth0,time=time_0, count=count_0, user_input=user_input0)
+    dataJson["instance1_1"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_1,captcha_id=captcha_id1_1,task_type=task_type1_1,ground_truth=ground_truth1_1,time=time1_1, count=count1_1, user_input=user_input1_1)
+    dataJson["instance1_2"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_2,captcha_id=captcha_id1_2,task_type=task_type1_2,ground_truth=ground_truth1_2,time=time1_2, count=count1_2, user_input=user_input1_2)
+    dataJson["instance1_3"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_3,captcha_id=captcha_id1_3,task_type=task_type1_3,ground_truth=ground_truth1_3,time=time1_3, count=count1_3, user_input=user_input1_3)
+    dataJson["feedback1"]   = dict(likert_fb1_1=likert_fb1_1, likert_fb1_2=likert_fb1_2, likert_fb1_3=likert_fb1_3, user_input_fb1_1=text_fb1_1, text_fb1_2=text_fb1_2)
     
-    dataJson["instance2_1"] = dict(time=time_21, count=count_21, text=pro2_1)
-    dataJson["instance2_2"] = dict(time=time_22, count=count_22, text=pro2_2)
-    dataJson["instance2_3"] = dict(time=time_23, count=count_23, text=pro2_3)
-    dataJson["feedback2"] = dict(likert_fb2_1=likert_fb2_1, likert_fb2_2=likert_fb2_2, likert_fb2_3=likert_fb2_3, text_fb2_1=text_fb2_1, text_fb2_2=text_fb2_2)
+    dataJson["instance2_1"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_1,captcha_id=captcha_id2_1,task_type=task_type2_1,ground_truth=ground_truth2_1,time=time2_1, count=count2_1, user_input=user_input2_1)
+    dataJson["instance2_2"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_2,captcha_id=captcha_id2_2,task_type=task_type2_2,ground_truth=ground_truth2_2,time=time2_2, count=count2_2, user_input=user_input2_2)
+    dataJson["instance2_3"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_3,captcha_id=captcha_id2_3,task_type=task_type2_3,ground_truth=ground_truth2_3,time=time2_3, count=count2_3, user_input=user_input2_3)
+    dataJson["feedback2"]   = dict(likert_fb2_1=likert_fb2_1, likert_fb2_2=likert_fb2_2, likert_fb2_3=likert_fb2_3, text_fb2_1=text_fb2_1, text_fb2_2=text_fb2_2)
     
-    dataJson["instance3_1"] = dict(time=time_31, count=count_31, text=pro3_1)
-    dataJson["instance3_2"] = dict(time=time_32, count=count_32, text=pro3_2)
-    dataJson["instance3_3"] = dict(time=time_33, count=count_33, text=pro3_3)
-    dataJson["feedback3"] = dict(likert_fb3_1=likert_fb3_1, likert_fb3_2=likert_fb3_2, likert_fb3_3=likert_fb3_3, text_fb3_1=text_fb3_1, text_fb3_2=text_fb3_2)
+    dataJson["instance3_1"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_1,captcha_id=captcha_id3_1,task_type=task_type3_1,ground_truth=ground_truth3_1,time=time3_1, count=count3_1, user_input=user_input3_1)
+    dataJson["instance3_2"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_2,captcha_id=captcha_id3_2,task_type=task_type3_2,ground_truth=ground_truth3_2,time=time3_2, count=count3_2, user_input=user_input3_2)
+    dataJson["instance3_3"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_3,captcha_id=captcha_id3_3,task_type=task_type3_3,ground_truth=ground_truth3_3,time=time3_3, count=count3_3, user_input=user_input3_3)
+    dataJson["feedback3"]   = dict(likert_fb3_1=likert_fb3_1, likert_fb3_2=likert_fb3_2, likert_fb3_3=likert_fb3_3, text_fb3_1=text_fb3_1, text_fb3_2=text_fb3_2)
     
-    dataJson["instance4_1"] = dict(time=time_41, count=count_41, text=pro4_1)
-    dataJson["instance4_2"] = dict(time=time_42, count=count_42, text=pro4_2)
-    dataJson["instance4_3"] = dict(time=time_43, count=count_43, text=pro4_3)
-    dataJson["feedback4"] = dict(likert_fb4_1=likert_fb4_1, likert_fb4_2=likert_fb4_2, likert_fb4_3=likert_fb4_3, text_fb4_1=text_fb4_1, text_fb4_2=text_fb4_2)
+    dataJson["instance4_1"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_1,captcha_id=captcha_id4_1,task_type=task_type4_1,ground_truth=ground_truth4_1,time=time4_1, count=count4_1, user_input=user_input4_1)
+    dataJson["instance4_2"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_2,captcha_id=captcha_id4_2,task_type=task_type4_2,ground_truth=ground_truth4_2,time=time4_2, count=count4_2, user_input=user_input4_2)
+    dataJson["instance4_3"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_3,captcha_id=captcha_id4_3,task_type=task_type4_3,ground_truth=ground_truth4_3,time=time4_3, count=count4_3, user_input=user_input4_3)
+    dataJson["feedback4"]   = dict(likert_fb4_1=likert_fb4_1, likert_fb4_2=likert_fb4_2, likert_fb4_3=likert_fb4_3, text_fb4_1=text_fb4_1, text_fb4_2=text_fb4_2)
     
-    mycol.insert_one(dataJson)
+    task_data.insert_one(dataJson)
 
     # print(fname, lname, age, gender, email)
 
@@ -169,48 +213,117 @@ def submit():
 
 @app.route('/demographic_control',methods=['POST'])
 def demographic_control():
-    fname   = request.values['fname']
-    lname   = request.values['lname']
+    
+    # fname   = request.values['fname']
+    # lname   = request.values['lname']
+    table_id = request.values['table_id']
     age     = request.values['age']
     gender  = request.values['gender']
     email   = request.values['email']
 
     demographic = {}
-    demographic["fname"]    = fname
-    demographic["lname"]    = lname
+    # demographic["fname"]    = fname
+    # demographic["lname"]    = lname
+    demographic["table_id"]    = table_id
     demographic["age"]      = age
     demographic["gender"]   = gender
     demographic["email"]    = email
+    demographic_data.insert_one(demographic)
 
-    print(fname, lname, age,gender, email)
+    # get group, task order
+    group = "test group"
+    task_order = " test task order"
+    # participants_num += 1 # TODO: should figure out how to add from global variable
+    
+    # get participants_num
+    res = preference_data.update_one({"_id": 'participants_num'}, {"$inc": {"count": 1}}, upsert =True)
+    print(res.raw_result)
+    doc  = preference_data.find_one({"_id": 'participants_num'})
+    participants_num = doc["count"]
 
-    return render_template('tasks.html', async_mode=socketio.async_mode)
+    participants_id = str(participants_num)
 
-    # return render_template('tasks.html', group = group,
-    #                                     order = order,
-    #                                     id1 = str(ids[0]),
-    #                                     id2 = str(ids[1]),
-    #                                     id3 = str(ids[2]),
-    #                                     practice= "prototypes/prototype1/Math_Only_Add.mp3",
-    #                                     instance1_1 ="prototypes/group"+group+"/"+instance_1+"/"+str(ids[0]), 
-    #                                     instance1_2 ="prototypes/group"+group+"/"+instance_1+"/"+str(ids[1]), 
-    #                                     instance1_3 ="prototypes/group"+group+"/"+instance_1+"/"+str(ids[2]), 
 
-    #                                     instance2_1 ="prototypes/group"+group+"/"+instance_2+"/"+str(ids[0]), 
-    #                                     instance2_2 ="prototypes/group"+group+"/"+instance_2+"/"+str(ids[1]), 
-    #                                     instance2_3 ="prototypes/group"+group+"/"+instance_2+"/"+str(ids[2]), 
+    # return render_template('tasks.html', async_mode=socketio.async_mode)
 
-    #                                     instance3_1 ="prototypes/group"+group+"/"+instance_3+"/"+str(ids[0]), 
-    #                                     instance3_2 ="prototypes/group"+group+"/"+instance_3+"/"+str(ids[1]), 
-    #                                     instance3_3 ="prototypes/group"+group+"/"+instance_3+"/"+str(ids[2]), 
+    return render_template('tasks.html', async_mode=socketio.async_mode,
+                                        table_id        = table_id,
+                                        participants_id = participants_id,
+                                        group           = group,
+                                        task_order      = task_order,
+                                        
+                                        practice       = "prototypes/practice.mp3",
+                                        catpcha_id0    = "0",
+                                        task_type0     = "N",
+                                        ground_truth0  = "000000",
 
-    #                                     instance4_1 ="prototypes/group"+group+"/"+instance_4+"/"+str(ids[0]), 
-    #                                     instance4_2 ="prototypes/group"+group+"/"+instance_4+"/"+str(ids[1]), 
-    #                                     instance4_3 ="prototypes/group"+group+"/"+instance_4+"/"+str(ids[2]), )
+                                        instance1_1         = "prototypes/"+participants_id+"/", 
+                                        catpcha_id1_1       = "0",
+                                        task_type1_1        = "N",
+                                        ground_truth1_1     = "000000",
+
+                                        instance1_2 ="prototypes/"+participants_id+"/", 
+                                        catpcha_id1_2       = "0",
+                                        task_type1_2        = "N",
+                                        ground_truth1_2     = "000000",
+
+                                        instance1_3 ="prototypes/"+participants_id+"/", 
+                                        catpcha_id1_3       = "0",
+                                        task_type1_3        = "N",
+                                        ground_truth1_3     = "000000",
+
+                                        instance2_1 ="prototypes/"+participants_id+"/", 
+                                        catpcha_id2_1       = "0",
+                                        task_type2_1        = "N",
+                                        ground_truth2_1     = "000000",
+
+                                        instance2_2 ="prototypes/"+participants_id+"/", 
+                                        catpcha_id2_2       = "0",
+                                        task_type2_2        = "N",
+                                        ground_truth2_2     = "000000",
+
+                                        instance2_3 ="prototypes/"+participants_id+"/", 
+                                        catpcha_id2_3       = "0",
+                                        task_type2_3        = "N",
+                                        ground_truth2_3     = "000000",
+
+                                        instance3_1 ="prototypes/"+participants_id+"/", 
+                                        catpcha_id3_1       = "0",
+                                        task_type3_1        = "N",
+                                        ground_truth3_1     = "000000",
+
+                                        instance3_2 ="prototypes/"+participants_id+"/", 
+                                        catpcha_id3_2       = "0",
+                                        task_type3_2        = "N",
+                                        ground_truth3_2     = "000000",
+
+                                        instance3_3 ="prototypes/"+participants_id+"/", 
+                                        catpcha_id3_3       = "0",
+                                        task_type3_3        = "N",
+                                        ground_truth3_3     = "000000",
+
+                                        instance4_1 ="prototypes/"+participants_id+"/", 
+                                        catpcha_id4_1       = "0",
+                                        task_type4_1        = "N",
+                                        ground_truth4_1     = "000000",
+
+                                        instance4_2 ="prototypes/"+participants_id+"/", 
+                                        catpcha_id4_2       = "0",
+                                        task_type4_2        = "N",
+                                        ground_truth4_2     = "000000",
+
+                                        instance4_3         ="prototypes/"+participants_id+"/",
+                                        catpcha_id4_3       = "0",
+                                        task_type4_3        = "N",
+                                        ground_truth4_3     = "000000")
 
 @app.route('/')
 def index():
-    return render_template('index.html', async_mode=socketio.async_mode)
+    table_id = uuid.uuid1()
+
+
+    return render_template('index.html', async_mode=socketio.async_mode,
+                                        table_id=table_id)
 
 
 @app.route('/<path:path>')
@@ -233,5 +346,5 @@ def test_disconnect():
     print('Client disconnected', request.sid)
 
 if __name__ == '__main__':
-    initialize_counter()
+    # initialize_counter()
     socketio.run(app, debug=False, host="0.0.0.0", port=5000)
