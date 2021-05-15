@@ -42,11 +42,11 @@ form .likert:before {
     display:block;
     background-color:#efefef;
     height:4px;
-    width:78%;
+    width:83%;
 }
 form .likert li {
     display:inline-block;
-    width:19%;
+    width:13.5%;
     text-align:center;
     vertical-align: top;
 }
@@ -55,8 +55,7 @@ form .likert li input[type=radio] {
     position:relative;
     top:0;
     left:0%;
-    margin-left:-6px;
-
+    margin-left:10px;
 }
 form .likert li label {width:100%;}
 form .buttons {
