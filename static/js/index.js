@@ -118,6 +118,10 @@ $("#audio").click(function() {
 
 });*/
 function before_submit(){
+  if(!checkfeedback4()) {
+    return;
+  }
+  
   var i=0;
   var j=0;
   document.getElementById("0").value = end_times["0"]-start_times["0"];
@@ -132,6 +136,7 @@ function before_submit(){
       console.log(k, time_interval, play_time);
     }
   }
+  document.getElementById("myform").submit();
   return true;
 }
 function record_end(key){
@@ -145,80 +150,87 @@ function audio_play(key){
 
 
 function hideCaptcha1(){
-  if(count == 0){
+  if(count == 0 && checkPro1_1()){
     document.getElementById("instance1_1").style.display = "none";
     document.getElementById("instance1_2").style.display = "block";
     document.getElementById("instance1_3").style.display = "none";
-    document.getElementById("sub1").innerHTML="Challenge 2";
+    document.getElementById("sub1").innerHTML="第二題";
+    count += 1;
   }
-  if(count == 1){
+  else if(count == 1 && checkPro1_2()){
     document.getElementById("instance1_1").style.display = "none";
     document.getElementById("instance1_2").style.display = "none";
     document.getElementById("instance1_3").style.display = "block";
     document.getElementById("instance1").style.display = "none";
     document.getElementById("pronext1").style.display = "inline";
     count = -1;
-    document.getElementById("sub1").innerHTML="Challenge 3";
+    document.getElementById("sub1").innerHTML="第三題";
+    count += 1;
   }
-  count += 1;
+  else return false;
 }
 
 function hideCaptcha2(){
-  if(count == 0){
+  if(count == 0 && checkPro2_1()){
     document.getElementById("instance2_1").style.display = "none";
     document.getElementById("instance2_2").style.display = "block";
     document.getElementById("instance2_3").style.display = "none";
-    document.getElementById("sub2").innerHTML="Challenge 2";
+    document.getElementById("sub2").innerHTML="第二題";
+    count += 1;
   }
-  if(count == 1){
+  else if(count == 1 && checkPro2_2()){
     document.getElementById("instance2_1").style.display = "none";
     document.getElementById("instance2_2").style.display = "none";
     document.getElementById("instance2_3").style.display = "block";
     document.getElementById("instance2").style.display = "none";
     document.getElementById("pronext2").style.display = "inline";
     count = -1;
-    document.getElementById("sub2").innerHTML="Challenge 3";
+    document.getElementById("sub2").innerHTML="第三題";
+    count += 1;
   }
-  count += 1;
+  else return false;
 }
 
 function hideCaptcha3(){
-  if(count == 0){
+  if(count == 0 && checkPro3_1()){
     document.getElementById("instance3_1").style.display = "none";
     document.getElementById("instance3_2").style.display = "block";
     document.getElementById("instance3_3").style.display = "none";
-    document.getElementById("sub3").innerHTML="Challenge 2";
+    document.getElementById("sub3").innerHTML="第二題";
+    count += 1;
   }
-  if(count == 1){
+  else if(count == 1 && checkPro3_2()){
     document.getElementById("instance3_1").style.display = "none";
     document.getElementById("instance3_2").style.display = "none";
     document.getElementById("instance3_3").style.display = "block";
     document.getElementById("instance3").style.display = "none";
     document.getElementById("pronext3").style.display = "inline";
     count = -1;
-    document.getElementById("sub3").innerHTML="Challenge 3";
+    document.getElementById("sub3").innerHTML="第三題";
+    count += 1;
   }
-  count += 1;
+  else return false;
 }
 
 function hideCaptcha4(){
-  if(count == 0){
+  if(count == 0 && checkPro4_1()){
     document.getElementById("instance4_1").style.display = "none";
     document.getElementById("instance4_2").style.display = "block";
     document.getElementById("instance4_3").style.display = "none";
-    document.getElementById("sub4").innerHTML="Challenge 2";
-
+    document.getElementById("sub4").innerHTML="第二題";
+    count += 1;
   }
-  if(count == 1){
+  else if(count == 1 && checkPro4_2()){
     document.getElementById("instance4_1").style.display = "none";
     document.getElementById("instance4_2").style.display = "none";
     document.getElementById("instance4_3").style.display = "block";
     document.getElementById("instance4").style.display = "none";
     document.getElementById("pronext4").style.display = "inline";
     count = -1;
-    document.getElementById("sub4").innerHTML="Challenge 3";
+    document.getElementById("sub4").innerHTML="第三題";
+    count += 1;
   }
-  count += 1;
+  else return false;
 }
 
 
@@ -230,6 +242,127 @@ $(document).on("keypress", "input", function (e) {
   }
 });
 
+function checkPro0() {
+  if(!$("#pro0").get(0).value) {
+    alert('請確認回答了所有問題！');
+    console.log($("#pro0").get(0).value);
+    return false;
+  }else return true;
+}
+function checkPro1_1() {
+  if(!$("#pro1_1").get(0).value) {
+    alert('請確認回答了所有問題！');
+    console.log($("#pro1_1").get(0).value);
+    return false;
+  }else return true;
+}
+function checkPro1_2() {
+  if(!$("#pro1_2").get(0).value) {
+    alert('請確認回答了所有問題！');
+    console.log($("#pro1_2").get(0).value);
+    return false;
+  }else return true;
+}
+function checkPro1_3(){
+  if(!$("#pro1_3").get(0).value) {
+    alert('請確認回答了所有問題！');
+    console.log($("#pro1_3").get(0).value);
+    return false;
+  }else return true;
+}
+function checkfeedback1(){
+  if(!($("#text_fb1_1").get(0).value && $("#text_fb1_2").get(0).value && $("#text_fb1_3").get(0).value)) {
+    alert('請確認回答了所有問題！');
+    return false;
+  }else return true;
+}
+  
+
+function checkPro2_1() {
+  if(!$("#pro2_1").get(0).value) {
+    alert('請確認回答了所有問題！');
+    console.log($("#pro2_1").get(0).value);
+    return false;
+  }else return true;
+}
+function checkPro2_2() {
+  if(!$("#pro2_2").get(0).value) {
+    alert('請確認回答了所有問題！');
+    console.log($("#pro2_2").get(0).value);
+    return false;
+  }else return true;
+}
+function checkPro2_3(){
+  if(!$("#pro2_3").get(0).value) {
+    alert('請確認回答了所有問題！');
+    console.log($("#pro2_3").get(0).value);
+    return false;
+  }else return true;
+}
+function checkfeedback2(){
+  if(!($("#text_fb2_1").get(0).value && $("#text_fb2_2").get(0).value && $("#text_fb2_3").get(0).value)) {
+    alert('請確認回答了所有問題！');
+    return false;
+  }else return true;
+}
+
+
+function checkPro3_1() {
+  if(!$("#pro3_1").get(0).value) {
+    alert('請確認回答了所有問題！');
+    console.log($("#pro3_1").get(0).value);
+    return false;
+  }else return true;
+}
+function checkPro3_2() {
+  if(!$("#pro3_2").get(0).value) {
+    alert('請確認回答了所有問題！');
+    console.log($("#pro3_2").get(0).value);
+    return false;
+  }else return true;
+}
+function checkPro3_3(){
+  if(!$("#pro3_3").get(0).value) {
+    alert('請確認回答了所有問題！');
+    console.log($("#pro3_3").get(0).value);
+    return false;
+  }else return true;
+}
+function checkfeedback3(){
+  if(!($("#text_fb3_1").get(0).value && $("#text_fb3_2").get(0).value && $("#text_fb3_3").get(0).value)) {
+    alert('請確認回答了所有問題！');
+    return false;
+  }else return true;
+}
+
+function checkPro4_1() {
+  if(!$("#pro4_1").get(0).value) {
+    alert('請確認回答了所有問題！');
+    console.log($("#pro4_1").get(0).value);
+    return false;
+  }else return true;
+}
+function checkPro4_2() {
+  if(!$("#pro4_2").get(0).value) {
+    alert('請確認回答了所有問題！');
+    console.log($("#pro4_2").get(0).value);
+    return false;
+  }else return true;
+}
+function checkPro4_3(){
+  if(!$("#pro4_3").get(0).value) {
+    alert('請確認回答了所有問題！');
+    console.log($("#pro4_3").get(0).value);
+    return false;
+  }else return true;
+}
+function checkfeedback4(){
+  if(!($("#text_fb4_1").get(0).value && $("#text_fb4_2").get(0).value && $("#text_fb4_3").get(0).value)) {
+    alert('請確認回答了所有問題！');
+    return false;
+  }else return true;
+}
+
 
 //jQuery time
 (function($) {
@@ -238,12 +371,55 @@ $(document).on("keypress", "input", function (e) {
   var animating; //flag to prevent quick multi-click glitches
 
   $(".next").click(function() {
+    // console.log("get into next");
+    // console.log(animating)
     if (animating) return false;
     animating = true;
 
     current_fs = $(this).parent();
     next_fs = $(this).parent().next();
 
+    if(this.id === 'pronext0') {
+      if(!checkPro0()) {
+        animating = false;
+        return;
+      }
+    }else if(this.id === 'pronext1') {
+      if(!checkPro1_3()) {
+        animating = false;
+        return;
+      }
+    }else if(this.id === 'feedbacknext1') {
+      if(!checkfeedback1()) {
+        animating = false;
+        return;
+      }
+    }else if(this.id === 'pronext2') {
+      if(!checkPro2_3()) {
+        animating = false;
+        return;
+      }
+    }else if(this.id === 'feedbacknext2') {
+      if(!checkfeedback2()) {
+        animating = false;
+        return;
+      }
+    }else if(this.id === 'pronext3') {
+      if(!checkPro3_3()) {
+        animating = false;
+        return;
+      }
+    }else if(this.id === 'feedbacknext3') {
+      if(!checkfeedback3()) {
+        animating = false;
+        return;
+      }
+    }else if(this.id === 'pronext4') {
+      if(!checkPro4_3()) {
+        animating = false;
+        return;
+      }
+    }
 
     //activate next step on progressbar using the index of next_fs
     $("#progressbar li").eq($("fieldset").index(next_fs) + 1).addClass("active");

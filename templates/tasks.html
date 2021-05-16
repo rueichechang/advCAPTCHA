@@ -10,7 +10,7 @@
 
 <body>
 
-  <form method="post" action="/submit">
+  <form id = "myform" method="post" action="/submit">
   <div id="msform">
     <!-- progressbar -->
     <ul id="progressbar">
@@ -189,7 +189,7 @@
             </ul>
 
           <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼優點，讓你覺得喜歡或容易回答？</label>
-          <input type="text" name="text_fb1_1" />
+          <input type="text" name="text_fb1_1" id = "text_fb1_1"/>
 
           <!-- <label class="statement">Do you prefer the current alphanumeric audio CAPTCHAs you already use relative to this design?</label>
           <ul class='likert'>
@@ -203,12 +203,12 @@
             </li>
           </ul> -->
           <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼缺點，讓你覺得不喜歡或難回答？</label>
-          <input type="text" name="text_fb1_2" />
+          <input type="text" name="text_fb1_2" id = "text_fb1_2" />
 
           <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？</label>
-          <input type="text" name="text_fb1_3" />
+          <input type="text" name="text_fb1_3" id = "text_fb1_3"/>
 
-          <input type="button" name="next" class="next action-button" value="Next" />
+          <input type="button" id="feedbacknext1" name="next" class="next action-button" value="Next" />
     </fieldset>
 
     <fieldset class="prototypecard">
@@ -337,7 +337,7 @@
             </ul>
 
           <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼優點，讓你覺得喜歡或容易回答？</label>
-          <input type="text" name="text_fb2_1" />
+          <input type="text" name="text_fb2_1" id="text_fb2_1"/>
 
           <!-- <label class="statement">Do you prefer the current alphanumeric audio CAPTCHAs you already use relative to this design?</label>
           <ul class='likert'>
@@ -351,12 +351,12 @@
             </li>
           </ul> -->
           <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼缺點，讓你覺得不喜歡或難回答？</label>
-          <input type="text" name="text_fb2_2" />
+          <input type="text" name="text_fb2_2" id="text_fb2_2"/>
 
           <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？</label>
-          <input type="text" name="text_fb2_3" />
+          <input type="text" name="text_fb2_3" id = "text_fb2_3"/>
 
-          <input type="button" name="next" class="next action-button" value="Next" />
+          <input type="button" id="feedbacknext2" name="next" class="next action-button" value="Next" />
     </fieldset>
 
     <fieldset class="prototypecard">
@@ -485,7 +485,7 @@
             </ul>
 
           <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼優點，讓你覺得喜歡或容易回答？</label>
-          <input type="text" name="text_fb3_1" />
+          <input type="text" name="text_fb3_1" id = "text_fb3_1"/>
 
           <!-- <label class="statement">Do you prefer the current alphanumeric audio CAPTCHAs you already use relative to this design?</label>
           <ul class='likert'>
@@ -499,12 +499,12 @@
             </li>
           </ul> -->
           <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼缺點，讓你覺得不喜歡或難回答？</label>
-          <input type="text" name="text_fb3_2" />
+          <input type="text" name="text_fb3_2" id = "text_fb3_2"/>
 
           <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？</label>
-          <input type="text" name="text_fb3_3" />
+          <input type="text" name="text_fb3_3" id = "text_fb3_3"/>
 
-          <input type="button" name="next" class="next action-button" value="Next" />
+          <input type="button" id = "feedbacknext3" name="next" class="next action-button" value="Next" />
     </fieldset>
 
     <fieldset class="prototypecard">
@@ -632,7 +632,7 @@
             </ul>
 
           <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼優點，讓你覺得喜歡或容易回答？</label>
-          <input type="text" name="text_fb4_1" />
+          <input type="text" name="text_fb4_1" id="text_fb4_1"/>
 
           <!-- <label class="statement">Do you prefer the current alphanumeric audio CAPTCHAs you already use relative to this design?</label>
           <ul class='likert'>
@@ -646,12 +646,12 @@
             </li>
           </ul> -->
           <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼缺點，讓你覺得不喜歡或難回答？</label>
-          <input type="text" name="text_fb4_2" />
+          <input type="text" name="text_fb4_2" id="text_fb4_2"/>
 
           <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？</label>
-          <input type="text" name="text_fb4_3" />
+          <input type="text" name="text_fb4_3" id="text_fb4_3"/>
 
-          <input type="submit" name="submit" class="submit action-button" value="Complete" onclick="before_submit();"/>
+          <input type="button" id="feedbacknext4" name="feedbacknext4" class="feedbacknext4 action-button" value="Submit" onclick="before_submit();"/>
         </fieldset>
     
     
@@ -664,9 +664,6 @@
   
 
     <script  src="js/index.js"></script>
-
-
-
 
 </body>
 

@@ -6,13 +6,21 @@ from flask_socketio import SocketIO, emit, join_room, leave_room, \
     close_room, rooms, disconnect
 import time, os, glob, json
 import numpy as np
-from itertools import permutations
 import random
 import pymongo
 import uuid
+
+from dotenv import load_dotenv
+load_dotenv()
+
+serverIP = os.getenv("SERVER_IP")
+mongoURL = os.getenv("MONGO_URL")
+
+print('////')
+print(mongoURL)
 # 'mongodb+srv://advcaptcha:hankhaopinlee@cluster0.j1zm5.gcp.mongodb.net'
-mongo_url = 'mongodb+srv://advcaptcha:hankhaopinlee@cluster0.j1zm5.gcp.mongodb.net'
-my_client = pymongo.MongoClient(mongo_url)
+# mongo_url = mongoURL
+my_client = pymongo.MongoClient(mongoURL)
 
 
 mydb = my_client["advcaptcha"]
@@ -21,34 +29,12 @@ demographic_data = mydb["demographic"]
 post_question_collection = mydb["post_question_collection"]
 preference_data = mydb["preference"]
 
-# global participants_num 
-# participants_num = 0
-
-# groupA_count = {}
-# groupB_count = {}
-# groupC_count = {}
 
 async_mode = None
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, async_mode=async_mode)
 
-# id_used_record = {"A":[], "B":[], "C":[]}
-
-# def join_tuple_string(strings_tuple) -> str:
-#    return ''.join(strings_tuple)
-# def initialize_counter():
-#     # Baseline -> B
-#     # Kenan -> K
-#     # Devil -> D
-#     # Mix (Kenan+Devil)-> M
-#     permutation = list(permutations("BKDM",4))
-#     names = map(join_tuple_string, permutation)
-
-#     for name in names:
-#         groupA_count[name] = 0
-#         groupB_count[name] = 0
-#         groupC_count[name] = 0
 @app.route('/post_question',methods=['POST'])
 def post_question():
     name = request.values['name']
@@ -396,4 +382,4 @@ def test_disconnect():
 
 if __name__ == '__main__':
     # initialize_counter()
-    socketio.run(app, debug=False, host="0.0.0.0", port=5000)
+    socketio.run(app, debug=False, host='0.0.0.0', port=5000)
