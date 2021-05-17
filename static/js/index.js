@@ -15,6 +15,7 @@ $(document).ready(function() {
 });
 
 
+
 //randomized cards code
 // var prototypecard = $(".prototypecard");
 // var feedbackcard = $(".feedbackcard");
@@ -117,6 +118,7 @@ alert("played");
 $("#audio").click(function() {
 
 });*/
+
 function before_submit(){
   if(!checkfeedback4()) {
     return;
@@ -242,37 +244,38 @@ $(document).on("keypress", "input", function (e) {
   }
 });
 
+var alert_msg = "請確認回答了所有問題！";
 function checkPro0() {
   if(!$("#pro0").get(0).value) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     console.log($("#pro0").get(0).value);
     return false;
   }else return true;
 }
 function checkPro1_1() {
   if(!$("#pro1_1").get(0).value) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     console.log($("#pro1_1").get(0).value);
     return false;
   }else return true;
 }
 function checkPro1_2() {
   if(!$("#pro1_2").get(0).value) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     console.log($("#pro1_2").get(0).value);
     return false;
   }else return true;
 }
 function checkPro1_3(){
   if(!$("#pro1_3").get(0).value) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     console.log($("#pro1_3").get(0).value);
     return false;
   }else return true;
 }
 function checkfeedback1(){
   if(!($("#text_fb1_1").get(0).value && $("#text_fb1_2").get(0).value && $("#text_fb1_3").get(0).value)) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     return false;
   }else return true;
 }
@@ -280,28 +283,28 @@ function checkfeedback1(){
 
 function checkPro2_1() {
   if(!$("#pro2_1").get(0).value) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     console.log($("#pro2_1").get(0).value);
     return false;
   }else return true;
 }
 function checkPro2_2() {
   if(!$("#pro2_2").get(0).value) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     console.log($("#pro2_2").get(0).value);
     return false;
   }else return true;
 }
 function checkPro2_3(){
   if(!$("#pro2_3").get(0).value) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     console.log($("#pro2_3").get(0).value);
     return false;
   }else return true;
 }
 function checkfeedback2(){
   if(!($("#text_fb2_1").get(0).value && $("#text_fb2_2").get(0).value && $("#text_fb2_3").get(0).value)) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     return false;
   }else return true;
 }
@@ -309,56 +312,56 @@ function checkfeedback2(){
 
 function checkPro3_1() {
   if(!$("#pro3_1").get(0).value) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     console.log($("#pro3_1").get(0).value);
     return false;
   }else return true;
 }
 function checkPro3_2() {
   if(!$("#pro3_2").get(0).value) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     console.log($("#pro3_2").get(0).value);
     return false;
   }else return true;
 }
 function checkPro3_3(){
   if(!$("#pro3_3").get(0).value) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     console.log($("#pro3_3").get(0).value);
     return false;
   }else return true;
 }
 function checkfeedback3(){
   if(!($("#text_fb3_1").get(0).value && $("#text_fb3_2").get(0).value && $("#text_fb3_3").get(0).value)) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     return false;
   }else return true;
 }
 
 function checkPro4_1() {
   if(!$("#pro4_1").get(0).value) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     console.log($("#pro4_1").get(0).value);
     return false;
   }else return true;
 }
 function checkPro4_2() {
   if(!$("#pro4_2").get(0).value) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     console.log($("#pro4_2").get(0).value);
     return false;
   }else return true;
 }
 function checkPro4_3(){
   if(!$("#pro4_3").get(0).value) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     console.log($("#pro4_3").get(0).value);
     return false;
   }else return true;
 }
 function checkfeedback4(){
   if(!($("#text_fb4_1").get(0).value && $("#text_fb4_2").get(0).value && $("#text_fb4_3").get(0).value)) {
-    alert('請確認回答了所有問題！');
+    alert(alert_msg);
     return false;
   }else return true;
 }

@@ -6,6 +6,61 @@ html,body {padding:0;margin:0;}
     font:12px Arial, san-serif;
 }
 
+/* .audio_preview{
+  width:150px; 
+  border: 1px dashed black; 
+  display: inline-block;
+}
+
+
+.audio_answer{
+  width:150px; 
+  height:60px;
+  border: 1px solid black; 
+  display: inline-block;
+}
+ */
+
+
+ #input_ul li audio {
+  width: 500px;
+}
+
+#input_ul li {
+  margin: 1px;
+  margin-top:10px;
+  height:50px;
+  padding:2px;
+  /* vertical-align:middle; */
+}
+
+
+#input_ul .ui-state span {
+color: gray;
+font-size: 1.1em;
+/* margin-right: 5px;
+margin-left: 5px; */
+cursor: pointer;
+height:120%;
+}
+
+#input_ul .ui-state input[type="text"] {
+  width: 50px;
+  margin-right: 5px;
+  border: 1px solid lightgay;
+  color: black;
+  text-align: center;
+}
+
+
+
+
+
+
+/* .audio_answer[contentEditable="true"]:empty:not(:focus):before {
+  content: attr(placeholder)
+} */
+
 .termsx {
     overflow-y: scroll;
     height: 700px;

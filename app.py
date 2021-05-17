@@ -42,14 +42,25 @@ def post_question():
     reasontolove = request.values['reasontolove']
     reasontohate = request.values['reasontohate']
 
+    answer1 = request.values['answer1']
+    answer2 = request.values['answer2']
+    answer3 = request.values['answer3']
+    answer4 = request.values['answer4']
+
     result = {}
     result['name'] = name
     result['email'] = email
     result['reasontolove'] = reasontolove
     result['reasontohate'] = reasontohate
+    result['preference'] = dict(answer1=answer1,
+                                answer2=answer2,
+                                answer3=answer3,
+                                answer4=answer4,
+                                )
 
     post_question_collection.insert_one(result)
 
+    print("had got in here")
     return render_template('thank.html',**locals())
 @app.route('/submit',methods=['POST'])
 def submit():
