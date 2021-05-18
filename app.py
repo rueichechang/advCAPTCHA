@@ -28,6 +28,7 @@ task_data = mydb["task"]
 demographic_data = mydb["demographic"]
 post_question_collection = mydb["post_question_collection"]
 preference_data = mydb["preference"]
+feedback_collection = mydb["evaluation_feedback"]
 
 
 async_mode = None
@@ -37,6 +38,11 @@ socketio = SocketIO(app, async_mode=async_mode)
 
 @app.route('/post_question',methods=['POST'])
 def post_question():
+    table_id = request.values['table_id']
+    participant_id = request.values['participant_id']
+    group = request.values['group']
+    task_order = request.values['task_order']
+
     name = request.values['name']
     email = request.values['email']
     reasontolove = request.values['reasontolove']
@@ -48,11 +54,15 @@ def post_question():
     answer4 = request.values['answer4']
 
     result = {}
+    result['table_id'] = table_id
+    result['participant_id'] = participant_id
+    result['group'] = group
+    result['task_order'] = task_order
     result['name'] = name
     result['email'] = email
-    result['reasontolove'] = reasontolove
-    result['reasontohate'] = reasontohate
-    result['preference'] = dict(answer1=answer1,
+    result['final_like_reason'] = reasontolove
+    result['final_dislike_reason'] = reasontohate
+    result['final_preference_order'] = dict(answer1=answer1,
                                 answer2=answer2,
                                 answer3=answer3,
                                 answer4=answer4,
@@ -212,30 +222,33 @@ def submit():
     print("======== 12 ============")
 
     dataJson = {}
+    feedback = {}
 
     dataJson["practice"]    = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address0,captcha_id=captcha_id0,task_type=task_type0,ground_truth=ground_truth0,time=time_0, count=count_0, user_input=user_input0)
     dataJson["instance1_1"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_1,captcha_id=captcha_id1_1,task_type=task_type1_1,ground_truth=ground_truth1_1,time=time1_1, count=count1_1, user_input=user_input1_1)
     dataJson["instance1_2"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_2,captcha_id=captcha_id1_2,task_type=task_type1_2,ground_truth=ground_truth1_2,time=time1_2, count=count1_2, user_input=user_input1_2)
     dataJson["instance1_3"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_3,captcha_id=captcha_id1_3,task_type=task_type1_3,ground_truth=ground_truth1_3,time=time1_3, count=count1_3, user_input=user_input1_3)
-    dataJson["feedback1"]   = dict(likert_fb1_1=likert_fb1_1, likert_fb1_2=likert_fb1_2, text_fb1_1=text_fb1_1, text_fb1_2=text_fb1_2, text_fb1_3=text_fb1_3)
     
     dataJson["instance2_1"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_1,captcha_id=captcha_id2_1,task_type=task_type2_1,ground_truth=ground_truth2_1,time=time2_1, count=count2_1, user_input=user_input2_1)
     dataJson["instance2_2"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_2,captcha_id=captcha_id2_2,task_type=task_type2_2,ground_truth=ground_truth2_2,time=time2_2, count=count2_2, user_input=user_input2_2)
     dataJson["instance2_3"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_3,captcha_id=captcha_id2_3,task_type=task_type2_3,ground_truth=ground_truth2_3,time=time2_3, count=count2_3, user_input=user_input2_3)
-    dataJson["feedback2"]   = dict(likert_fb2_1=likert_fb2_1, likert_fb2_2=likert_fb2_2, text_fb2_1=text_fb2_1, text_fb2_2=text_fb2_2, text_fb2_3=text_fb2_3)
     
     dataJson["instance3_1"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_1,captcha_id=captcha_id3_1,task_type=task_type3_1,ground_truth=ground_truth3_1,time=time3_1, count=count3_1, user_input=user_input3_1)
     dataJson["instance3_2"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_2,captcha_id=captcha_id3_2,task_type=task_type3_2,ground_truth=ground_truth3_2,time=time3_2, count=count3_2, user_input=user_input3_2)
     dataJson["instance3_3"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_3,captcha_id=captcha_id3_3,task_type=task_type3_3,ground_truth=ground_truth3_3,time=time3_3, count=count3_3, user_input=user_input3_3)
-    dataJson["feedback3"]   = dict(likert_fb3_1=likert_fb3_1, likert_fb3_2=likert_fb3_2, text_fb3_1=text_fb3_1, text_fb3_2=text_fb3_2, text_fb3_3=text_fb3_3)
     
     dataJson["instance4_1"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_1,captcha_id=captcha_id4_1,task_type=task_type4_1,ground_truth=ground_truth4_1,time=time4_1, count=count4_1, user_input=user_input4_1)
     dataJson["instance4_2"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_2,captcha_id=captcha_id4_2,task_type=task_type4_2,ground_truth=ground_truth4_2,time=time4_2, count=count4_2, user_input=user_input4_2)
     dataJson["instance4_3"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_3,captcha_id=captcha_id4_3,task_type=task_type4_3,ground_truth=ground_truth4_3,time=time4_3, count=count4_3, user_input=user_input4_3)
-    dataJson["feedback4"]   = dict(likert_fb4_1=likert_fb4_1, likert_fb4_2=likert_fb4_2, text_fb4_1=text_fb4_1, text_fb4_2=text_fb4_2, text_fb4_3=text_fb4_3)
     
-    task_data.insert_one(dataJson)
+    feedback["feedback1"]   = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,likert_fb1_1=likert_fb1_1, likert_fb1_2=likert_fb1_2, text_fb1_1=text_fb1_1, text_fb1_2=text_fb1_2, text_fb1_3=text_fb1_3)
+    feedback["feedback2"]   = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,likert_fb2_1=likert_fb2_1, likert_fb2_2=likert_fb2_2, text_fb2_1=text_fb2_1, text_fb2_2=text_fb2_2, text_fb2_3=text_fb2_3)
+    feedback["feedback3"]   = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,likert_fb3_1=likert_fb3_1, likert_fb3_2=likert_fb3_2, text_fb3_1=text_fb3_1, text_fb3_2=text_fb3_2, text_fb3_3=text_fb3_3)
+    feedback["feedback4"]   = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,likert_fb4_1=likert_fb4_1, likert_fb4_2=likert_fb4_2, text_fb4_1=text_fb4_1, text_fb4_2=text_fb4_2, text_fb4_3=text_fb4_3)
+    
 
+    task_data.insert_one(dataJson)
+    feedback_collection.insert_one()
     # print(fname, lname, age, gender, email)
 
     return render_template('submit.html', async_mode=socketio.async_mode,
@@ -269,10 +282,10 @@ def demographic_control():
     demographic["table_id"]    = table_id
     demographic["age"]      = age
     demographic["gender"]   = gender
-    demographic["familiaritynum"]   = familiaritynum
-    demographic["familiaritycaptcha"]   = familiaritycaptcha
-    demographic["familiarityaudio"]   = familiarityaudio
-    demographic["apparatus"]   = apparatus
+    demographic["familiarity_english"]   = familiaritynum
+    demographic["familiarity_original_captcha"]   = familiaritycaptcha
+    demographic["familiarity_audio_captcha"]   = familiarityaudio
+    demographic["play_mode"]   = apparatus
 
     # demographic["email"]    = email
     demographic_data.insert_one(demographic)
