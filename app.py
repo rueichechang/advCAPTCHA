@@ -53,22 +53,32 @@ def post_question():
     answer3 = request.values['answer3']
     answer4 = request.values['answer4']
 
-    result = {}
-    result['table_id'] = table_id
-    result['participant_id'] = participant_id
-    result['group'] = group
-    result['task_order'] = task_order
-    result['name'] = name
-    result['email'] = email
-    result['final_like_reason'] = reasontolove
-    result['final_dislike_reason'] = reasontohate
-    result['final_preference_order'] = dict(answer1=answer1,
+
+    query = { "table_id": table_id }
+    newvalues = { "$set": { "name": name , "email": email, 
+    "final_like_reason": reasontolove, "final_dislike_reason": reasontohate,
+    "final_preference_order":dict(answer1=answer1,
                                 answer2=answer2,
                                 answer3=answer3,
-                                answer4=answer4,
-                                )
+                                answer4=answer4,)} }
 
-    post_question_collection.insert_one(result)
+    demographic_data.update_one(query, newvalues)
+
+    # result = {}
+    # result['table_id'] = table_id
+    # result['participant_id'] = participant_id
+    # result['group'] = group
+    # result['task_order'] = task_order
+    # result['name'] = name
+    # result['email'] = email
+    # result['final_like_reason'] = reasontolove
+    # result['final_dislike_reason'] = reasontohate
+    # result['final_preference_order'] = dict(answer1=answer1,
+    #                             answer2=answer2,
+    #                             answer3=answer3,
+    #                             answer4=answer4,
+    #                             )
+    # post_question_collection.insert_one(result)
 
     print("had got in here")
     return render_template('thank.html',**locals())
@@ -142,19 +152,19 @@ def submit():
     ground_truth4_3 = request.values['ground_truth4_3']
     print("======== 5 ============")
 
-    captcha_id0 = request.values['captcha_id0']
-    captcha_id1_1 = request.values['captcha_id1_1']
-    captcha_id1_2 = request.values['captcha_id1_2']
-    captcha_id1_3 = request.values['captcha_id1_3']
-    captcha_id2_1 = request.values['captcha_id2_1']
-    captcha_id2_2 = request.values['captcha_id2_2']
-    captcha_id2_3 = request.values['captcha_id2_3']
-    captcha_id3_1 = request.values['captcha_id3_1']
-    captcha_id3_2 = request.values['captcha_id3_2']
-    captcha_id3_3 = request.values['captcha_id3_3']
-    captcha_id4_1 = request.values['captcha_id4_1']
-    captcha_id4_2 = request.values['captcha_id4_2']
-    captcha_id4_3 = request.values['captcha_id4_3']
+    captcha_type0 = request.values['captcha_type0']
+    captcha_type1_1 = request.values['captcha_type1_1']
+    captcha_type1_2 = request.values['captcha_type1_2']
+    captcha_type1_3 = request.values['captcha_type1_3']
+    captcha_type2_1 = request.values['captcha_type2_1']
+    captcha_type2_2 = request.values['captcha_type2_2']
+    captcha_type2_3 = request.values['captcha_type2_3']
+    captcha_type3_1 = request.values['captcha_type3_1']
+    captcha_type3_2 = request.values['captcha_type3_2']
+    captcha_type3_3 = request.values['captcha_type3_3']
+    captcha_type4_1 = request.values['captcha_type4_1']
+    captcha_type4_2 = request.values['captcha_type4_2']
+    captcha_type4_3 = request.values['captcha_type4_3']
     print("======== 6 ============")
 
     file_address0 = request.values['file_address0']
@@ -224,22 +234,22 @@ def submit():
     dataJson = {}
     feedback = {}
 
-    dataJson["practice"]    = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address0,captcha_id=captcha_id0,task_type=task_type0,ground_truth=ground_truth0,time=time_0, count=count_0, user_input=user_input0)
-    dataJson["instance1_1"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_1,captcha_id=captcha_id1_1,task_type=task_type1_1,ground_truth=ground_truth1_1,time=time1_1, count=count1_1, user_input=user_input1_1)
-    dataJson["instance1_2"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_2,captcha_id=captcha_id1_2,task_type=task_type1_2,ground_truth=ground_truth1_2,time=time1_2, count=count1_2, user_input=user_input1_2)
-    dataJson["instance1_3"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_3,captcha_id=captcha_id1_3,task_type=task_type1_3,ground_truth=ground_truth1_3,time=time1_3, count=count1_3, user_input=user_input1_3)
+    dataJson["practice"]    = dict(iteration=0, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address0,captcha_type=captcha_type0,task_type=task_type0,ground_truth=ground_truth0,time=time_0, count=count_0, user_input=user_input0)
+    dataJson["instance1_1"] = dict(iteration=1, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_1,captcha_type=captcha_type1_1,task_type=task_type1_1,ground_truth=ground_truth1_1,time=time1_1, count=count1_1, user_input=user_input1_1)
+    dataJson["instance1_2"] = dict(iteration=2, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_2,captcha_type=captcha_type1_2,task_type=task_type1_2,ground_truth=ground_truth1_2,time=time1_2, count=count1_2, user_input=user_input1_2)
+    dataJson["instance1_3"] = dict(iteration=3, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_3,captcha_type=captcha_type1_3,task_type=task_type1_3,ground_truth=ground_truth1_3,time=time1_3, count=count1_3, user_input=user_input1_3)
     
-    dataJson["instance2_1"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_1,captcha_id=captcha_id2_1,task_type=task_type2_1,ground_truth=ground_truth2_1,time=time2_1, count=count2_1, user_input=user_input2_1)
-    dataJson["instance2_2"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_2,captcha_id=captcha_id2_2,task_type=task_type2_2,ground_truth=ground_truth2_2,time=time2_2, count=count2_2, user_input=user_input2_2)
-    dataJson["instance2_3"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_3,captcha_id=captcha_id2_3,task_type=task_type2_3,ground_truth=ground_truth2_3,time=time2_3, count=count2_3, user_input=user_input2_3)
+    dataJson["instance2_1"] = dict(iteration=1, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_1,captcha_type=captcha_type2_1,task_type=task_type2_1,ground_truth=ground_truth2_1,time=time2_1, count=count2_1, user_input=user_input2_1)
+    dataJson["instance2_2"] = dict(iteration=2, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_2,captcha_type=captcha_type2_2,task_type=task_type2_2,ground_truth=ground_truth2_2,time=time2_2, count=count2_2, user_input=user_input2_2)
+    dataJson["instance2_3"] = dict(iteration=3, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_3,captcha_type=captcha_type2_3,task_type=task_type2_3,ground_truth=ground_truth2_3,time=time2_3, count=count2_3, user_input=user_input2_3)
     
-    dataJson["instance3_1"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_1,captcha_id=captcha_id3_1,task_type=task_type3_1,ground_truth=ground_truth3_1,time=time3_1, count=count3_1, user_input=user_input3_1)
-    dataJson["instance3_2"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_2,captcha_id=captcha_id3_2,task_type=task_type3_2,ground_truth=ground_truth3_2,time=time3_2, count=count3_2, user_input=user_input3_2)
-    dataJson["instance3_3"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_3,captcha_id=captcha_id3_3,task_type=task_type3_3,ground_truth=ground_truth3_3,time=time3_3, count=count3_3, user_input=user_input3_3)
+    dataJson["instance3_1"] = dict(iteration=1, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_1,captcha_type=captcha_type3_1,task_type=task_type3_1,ground_truth=ground_truth3_1,time=time3_1, count=count3_1, user_input=user_input3_1)
+    dataJson["instance3_2"] = dict(iteration=2, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_2,captcha_type=captcha_type3_2,task_type=task_type3_2,ground_truth=ground_truth3_2,time=time3_2, count=count3_2, user_input=user_input3_2)
+    dataJson["instance3_3"] = dict(iteration=3, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_3,captcha_type=captcha_type3_3,task_type=task_type3_3,ground_truth=ground_truth3_3,time=time3_3, count=count3_3, user_input=user_input3_3)
     
-    dataJson["instance4_1"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_1,captcha_id=captcha_id4_1,task_type=task_type4_1,ground_truth=ground_truth4_1,time=time4_1, count=count4_1, user_input=user_input4_1)
-    dataJson["instance4_2"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_2,captcha_id=captcha_id4_2,task_type=task_type4_2,ground_truth=ground_truth4_2,time=time4_2, count=count4_2, user_input=user_input4_2)
-    dataJson["instance4_3"] = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_3,captcha_id=captcha_id4_3,task_type=task_type4_3,ground_truth=ground_truth4_3,time=time4_3, count=count4_3, user_input=user_input4_3)
+    dataJson["instance4_1"] = dict(iteration=1, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_1,captcha_type=captcha_type4_1,task_type=task_type4_1,ground_truth=ground_truth4_1,time=time4_1, count=count4_1, user_input=user_input4_1)
+    dataJson["instance4_2"] = dict(iteration=2, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_2,captcha_type=captcha_type4_2,task_type=task_type4_2,ground_truth=ground_truth4_2,time=time4_2, count=count4_2, user_input=user_input4_2)
+    dataJson["instance4_3"] = dict(iteration=3, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_3,captcha_type=captcha_type4_3,task_type=task_type4_3,ground_truth=ground_truth4_3,time=time4_3, count=count4_3, user_input=user_input4_3)
     
     feedback["feedback1"]   = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,likert_fb1_1=likert_fb1_1, likert_fb1_2=likert_fb1_2, text_fb1_1=text_fb1_1, text_fb1_2=text_fb1_2, text_fb1_3=text_fb1_3)
     feedback["feedback2"]   = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,likert_fb2_1=likert_fb2_1, likert_fb2_2=likert_fb2_2, text_fb2_1=text_fb2_1, text_fb2_2=text_fb2_2, text_fb2_3=text_fb2_3)
@@ -287,6 +297,12 @@ def demographic_control():
     demographic["familiarity_audio_captcha"]   = familiarityaudio
     demographic["play_mode"]   = apparatus
 
+    demographic['name'] = ''
+    demographic['email'] = ''
+    demographic['final_like_reason'] = ''
+    demographic['final_dislike_reason'] = ''
+    demographic['final_preference_order'] = ''
+    
     # demographic["email"]    = email
     demographic_data.insert_one(demographic)
 
@@ -299,7 +315,6 @@ def demographic_control():
     print(res.raw_result)
     doc  = preference_data.find_one({"_id": 'participants_num'})
     participants_num = doc["count"]
-
     participants_id = str(participants_num)
 
 
@@ -312,75 +327,73 @@ def demographic_control():
                                         task_order      = task_order,
                                         
                                         practice       = "prototypes/practice.mp3",
-                                        catpcha_id0    = "0",
+                                        captcha_type0    = "0",
                                         task_type0     = "N",
                                         ground_truth0  = "000000",
 
                                         instance1_1         = "prototypes/"+participants_id+"/", 
-                                        catpcha_id1_1       = "0",
+                                        captcha_type1_1       = "0",
                                         task_type1_1        = "N",
                                         ground_truth1_1     = "000000",
 
                                         instance1_2 ="prototypes/"+participants_id+"/", 
-                                        catpcha_id1_2       = "0",
+                                        captcha_type1_2       = "0",
                                         task_type1_2        = "N",
                                         ground_truth1_2     = "000000",
 
                                         instance1_3 ="prototypes/"+participants_id+"/", 
-                                        catpcha_id1_3       = "0",
+                                        captcha_type1_3       = "0",
                                         task_type1_3        = "N",
                                         ground_truth1_3     = "000000",
 
                                         instance2_1 ="prototypes/"+participants_id+"/", 
-                                        catpcha_id2_1       = "0",
+                                        captcha_type2_1       = "0",
                                         task_type2_1        = "N",
                                         ground_truth2_1     = "000000",
 
                                         instance2_2 ="prototypes/"+participants_id+"/", 
-                                        catpcha_id2_2       = "0",
+                                        captcha_type2_2       = "0",
                                         task_type2_2        = "N",
                                         ground_truth2_2     = "000000",
 
                                         instance2_3 ="prototypes/"+participants_id+"/", 
-                                        catpcha_id2_3       = "0",
+                                        captcha_type2_3       = "0",
                                         task_type2_3        = "N",
                                         ground_truth2_3     = "000000",
 
                                         instance3_1 ="prototypes/"+participants_id+"/", 
-                                        catpcha_id3_1       = "0",
+                                        captcha_type3_1       = "0",
                                         task_type3_1        = "N",
                                         ground_truth3_1     = "000000",
 
                                         instance3_2 ="prototypes/"+participants_id+"/", 
-                                        catpcha_id3_2       = "0",
+                                        captcha_type3_2       = "0",
                                         task_type3_2        = "N",
                                         ground_truth3_2     = "000000",
 
                                         instance3_3 ="prototypes/"+participants_id+"/", 
-                                        catpcha_id3_3       = "0",
+                                        captcha_type3_3       = "0",
                                         task_type3_3        = "N",
                                         ground_truth3_3     = "000000",
 
                                         instance4_1 ="prototypes/"+participants_id+"/", 
-                                        catpcha_id4_1       = "0",
+                                        captcha_type4_1       = "0",
                                         task_type4_1        = "N",
                                         ground_truth4_1     = "000000",
 
                                         instance4_2 ="prototypes/"+participants_id+"/", 
-                                        catpcha_id4_2       = "0",
+                                        captcha_type4_2       = "0",
                                         task_type4_2        = "N",
                                         ground_truth4_2     = "000000",
 
                                         instance4_3         ="prototypes/"+participants_id+"/",
-                                        catpcha_id4_3       = "0",
+                                        captcha_type4_3       = "0",
                                         task_type4_3        = "N",
                                         ground_truth4_3     = "000000")
 
 @app.route('/')
 def index():
     table_id = uuid.uuid1()
-
-
     return render_template('index.html', async_mode=socketio.async_mode,
                                         table_id=table_id)
 
