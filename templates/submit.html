@@ -27,8 +27,9 @@
   <fieldset>
     <h2 class="fs-title">測驗結束，請給予我們最後的回饋!</h2>
     
+    <input name="late" id="late" type="hidden" value="" />
     <input name="table_id" id="table_id" type="hidden" value="{{table_id}}" />
-    <input name="participant_id" id="participant_id" type="hidden" value="{{participant_id}}" />
+    <input name="spot_id" id="spot_id" type="hidden" value="{{spot_id}}" />
     <input name="group" id="group" type="hidden" value="{{group}}" />
     <input name="task_order" id="task_order" type="hidden" value="{{task_order}}" />
 
@@ -81,6 +82,14 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+<script>
+  var timer = setTimeout(function() {
+      document.getElementById('late').value = 'yes';
+      document.getElementById("finalform").submit();
+    }, 3600000);
+</script>
+
 <script>  
 
 sort_ul = $('#input_ul');

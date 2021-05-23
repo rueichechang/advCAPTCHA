@@ -4,6 +4,7 @@ from flask import Flask, render_template, session, request, \
     copy_current_request_context, send_from_directory
 from flask_socketio import SocketIO, emit, join_room, leave_room, \
     close_room, rooms, disconnect
+from operator import itemgetter 
 import time, os, glob, json
 import numpy as np
 import random
@@ -13,40 +14,45 @@ import uuid
 from dotenv import load_dotenv
 load_dotenv()
 
+# Get environment variables from .env
 serverIP = os.getenv("SERVER_IP")
 mongoURL = os.getenv("MONGO_URL")
 
-print('////')
-print(mongoURL)
-# 'mongodb+srv://advcaptcha:hankhaopinlee@cluster0.j1zm5.gcp.mongodb.net'
-# mongo_url = mongoURL
+# initiate mongodb
 my_client = pymongo.MongoClient(mongoURL)
 
+# initialize collection names
+mydb                        = my_client["advcaptcha"]
+task_data                   = mydb["task"]
+demographic_data            = mydb["demographic"]
+feedback_collection         = mydb["evaluation_feedback"]
+captcha_spots               = mydb["captcha_spots"]
+# participant_count           = mydb["participant_count"]
 
-mydb = my_client["advcaptcha"]
-task_data = mydb["task"]
-demographic_data = mydb["demographic"]
-post_question_collection = mydb["post_question_collection"]
-preference_data = mydb["preference"]
-feedback_collection = mydb["evaluation_feedback"]
-
-
+# initialize socket configurations
 async_mode = None
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, async_mode=async_mode)
 
+# route after user submit the post questionaire
 @app.route('/post_question',methods=['POST'])
 def post_question():
     table_id = request.values['table_id']
-    participant_id = request.values['participant_id']
-    group = request.values['group']
-    task_order = request.values['task_order']
+    spot_id = request.values['spot_id']
+    # group = request.values['group']
+    # task_order = request.values['task_order']
+
+    print("----------------delay checking----------------")
+    late = request.values['late']
+    captcha_spots.update_one({"table_name": 'captcha_spots_table'}, { "$set":{spot_id:'empty'}})
+    if late == 'yes': return render_template('late.html',**locals())
+    print("----------------delay checked-----------------")
 
     name = request.values['name']
     email = request.values['email']
-    reasontolove = request.values['reasontolove']
-    reasontohate = request.values['reasontohate']
+    final_like_reason = request.values['reasontolove']
+    final_dislike_reason = request.values['reasontohate']
 
     answer1 = request.values['answer1']
     answer2 = request.values['answer2']
@@ -55,41 +61,33 @@ def post_question():
 
 
     query = { "table_id": table_id }
-    newvalues = { "$set": { "name": name , "email": email, 
-    "final_like_reason": reasontolove, "final_dislike_reason": reasontohate,
-    "final_preference_order":dict(answer1=answer1,
-                                answer2=answer2,
-                                answer3=answer3,
-                                answer4=answer4,)} }
-
+    newvalues = { "$set": { "name": name , 
+                            "email": email, 
+                            "final_like_reason": final_like_reason, 
+                            "final_dislike_reason": final_dislike_reason,
+                            "final_preference_order":dict(answer1=answer1,
+                                                        answer2=answer2,
+                                                        answer3=answer3,
+                                                        answer4=answer4,)} }
     demographic_data.update_one(query, newvalues)
+    captcha_spots.update_one({"table_name": 'captcha_spots_table'}, { "$set":{spot_id:'complete'}})
 
-    # result = {}
-    # result['table_id'] = table_id
-    # result['participant_id'] = participant_id
-    # result['group'] = group
-    # result['task_order'] = task_order
-    # result['name'] = name
-    # result['email'] = email
-    # result['final_like_reason'] = reasontolove
-    # result['final_dislike_reason'] = reasontohate
-    # result['final_preference_order'] = dict(answer1=answer1,
-    #                             answer2=answer2,
-    #                             answer3=answer3,
-    #                             answer4=answer4,
-    #                             )
-    # post_question_collection.insert_one(result)
-
-    print("had got in here")
     return render_template('thank.html',**locals())
+
+
 @app.route('/submit',methods=['POST'])
 def submit():
     print("======== submit success ============")
-    
+
     table_id = request.values['table_id']
-    participant_id = request.values['participant_id']
+    spot_id = request.values['spot_id']
     group = request.values['group']
     task_order = request.values['task_order']
+
+    print("delay checking", spot_id)
+    late = request.values['late']
+    captcha_spots.update_one({"table_name": 'captcha_spots_table'}, { "$set":{spot_id:'empty'}})
+    if late == 'yes': return render_template('late.html',**locals())
 
     print("======== 1 ============")
     time_0 = request.values['0']
@@ -234,36 +232,36 @@ def submit():
     dataJson = {}
     feedback = {}
 
-    dataJson["practice"]    = dict(iteration=0, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address0,captcha_type=captcha_type0,task_type=task_type0,ground_truth=ground_truth0,time=time_0, count=count_0, user_input=user_input0)
-    dataJson["instance1_1"] = dict(iteration=1, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_1,captcha_type=captcha_type1_1,task_type=task_type1_1,ground_truth=ground_truth1_1,time=time1_1, count=count1_1, user_input=user_input1_1)
-    dataJson["instance1_2"] = dict(iteration=2, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_2,captcha_type=captcha_type1_2,task_type=task_type1_2,ground_truth=ground_truth1_2,time=time1_2, count=count1_2, user_input=user_input1_2)
-    dataJson["instance1_3"] = dict(iteration=3, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address1_3,captcha_type=captcha_type1_3,task_type=task_type1_3,ground_truth=ground_truth1_3,time=time1_3, count=count1_3, user_input=user_input1_3)
+    dataJson["practice"]    = dict(iteration=0, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address0,captcha_type=captcha_type0,task_type=task_type0,ground_truth=ground_truth0,time=time_0, count=count_0, user_input=user_input0)
+    dataJson["instance1_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_1,captcha_type=captcha_type1_1,task_type=task_type1_1,ground_truth=ground_truth1_1,time=time1_1, count=count1_1, user_input=user_input1_1)
+    dataJson["instance1_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_2,captcha_type=captcha_type1_2,task_type=task_type1_2,ground_truth=ground_truth1_2,time=time1_2, count=count1_2, user_input=user_input1_2)
+    dataJson["instance1_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_3,captcha_type=captcha_type1_3,task_type=task_type1_3,ground_truth=ground_truth1_3,time=time1_3, count=count1_3, user_input=user_input1_3)
     
-    dataJson["instance2_1"] = dict(iteration=1, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_1,captcha_type=captcha_type2_1,task_type=task_type2_1,ground_truth=ground_truth2_1,time=time2_1, count=count2_1, user_input=user_input2_1)
-    dataJson["instance2_2"] = dict(iteration=2, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_2,captcha_type=captcha_type2_2,task_type=task_type2_2,ground_truth=ground_truth2_2,time=time2_2, count=count2_2, user_input=user_input2_2)
-    dataJson["instance2_3"] = dict(iteration=3, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address2_3,captcha_type=captcha_type2_3,task_type=task_type2_3,ground_truth=ground_truth2_3,time=time2_3, count=count2_3, user_input=user_input2_3)
+    dataJson["instance2_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_1,captcha_type=captcha_type2_1,task_type=task_type2_1,ground_truth=ground_truth2_1,time=time2_1, count=count2_1, user_input=user_input2_1)
+    dataJson["instance2_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_2,captcha_type=captcha_type2_2,task_type=task_type2_2,ground_truth=ground_truth2_2,time=time2_2, count=count2_2, user_input=user_input2_2)
+    dataJson["instance2_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_3,captcha_type=captcha_type2_3,task_type=task_type2_3,ground_truth=ground_truth2_3,time=time2_3, count=count2_3, user_input=user_input2_3)
     
-    dataJson["instance3_1"] = dict(iteration=1, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_1,captcha_type=captcha_type3_1,task_type=task_type3_1,ground_truth=ground_truth3_1,time=time3_1, count=count3_1, user_input=user_input3_1)
-    dataJson["instance3_2"] = dict(iteration=2, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_2,captcha_type=captcha_type3_2,task_type=task_type3_2,ground_truth=ground_truth3_2,time=time3_2, count=count3_2, user_input=user_input3_2)
-    dataJson["instance3_3"] = dict(iteration=3, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address3_3,captcha_type=captcha_type3_3,task_type=task_type3_3,ground_truth=ground_truth3_3,time=time3_3, count=count3_3, user_input=user_input3_3)
+    dataJson["instance3_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_1,captcha_type=captcha_type3_1,task_type=task_type3_1,ground_truth=ground_truth3_1,time=time3_1, count=count3_1, user_input=user_input3_1)
+    dataJson["instance3_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_2,captcha_type=captcha_type3_2,task_type=task_type3_2,ground_truth=ground_truth3_2,time=time3_2, count=count3_2, user_input=user_input3_2)
+    dataJson["instance3_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_3,captcha_type=captcha_type3_3,task_type=task_type3_3,ground_truth=ground_truth3_3,time=time3_3, count=count3_3, user_input=user_input3_3)
     
-    dataJson["instance4_1"] = dict(iteration=1, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_1,captcha_type=captcha_type4_1,task_type=task_type4_1,ground_truth=ground_truth4_1,time=time4_1, count=count4_1, user_input=user_input4_1)
-    dataJson["instance4_2"] = dict(iteration=2, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_2,captcha_type=captcha_type4_2,task_type=task_type4_2,ground_truth=ground_truth4_2,time=time4_2, count=count4_2, user_input=user_input4_2)
-    dataJson["instance4_3"] = dict(iteration=3, table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,file_address=file_address4_3,captcha_type=captcha_type4_3,task_type=task_type4_3,ground_truth=ground_truth4_3,time=time4_3, count=count4_3, user_input=user_input4_3)
+    dataJson["instance4_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_1,captcha_type=captcha_type4_1,task_type=task_type4_1,ground_truth=ground_truth4_1,time=time4_1, count=count4_1, user_input=user_input4_1)
+    dataJson["instance4_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_2,captcha_type=captcha_type4_2,task_type=task_type4_2,ground_truth=ground_truth4_2,time=time4_2, count=count4_2, user_input=user_input4_2)
+    dataJson["instance4_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_3,captcha_type=captcha_type4_3,task_type=task_type4_3,ground_truth=ground_truth4_3,time=time4_3, count=count4_3, user_input=user_input4_3)
     
-    feedback["feedback1"]   = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,likert_fb1_1=likert_fb1_1, likert_fb1_2=likert_fb1_2, text_fb1_1=text_fb1_1, text_fb1_2=text_fb1_2, text_fb1_3=text_fb1_3)
-    feedback["feedback2"]   = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,likert_fb2_1=likert_fb2_1, likert_fb2_2=likert_fb2_2, text_fb2_1=text_fb2_1, text_fb2_2=text_fb2_2, text_fb2_3=text_fb2_3)
-    feedback["feedback3"]   = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,likert_fb3_1=likert_fb3_1, likert_fb3_2=likert_fb3_2, text_fb3_1=text_fb3_1, text_fb3_2=text_fb3_2, text_fb3_3=text_fb3_3)
-    feedback["feedback4"]   = dict(table_id=table_id,participant_id=participant_id,group=group,task_order=task_order,likert_fb4_1=likert_fb4_1, likert_fb4_2=likert_fb4_2, text_fb4_1=text_fb4_1, text_fb4_2=text_fb4_2, text_fb4_3=text_fb4_3)
+    feedback["feedback1"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb1_1=likert_fb1_1, likert_fb1_2=likert_fb1_2, text_fb1_1=text_fb1_1, text_fb1_2=text_fb1_2, text_fb1_3=text_fb1_3)
+    feedback["feedback2"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb2_1=likert_fb2_1, likert_fb2_2=likert_fb2_2, text_fb2_1=text_fb2_1, text_fb2_2=text_fb2_2, text_fb2_3=text_fb2_3)
+    feedback["feedback3"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb3_1=likert_fb3_1, likert_fb3_2=likert_fb3_2, text_fb3_1=text_fb3_1, text_fb3_2=text_fb3_2, text_fb3_3=text_fb3_3)
+    feedback["feedback4"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb4_1=likert_fb4_1, likert_fb4_2=likert_fb4_2, text_fb4_1=text_fb4_1, text_fb4_2=text_fb4_2, text_fb4_3=text_fb4_3)
     
 
     task_data.insert_one(dataJson)
-    feedback_collection.insert_one()
+    feedback_collection.insert_one(feedback)
     # print(fname, lname, age, gender, email)
 
     return render_template('submit.html', async_mode=socketio.async_mode,
                                             table_id = table_id,
-                                            participant_id = participant_id,
+                                            spot_id = spot_id,
                                             group = group,
                                             task_order = task_order,
                                             file_address1_1 = file_address1_1,
@@ -275,8 +273,7 @@ def submit():
 @app.route('/demographic_control',methods=['POST'])
 def demographic_control():
     
-    # fname   = request.values['fname']
-    # lname   = request.values['lname']
+    # Retrieve user's input data from the entry survey
     table_id = request.values['table_id']
     age     = request.values['age']
     gender  = request.values['gender']
@@ -284,26 +281,25 @@ def demographic_control():
     familiaritycaptcha = request.values['familiaritycaptcha']
     familiarityaudio = request.values['familiarityaudio']
     apparatus = request.values['apparatus']
-    # email   = request.values['email']
 
+    # update the input variables that to be added to database
     demographic = {}
-    # demographic["fname"]    = fname
-    # demographic["lname"]    = lname
-    demographic["table_id"]    = table_id
-    demographic["age"]      = age
-    demographic["gender"]   = gender
-    demographic["familiarity_english"]   = familiaritynum
-    demographic["familiarity_original_captcha"]   = familiaritycaptcha
-    demographic["familiarity_audio_captcha"]   = familiarityaudio
-    demographic["play_mode"]   = apparatus
+    demographic["table_id"]     = table_id
+    demographic["age"]          = age
+    demographic["gender"]       = gender
+    demographic["play_mode"]    = apparatus
+    demographic["familiarity_english"]          = familiaritynum
+    demographic["familiarity_original_captcha"] = familiaritycaptcha
+    demographic["familiarity_audio_captcha"]    = familiarityaudio
 
+    # generate empty variables that user will fill in in the final survey
     demographic['name'] = ''
     demographic['email'] = ''
     demographic['final_like_reason'] = ''
     demographic['final_dislike_reason'] = ''
     demographic['final_preference_order'] = ''
     
-    # demographic["email"]    = email
+    # update user data to the database
     demographic_data.insert_one(demographic)
 
     # get group, task order
@@ -311,18 +307,35 @@ def demographic_control():
     task_order = " test task order"
     
     # get participants_num
-    res = preference_data.update_one({"_id": 'participants_num'}, {"$inc": {"count": 1}}, upsert =True)
-    print(res.raw_result)
-    doc  = preference_data.find_one({"_id": 'participants_num'})
-    participants_num = doc["count"]
-    participants_id = str(participants_num)
+    # res = participant_count.update_one({"_id": 'participants_num'}, {"$inc": {"count": 1}}, upsert =True)
+    # doc  = participant_count.find_one({"_id": 'participants_num'})
+    # participants_id = str(doc["count"])
 
+    # generate captcha spots if empty
+    spot_limit = 10
+    if captcha_spots.count() == 0:
+        spots = {"table_name":'captcha_spots_table'}
+        for i in range (0,spot_limit):
+            name = "spot_" + str(i)
+            spots[name] = 'empty'
+        captcha_spots.insert(spots)
 
-    # return render_template('tasks.html', async_mode=socketio.async_mode)
+    # get spots and check if there is empty captcha pack
+    spots  = captcha_spots.find_one({"table_name": 'captcha_spots_table'})    
+    if 'empty' in list(spots.values()):
+        empty_spots_index = [i for i, e in enumerate(list(spots.values())) if e == 'empty']
+        if len(empty_spots_index) == 1:
+            spot_id = list(spots.keys())[empty_spots_index[0]]
+        else:
+            empty_spots = list(itemgetter(*empty_spots_index)(list(spots.keys())))
+            print('empty_spots', empty_spots)
+            spot_id = empty_spots.pop(0)
+        captcha_spots.update_one({"table_name": 'captcha_spots_table'}, { "$set":{spot_id:'ongoing'}})
+    else: return render_template('full.html',**locals()) 
 
     return render_template('tasks.html', async_mode=socketio.async_mode,
                                         table_id        = table_id,
-                                        participants_id = participants_id,
+                                        spot_id = spot_id,
                                         group           = group,
                                         task_order      = task_order,
                                         
@@ -331,62 +344,62 @@ def demographic_control():
                                         task_type0     = "N",
                                         ground_truth0  = "000000",
 
-                                        instance1_1         = "prototypes/"+participants_id+"/", 
+                                        instance1_1         = "prototypes/"+spot_id+"/", 
                                         captcha_type1_1       = "0",
                                         task_type1_1        = "N",
                                         ground_truth1_1     = "000000",
 
-                                        instance1_2 ="prototypes/"+participants_id+"/", 
+                                        instance1_2 ="prototypes/"+spot_id+"/", 
                                         captcha_type1_2       = "0",
                                         task_type1_2        = "N",
                                         ground_truth1_2     = "000000",
 
-                                        instance1_3 ="prototypes/"+participants_id+"/", 
+                                        instance1_3 ="prototypes/"+spot_id+"/", 
                                         captcha_type1_3       = "0",
                                         task_type1_3        = "N",
                                         ground_truth1_3     = "000000",
 
-                                        instance2_1 ="prototypes/"+participants_id+"/", 
+                                        instance2_1 ="prototypes/"+spot_id+"/", 
                                         captcha_type2_1       = "0",
                                         task_type2_1        = "N",
                                         ground_truth2_1     = "000000",
 
-                                        instance2_2 ="prototypes/"+participants_id+"/", 
+                                        instance2_2 ="prototypes/"+spot_id+"/", 
                                         captcha_type2_2       = "0",
                                         task_type2_2        = "N",
                                         ground_truth2_2     = "000000",
 
-                                        instance2_3 ="prototypes/"+participants_id+"/", 
+                                        instance2_3 ="prototypes/"+spot_id+"/", 
                                         captcha_type2_3       = "0",
                                         task_type2_3        = "N",
                                         ground_truth2_3     = "000000",
 
-                                        instance3_1 ="prototypes/"+participants_id+"/", 
+                                        instance3_1 ="prototypes/"+spot_id+"/", 
                                         captcha_type3_1       = "0",
                                         task_type3_1        = "N",
                                         ground_truth3_1     = "000000",
 
-                                        instance3_2 ="prototypes/"+participants_id+"/", 
+                                        instance3_2 ="prototypes/"+spot_id+"/", 
                                         captcha_type3_2       = "0",
                                         task_type3_2        = "N",
                                         ground_truth3_2     = "000000",
 
-                                        instance3_3 ="prototypes/"+participants_id+"/", 
+                                        instance3_3 ="prototypes/"+spot_id+"/", 
                                         captcha_type3_3       = "0",
                                         task_type3_3        = "N",
                                         ground_truth3_3     = "000000",
 
-                                        instance4_1 ="prototypes/"+participants_id+"/", 
+                                        instance4_1 ="prototypes/"+spot_id+"/", 
                                         captcha_type4_1       = "0",
                                         task_type4_1        = "N",
                                         ground_truth4_1     = "000000",
 
-                                        instance4_2 ="prototypes/"+participants_id+"/", 
+                                        instance4_2 ="prototypes/"+spot_id+"/", 
                                         captcha_type4_2       = "0",
                                         task_type4_2        = "N",
                                         ground_truth4_2     = "000000",
 
-                                        instance4_3         ="prototypes/"+participants_id+"/",
+                                        instance4_3         ="prototypes/"+spot_id+"/",
                                         captcha_type4_3       = "0",
                                         task_type4_3        = "N",
                                         ground_truth4_3     = "000000")

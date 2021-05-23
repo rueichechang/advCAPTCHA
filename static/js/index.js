@@ -134,7 +134,7 @@ function before_submit(){
       var time_interval = end_times[k]-start_times[k];
       var play_time = play_times[k]
       document.getElementById(k).value = time_interval;
-      document.getElementById("c"+k).valu = play_time;
+      document.getElementById("c"+k).value = play_time;
       console.log(k, time_interval, play_time);
     }
   }
