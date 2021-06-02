@@ -143,10 +143,12 @@ function before_submit(){
 }
 function record_end(key){
   end_times[key]=Date.now();
+  console.log("end_times", key, end_times[key]);
 }
 function audio_play(key){
   if(start_times[key]==="0")
   start_times[key]=Date.now();
+  console.log("start_times", key, start_times[key]);
   play_times[key]=play_times[key]+1;
 }
 

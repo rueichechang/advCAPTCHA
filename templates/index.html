@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <form method="post" action="demographic_control">
+  <form id = 'first_form' method="post" action="demographic_control">
     <div id="msform">   
       <ul id="progressbar">
         <li class="active">Demographic</li>
@@ -38,6 +38,8 @@
           </span></strong></p>
           
         <input name="table_id" id="table_id" type="hidden" value={{table_id}} />
+        <input name="start_time" id="start_time" type="hidden" value="" />
+
         <!-- <input name="order" id="order" type="hidden" value={{order}} />
         <input name="id1" id="id1" type="hidden" value={{id1}} />
         <input name="id2" id="id2" type="hidden" value={{id2}} />
@@ -90,7 +92,7 @@
           <!-- <br><br><br>
           <label for="email">Email</label><input type="email" id="email" name="email" placeholder="Email" required/> -->
           
-          <input type="submit" name="submit" class="submit action-button" value="Submit&Next"/>
+          <input type="button" name="entry" class="entry action-button" value="Submit&Next" onclick="on_submit();"/>
         </div>
       </fieldset>
     </div>
@@ -99,10 +101,13 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
 
-  
-
     <script  src="js/index.js"></script>
-  
+    <script>
+      function on_submit(){
+        document.getElementById('start_time').value = Date.now();;
+        document.getElementById("first_form").submit();
+      }
+    </script>
 </body>
 
 </html>

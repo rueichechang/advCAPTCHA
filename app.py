@@ -10,6 +10,9 @@ import numpy as np
 import random
 import pymongo
 import uuid
+import pandas as pd
+from threading import Thread
+from time import sleep
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -272,7 +275,9 @@ def submit():
 
 @app.route('/demographic_control',methods=['POST'])
 def demographic_control():
-    
+    # Retrieve start time
+    start_time = request.values['start_time']
+
     # Retrieve user's input data from the entry survey
     table_id = request.values['table_id']
     age     = request.values['age']
@@ -302,108 +307,114 @@ def demographic_control():
     # update user data to the database
     demographic_data.insert_one(demographic)
 
-    # get group, task order
+    # get group
     group = "test group"
-    task_order = " test task order"
-    
+
     # get participants_num
     # res = participant_count.update_one({"_id": 'participants_num'}, {"$inc": {"count": 1}}, upsert =True)
     # doc  = participant_count.find_one({"_id": 'participants_num'})
     # participants_id = str(doc["count"])
 
     # generate captcha spots if empty
-    spot_limit = 10
+    spot_limit = 25
     if captcha_spots.count() == 0:
         spots = {"table_name":'captcha_spots_table'}
-        for i in range (0,spot_limit):
+        for i in range (1,spot_limit):
             name = "spot_" + str(i)
             spots[name] = 'empty'
         captcha_spots.insert(spots)
 
     # get spots and check if there is empty captcha pack
-    spots  = captcha_spots.find_one({"table_name": 'captcha_spots_table'})    
+    spots  = captcha_spots.find_one({"table_name": 'captcha_spots_table'})
     if 'empty' in list(spots.values()):
         empty_spots_index = [i for i, e in enumerate(list(spots.values())) if e == 'empty']
         if len(empty_spots_index) == 1:
             spot_id = list(spots.keys())[empty_spots_index[0]]
         else:
             empty_spots = list(itemgetter(*empty_spots_index)(list(spots.keys())))
-            print('empty_spots', empty_spots)
+            # print('empty_spots', empty_spots)
             spot_id = empty_spots.pop(0)
-        captcha_spots.update_one({"table_name": 'captcha_spots_table'}, { "$set":{spot_id:'ongoing'}})
+        captcha_spots.update_one({"table_name": 'captcha_spots_table'}, { "$set":{spot_id : start_time}})
     else: return render_template('full.html',**locals()) 
+
+    spot_tsv_address = 'static/prototypes/'+spot_id[5:]+'/task_info.tsv'
+    spot_tsv = pd.read_csv(spot_tsv_address, header=None, sep='\t')
+
+    task_order_address = 'static/prototypes/participant_task_ordering_2021-05-25-01-18.tsv'
+    task_order_tsv = pd.read_csv(task_order_address, header=None, sep='\t')
+    spot_num = int(spot_id[5:])
+    task_order = task_order_tsv.iloc[spot_num,1]
 
     return render_template('tasks.html', async_mode=socketio.async_mode,
                                         table_id        = table_id,
-                                        spot_id = spot_id,
+                                        spot_id         = spot_id,
                                         group           = group,
                                         task_order      = task_order,
                                         
-                                        practice       = "prototypes/practice.mp3",
-                                        captcha_type0    = "0",
-                                        task_type0     = "N",
-                                        ground_truth0  = "000000",
+                                        practice       = "prototypes/example/example.wav",
+                                        captcha_type0  = "0",
+                                        task_type0     = "example",
+                                        ground_truth0  = "123456",
 
-                                        instance1_1         = "prototypes/"+spot_id+"/", 
-                                        captcha_type1_1       = "0",
-                                        task_type1_1        = "N",
-                                        ground_truth1_1     = "000000",
+                                        instance1_1         = "prototypes/"+spot_id[5:]+"/task1_1.wav", 
+                                        captcha_type1_1     = "0",
+                                        task_type1_1        = spot_tsv.iloc[0,1],
+                                        ground_truth1_1     = spot_tsv.iloc[0,2],
 
-                                        instance1_2 ="prototypes/"+spot_id+"/", 
-                                        captcha_type1_2       = "0",
-                                        task_type1_2        = "N",
-                                        ground_truth1_2     = "000000",
+                                        instance1_2         ="prototypes/"+spot_id[5:]+"/task1_2.wav", 
+                                        captcha_type1_2     = "0",
+                                        task_type1_2        = spot_tsv.iloc[1,1],
+                                        ground_truth1_2     = spot_tsv.iloc[1,2],
 
-                                        instance1_3 ="prototypes/"+spot_id+"/", 
-                                        captcha_type1_3       = "0",
-                                        task_type1_3        = "N",
-                                        ground_truth1_3     = "000000",
+                                        instance1_3         ="prototypes/"+spot_id[5:]+"/task1_3.wav", 
+                                        captcha_type1_3     = "0",
+                                        task_type1_3        = spot_tsv.iloc[2,1],
+                                        ground_truth1_3     = spot_tsv.iloc[2,2],
 
-                                        instance2_1 ="prototypes/"+spot_id+"/", 
-                                        captcha_type2_1       = "0",
-                                        task_type2_1        = "N",
-                                        ground_truth2_1     = "000000",
+                                        instance2_1         ="prototypes/"+spot_id[5:]+"/task2_1.wav", 
+                                        captcha_type2_1     = "0",
+                                        task_type2_1        = spot_tsv.iloc[3,1],
+                                        ground_truth2_1     = spot_tsv.iloc[3,2],
 
-                                        instance2_2 ="prototypes/"+spot_id+"/", 
-                                        captcha_type2_2       = "0",
-                                        task_type2_2        = "N",
-                                        ground_truth2_2     = "000000",
+                                        instance2_2         ="prototypes/"+spot_id[5:]+"/task2_2.wav", 
+                                        captcha_type2_2     = "0",
+                                        task_type2_2        = spot_tsv.iloc[4,1],
+                                        ground_truth2_2     = spot_tsv.iloc[4,2],
 
-                                        instance2_3 ="prototypes/"+spot_id+"/", 
-                                        captcha_type2_3       = "0",
-                                        task_type2_3        = "N",
-                                        ground_truth2_3     = "000000",
+                                        instance2_3         ="prototypes/"+spot_id[5:]+"/task2_3.wav", 
+                                        captcha_type2_3     = "0",
+                                        task_type2_3        = spot_tsv.iloc[5,1],
+                                        ground_truth2_3     = spot_tsv.iloc[5,2],
 
-                                        instance3_1 ="prototypes/"+spot_id+"/", 
-                                        captcha_type3_1       = "0",
-                                        task_type3_1        = "N",
-                                        ground_truth3_1     = "000000",
+                                        instance3_1         ="prototypes/"+spot_id[5:]+"/task3_1.wav", 
+                                        captcha_type3_1     = "0",
+                                        task_type3_1        = spot_tsv.iloc[6,1],
+                                        ground_truth3_1     = spot_tsv.iloc[6,2],
 
-                                        instance3_2 ="prototypes/"+spot_id+"/", 
-                                        captcha_type3_2       = "0",
-                                        task_type3_2        = "N",
-                                        ground_truth3_2     = "000000",
+                                        instance3_2         ="prototypes/"+spot_id[5:]+"/task3_2.wav", 
+                                        captcha_type3_2     = "0",
+                                        task_type3_2        = spot_tsv.iloc[7,1],
+                                        ground_truth3_2     = spot_tsv.iloc[7,2],
 
-                                        instance3_3 ="prototypes/"+spot_id+"/", 
-                                        captcha_type3_3       = "0",
-                                        task_type3_3        = "N",
-                                        ground_truth3_3     = "000000",
+                                        instance3_3         ="prototypes/"+spot_id[5:]+"/task3_3.wav", 
+                                        captcha_type3_3     = "0",
+                                        task_type3_3        = spot_tsv.iloc[8,1],
+                                        ground_truth3_3     = spot_tsv.iloc[8,2],
 
-                                        instance4_1 ="prototypes/"+spot_id+"/", 
-                                        captcha_type4_1       = "0",
-                                        task_type4_1        = "N",
-                                        ground_truth4_1     = "000000",
+                                        instance4_1         ="prototypes/"+spot_id[5:]+"/task4_1.wav", 
+                                        captcha_type4_1     = "0",
+                                        task_type4_1        = spot_tsv.iloc[9,1],
+                                        ground_truth4_1     = spot_tsv.iloc[9,2],
 
-                                        instance4_2 ="prototypes/"+spot_id+"/", 
-                                        captcha_type4_2       = "0",
-                                        task_type4_2        = "N",
-                                        ground_truth4_2     = "000000",
+                                        instance4_2         ="prototypes/"+spot_id[5:]+"/task4_2.wav", 
+                                        captcha_type4_2     = "0",
+                                        task_type4_2        = spot_tsv.iloc[10,1],
+                                        ground_truth4_2     = spot_tsv.iloc[10,2],
 
-                                        instance4_3         ="prototypes/"+spot_id+"/",
-                                        captcha_type4_3       = "0",
-                                        task_type4_3        = "N",
-                                        ground_truth4_3     = "000000")
-
+                                        instance4_3         ="prototypes/"+spot_id[5:]+"/task4_3.wav",
+                                        captcha_type4_3     = "0",
+                                        task_type4_3        = spot_tsv.iloc[11,1],
+                                        ground_truth4_3     = spot_tsv.iloc[11,2])
 @app.route('/')
 def index():
     table_id = uuid.uuid1()
@@ -430,6 +441,25 @@ def test_connect():
 def test_disconnect():
     print('Client disconnected', request.sid)
 
+def timer():
+    # time_ref = round(time.time() * 1000)
+    time_dur = 7205 #seconds
+    while True:
+        sleep(time_dur)
+        spots = captcha_spots.find_one({"table_name": 'captcha_spots_table'})
+        for spot in spots:
+            if spot[:5] == "spot_":
+                spot_value = spots[spot]
+                
+                if spot_value != "empty" and spot_value != "complete":
+                    current_time = round(time.time() * 1000)
+                    interval = current_time - int(spot_value)
+                    
+                    if interval > time_dur:
+                        captcha_spots.update_one({"table_name": 'captcha_spots_table'}, { "$set":{spot : 'empty'}})
+        
+
 if __name__ == '__main__':
-    # initialize_counter()
+    t = Thread(target=timer)
+    t.start()
     socketio.run(app, debug=False, host='0.0.0.0', port=5000)
