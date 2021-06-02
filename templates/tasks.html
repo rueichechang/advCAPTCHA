@@ -261,7 +261,7 @@
           <label class="statement">(*)請問您喜歡剛剛測試的 Audio Captcha 嗎？（1: 非常不喜歡; 7: 非常喜歡）</label>
           <ul class='likert'>
           <li>
-            <input type="radio" name="likert_fb2_1" value="1" checked>
+            <input type="radio" name="likert_fb2_1" value="1">
             <label>1</label>
           </li>
           <li>
@@ -269,7 +269,7 @@
             <label>2</label>
           </li>
           <li>
-            <input type="radio" name="likert_fb2_1" value="3">
+            <input type="radio" name="likert_fb2_1" value="3" checked>
             <label>3</label>
           </li>
           <li>
@@ -284,7 +284,7 @@
           <label class="statement">(*)請問您剛剛測試的 Audio Captcha 容易回答嗎？（1: 非常難回答; 7: 非常好回答）</label>
           <ul class='likert'>
             <li>
-              <input type="radio" name="likert_fb2_2" value="1" checked>
+              <input type="radio" name="likert_fb2_2" value="1">
               <label>1</label>
             </li>
             <li>
@@ -292,7 +292,7 @@
               <label>2</label>
             </li>
             <li>
-              <input type="radio" name="likert_fb2_2" value="3">
+              <input type="radio" name="likert_fb2_2" value="3" checked>
               <label>3</label>
             </li>
             <li>
@@ -393,7 +393,7 @@
           <label class="statement">(*)請問您喜歡剛剛測試的 Audio Captcha 嗎？（1: 非常不喜歡; 7: 非常喜歡）</label>
           <ul class='likert'>
           <li>
-            <input type="radio" name="likert_fb3_1" value="1" checked>
+            <input type="radio" name="likert_fb3_1" value="1">
             <label>1</label>
           </li>
           <li>
@@ -401,7 +401,7 @@
             <label>2</label>
           </li>
           <li>
-            <input type="radio" name="likert_fb3_1" value="3">
+            <input type="radio" name="likert_fb3_1" value="3" checked>
             <label>3</label>
           </li>
           <li>
@@ -416,7 +416,7 @@
           <label class="statement">(*)請問您剛剛測試的 Audio Captcha 容易回答嗎？（1: 非常難回答; 7: 非常好回答）</label>
           <ul class='likert'>
             <li>
-              <input type="radio" name="likert_fb3_2" value="1" checked>
+              <input type="radio" name="likert_fb3_2" value="1">
               <label>1</label>
             </li>
             <li>
@@ -424,7 +424,7 @@
               <label>2</label>
             </li>
             <li>
-              <input type="radio" name="likert_fb3_2" value="3">
+              <input type="radio" name="likert_fb3_2" value="3" checked>
               <label>3</label>
             </li>
             <li>
@@ -524,7 +524,7 @@
           <label class="statement">(*)請問您喜歡剛剛測試的 Audio Captcha 嗎？（1: 非常不喜歡; 7: 非常喜歡）</label>
           <ul class='likert'>
           <li>
-            <input type="radio" name="likert_fb4_1" value="1" checked>
+            <input type="radio" name="likert_fb4_1" value="1">
             <label>1</label>
           </li>
           <li>
@@ -532,7 +532,7 @@
             <label>2</label>
           </li>
           <li>
-            <input type="radio" name="likert_fb4_1" value="3">
+            <input type="radio" name="likert_fb4_1" value="3" checked>
             <label>3</label>
           </li>
           <li>
@@ -547,7 +547,7 @@
           <label class="statement">(*)請問您剛剛測試的 Audio Captcha 容易回答嗎？（1: 非常難回答; 7: 非常好回答）</label>
           <ul class='likert'>
             <li>
-              <input type="radio" name="likert_fb4_2" value="1" checked>
+              <input type="radio" name="likert_fb4_2" value="1">
               <label>1</label>
             </li>
             <li>
@@ -555,7 +555,7 @@
               <label>2</label>
             </li>
             <li>
-              <input type="radio" name="likert_fb4_2" value="3">
+              <input type="radio" name="likert_fb4_2" value="3" checked>
               <label>3</label>
             </li>
             <li>
@@ -588,10 +588,49 @@
           <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？</label>
           <input type="text" name="text_fb4_3" id="text_fb4_3"/>
 
-          <input type="button" id="feedbacknext4" name="feedbacknext4" class="feedbacknext4 action-button" value="Submit" onclick="before_submit();"/>
+          <!-- <input type="button" id="feedbacknext4" name="feedbacknext4" class="feedbacknext4 action-button" value="Submit" onclick="before_submit();"/> -->
+          <input type="button" id="feedbacknext4" name="next" class="next action-button" value="Next"/>
         </fieldset>
-    
-    
+
+        <fieldset>
+          <h2 class="fs-title">測驗結束，請給予我們最後的回饋!</h2>
+          <input name="answer1" id="answer1" type="hidden" value="" />
+          <input name="answer2" id="answer2" type="hidden" value="" />
+          <input name="answer3" id="answer3" type="hidden" value="" />
+          <input name="answer4" id="answer4" type="hidden" value="" />
+      
+          <p style = "font-weight: bold;">(*)請按照您的喜好程度，排序您剛剛測試的所有 audio captcha，最喜歡的放在最上面，依序排列下去。</p><br>
+          <ul id="input_ul">
+            <li class="ui-state"><span>&#x21C5;</span><input type="text" disabled/><audio id="{{instance1_1}}" controls preload src="{{instance1_1}}">
+              Your browser does not support the audio element.
+            </audio></li>
+            <li class="ui-state"><span>&#x21C5;</span><input type="text" disabled/><audio id="{{instance2_1}}" controls preload src="{{instance2_1}}">
+              Your browser does not support the audio element.
+            </audio></li>
+            <li class="ui-state"><span>&#x21C5;</span><input type="text" disabled/><audio id="{{instance3_1}}" controls preload src="{{instance3_1}}">
+              Your browser does not support the audio element.
+            </audio></li>
+            <li class="ui-state"><span>&#x21C5;</span><input type="text" disabled/><audio id="{{instance4_1}}" controls preload src="{{instance4_1}}"s>
+              Your browser does not support the audio element.
+            </audio></li>
+          </ul>
+      
+          <br><br>
+      
+          <label class="statement">(*)請簡述您最喜愛該 audio captcha 的原因：</label>
+          <input type="text" id= "reasontolove" name="reasontolove" />
+      
+          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？</label>
+          <input type="text" id= "reasontohate" name="reasontohate" />
+      
+          <br><br><br><br>
+          <p>非常感謝您參與本實驗，接下來之資訊為研究團隊為您申報實驗報酬所使用之資訊，請如實填答以免報酬給予失敗，此一資訊不會挪為他用並在報酬發送後刪除！</p>
+          <label for="name">名字</label><input type="text" id="name" name="name" placeholder="名字"/>
+          <label for="email">Email</label><input type="email" id="email" name="email" placeholder="Email"/>
+      
+          <input type="button" name="btnsubmit" class="btnsubmit action-button" value="Submit" onclick="before_submit()"/>
+      
+        </fieldset>
   </div>
 </form>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -600,13 +639,59 @@
 
   
 
-    <script  src="js/index.js"></script>
-    <script>
-      var timer = setTimeout(function() {
-          document.getElementById('late').value = 'yes';
-          document.getElementById("myform").submit();
-        }, 3600000);
-    </script>
+<script  src="js/index.js"></script>
+<script>
+  // for counter
+  var timer = setTimeout(function() {
+      document.getElementById('late').value = 'yes';
+      document.getElementById("myform").submit();
+    }, 3600000);
+</script>
+
+<script>  
+  // this is for sorting list
+  sort_ul = $('#input_ul');
+  itemsCount = $('#input_ul li').length;
+  
+  function updateIndexes(){
+      $('#input_ul li input').each(function(i){
+                console.log("li input", i);
+                $(this).val(i+1);
+            });
+  }
+  
+  updateIndexes();
+           
+  sort_ul.sortable({handle:'span',
+                    stop:function(event,ui){ updateIndexes(); }
+  });
+  
+  $('li input').keyup(function(event) {
+    if(event.keyCode == '13'){      
+      event.preventDefault();
+        
+      order = parseInt($(this).val());
+        
+      li = $(this).parent();
+      if(order>=1 && order <= itemsCount){      
+          
+          li.effect('drop', function(){
+              li.detach();
+                  
+              if(order == itemsCount)
+                  sort_ul.append(li);
+              else
+                  li.insertBefore($('#input_ul li:eq('+(order-1)+')'));
+              
+              updateIndexes();
+              li.effect('slide');
+          });
+      }else{
+          li.effect('highlight');
+      }
+    }    
+  });
+  </script>
 
 </body>
 

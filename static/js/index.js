@@ -8,13 +8,7 @@ $(document).ready(function() {
     socket.on('connect', function() {
         socket.emit('my_event', {data: 'I\'m connected!'});
     });
-
-    // socket.on('identification', function(msg,cb) {
-    //   alert(msg);
-    // });
 });
-
-
 
 //randomized cards code
 // var prototypecard = $(".prototypecard");
@@ -119,10 +113,40 @@ $("#audio").click(function() {
 
 });*/
 
+function checkfinalform(){
+  console.log("reasontolove", $("#reasontolove").get(0).value);
+  console.log("reasontohate", $("#reasontohate").get(0).value);
+  console.log("name", $("#name").get(0).value);
+  console.log("email", $("#email").get(0).value);
+
+  if( $("#reasontolove").get(0).value == ""||
+        $("#reasontohate").get(0).value == ""||
+        $("#name").get(0).value == ""||
+        $("#email").get(0).value == "") {
+          alert(alert_msg);
+          return false;
+        }else return true;
+}
+
 function before_submit(){
-  if(!checkfeedback4()) {
+  if(!checkfinalform()) {
     return;
   }
+
+  var answer1 = document.getElementsByClassName("ui-state")[0].lastChild.id;
+  var answer2 = document.getElementsByClassName("ui-state")[1].lastChild.id;
+  var answer3 = document.getElementsByClassName("ui-state")[2].lastChild.id;
+  var answer4 = document.getElementsByClassName("ui-state")[3].lastChild.id;
+
+  document.getElementById('answer1').value = answer1;
+  document.getElementById('answer2').value = answer2;
+  document.getElementById('answer3').value = answer3;
+  document.getElementById('answer4').value = answer4;
+
+  console.log(answer1);
+  console.log(answer2);
+  console.log(answer3);
+  console.log(answer4);
   
   var i=0;
   var j=0;
@@ -141,6 +165,8 @@ function before_submit(){
   document.getElementById("myform").submit();
   return true;
 }
+
+
 function record_end(key){
   end_times[key]=Date.now();
   console.log("end_times", key, end_times[key]);
@@ -369,6 +395,7 @@ function checkfeedback4(){
 }
 
 
+
 //jQuery time
 (function($) {
   var current_fs, next_fs, previous_fs; //fieldsets
@@ -421,6 +448,11 @@ function checkfeedback4(){
       }
     }else if(this.id === 'pronext4') {
       if(!checkPro4_3()) {
+        animating = false;
+        return;
+      }
+    }else if(this.id === 'feedbacknext4') {
+      if(!checkfeedback4()) {
         animating = false;
         return;
       }

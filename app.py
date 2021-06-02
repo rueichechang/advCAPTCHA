@@ -80,19 +80,16 @@ def post_question():
 
 @app.route('/submit',methods=['POST'])
 def submit():
-    print("======== submit success ============")
-
-    table_id = request.values['table_id']
-    spot_id = request.values['spot_id']
-    group = request.values['group']
-    task_order = request.values['task_order']
+    table_id    = request.values['table_id']
+    spot_id     = request.values['spot_id']
+    group       = request.values['group']
+    task_order  = request.values['task_order']
 
     print("delay checking", spot_id)
     late = request.values['late']
     captcha_spots.update_one({"table_name": 'captcha_spots_table'}, { "$set":{spot_id:'empty'}})
     if late == 'yes': return render_template('late.html',**locals())
 
-    print("======== 1 ============")
     time_0 = request.values['0']
     time1_1 = request.values['11']
     time1_2 = request.values['12']
@@ -106,7 +103,6 @@ def submit():
     time4_1 = request.values['41']
     time4_2 = request.values['42']
     time4_3 = request.values['43']
-    print("======== 2 ============")
 
     count_0 = request.values['c0']
     count1_1 = request.values['c11']
@@ -121,7 +117,6 @@ def submit():
     count4_1 = request.values['c41']
     count4_2 = request.values['c42']
     count4_3 = request.values['c43']
-    print("======== 3 ============")
 
     user_input0 = request.values['pro0']
     user_input1_1 = request.values['pro1_1']
@@ -136,7 +131,6 @@ def submit():
     user_input4_1 = request.values['pro4_1']
     user_input4_2 = request.values['pro4_2']
     user_input4_3 = request.values['pro4_3']
-    print("======== 4 ============")
 
     ground_truth0 = request.values['ground_truth0']
     ground_truth1_1 = request.values['ground_truth1_1']
@@ -151,7 +145,6 @@ def submit():
     ground_truth4_1 = request.values['ground_truth4_1']
     ground_truth4_2 = request.values['ground_truth4_2']
     ground_truth4_3 = request.values['ground_truth4_3']
-    print("======== 5 ============")
 
     captcha_type0 = request.values['captcha_type0']
     captcha_type1_1 = request.values['captcha_type1_1']
@@ -166,7 +159,6 @@ def submit():
     captcha_type4_1 = request.values['captcha_type4_1']
     captcha_type4_2 = request.values['captcha_type4_2']
     captcha_type4_3 = request.values['captcha_type4_3']
-    print("======== 6 ============")
 
     file_address0 = request.values['file_address0']
     file_address1_1 = request.values['file_address1_1']
@@ -181,7 +173,6 @@ def submit():
     file_address4_1 = request.values['file_address4_1']
     file_address4_2 = request.values['file_address4_2']
     file_address4_3 = request.values['file_address4_3']
-    print("======== 7 ============")
 
     task_type0 = request.values['task_type0']
     task_type1_1 = request.values['task_type1_1']
@@ -196,7 +187,6 @@ def submit():
     task_type4_1 = request.values['task_type4_1']
     task_type4_2 = request.values['task_type4_2']
     task_type4_3 = request.values['task_type4_3']
-    print("======== 8 ============")
 
 
     likert_fb1_1 = request.values['likert_fb1_1']
@@ -205,7 +195,6 @@ def submit():
     text_fb1_1 = request.values['text_fb1_1']
     text_fb1_2 = request.values['text_fb1_2']
     text_fb1_3 = request.values['text_fb1_3']
-    print("======== 9 ============")
 
     likert_fb2_1 = request.values['likert_fb2_1']
     likert_fb2_2 = request.values['likert_fb2_2']
@@ -213,7 +202,6 @@ def submit():
     text_fb2_1 = request.values['text_fb2_1']
     text_fb2_2 = request.values['text_fb2_2']
     text_fb2_3 = request.values['text_fb2_3']
-    print("======== 10 ============")
 
     likert_fb3_1 = request.values['likert_fb3_1']
     likert_fb3_2 = request.values['likert_fb3_2']
@@ -221,7 +209,6 @@ def submit():
     text_fb3_1 = request.values['text_fb3_1']
     text_fb3_2 = request.values['text_fb3_2']
     text_fb3_3 = request.values['text_fb3_3']
-    print("======== 11 ============")
 
     likert_fb4_1 = request.values['likert_fb4_1']
     likert_fb4_2 = request.values['likert_fb4_2']
@@ -229,8 +216,6 @@ def submit():
     text_fb4_1 = request.values['text_fb4_1']
     text_fb4_2 = request.values['text_fb4_2']
     text_fb4_3 = request.values['text_fb4_3']
-
-    print("======== 12 ============")
 
     dataJson = {}
     feedback = {}
@@ -257,20 +242,45 @@ def submit():
     feedback["feedback3"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb3_1=likert_fb3_1, likert_fb3_2=likert_fb3_2, text_fb3_1=text_fb3_1, text_fb3_2=text_fb3_2, text_fb3_3=text_fb3_3)
     feedback["feedback4"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb4_1=likert_fb4_1, likert_fb4_2=likert_fb4_2, text_fb4_1=text_fb4_1, text_fb4_2=text_fb4_2, text_fb4_3=text_fb4_3)
     
-
     task_data.insert_one(dataJson)
     feedback_collection.insert_one(feedback)
-    # print(fname, lname, age, gender, email)
 
-    return render_template('submit.html', async_mode=socketio.async_mode,
-                                            table_id = table_id,
-                                            spot_id = spot_id,
-                                            group = group,
-                                            task_order = task_order,
-                                            file_address1_1 = file_address1_1,
-                                            file_address2_1 = file_address2_1,
-                                            file_address3_1 = file_address3_1,
-                                            file_address4_1 = file_address4_1)
+    #for submit form
+    name = request.values['name']
+    email = request.values['email']
+    final_like_reason = request.values['reasontolove']
+    final_dislike_reason = request.values['reasontohate']
+
+    answer1 = request.values['answer1']
+    answer2 = request.values['answer2']
+    answer3 = request.values['answer3']
+    answer4 = request.values['answer4']
+
+    query = { "table_id": table_id }
+    newvalues = { "$set": { "name": name , 
+                            "email": email, 
+                            "final_like_reason": final_like_reason, 
+                            "final_dislike_reason": final_dislike_reason,
+                            "final_preference_order":dict(answer1=answer1,
+                                                        answer2=answer2,
+                                                        answer3=answer3,
+                                                        answer4=answer4,)} }
+    demographic_data.update_one(query, newvalues)
+    captcha_spots.update_one({"table_name": 'captcha_spots_table'}, { "$set":{spot_id:'complete'}})
+
+
+
+    return render_template('thank.html',**locals())
+
+    # return render_template('submit.html', async_mode=socketio.async_mode,
+    #                                         table_id = table_id,
+    #                                         spot_id = spot_id,
+    #                                         group = group,
+    #                                         task_order = task_order,
+    #                                         file_address1_1 = file_address1_1,
+    #                                         file_address2_1 = file_address2_1,
+    #                                         file_address3_1 = file_address3_1,
+    #                                         file_address4_1 = file_address4_1)
 
 
 @app.route('/demographic_control',methods=['POST'])
@@ -340,7 +350,8 @@ def demographic_control():
     spot_tsv_address = 'static/prototypes/'+spot_id[5:]+'/task_info.tsv'
     spot_tsv = pd.read_csv(spot_tsv_address, header=None, sep='\t')
 
-    task_order_address = 'static/prototypes/participant_task_ordering_2021-05-25-01-18.tsv'
+    task_order_file_name = 'participant_task_ordering_2021-06-01-19-33'
+    task_order_address = 'static/prototypes/'+task_order_file_name+'.tsv'
     task_order_tsv = pd.read_csv(task_order_address, header=None, sep='\t')
     spot_num = int(spot_id[5:])
     task_order = task_order_tsv.iloc[spot_num,1]
@@ -455,7 +466,7 @@ def timer():
                     current_time = round(time.time() * 1000)
                     interval = current_time - int(spot_value)
                     
-                    if interval > time_dur:
+                    if interval > (time_dur * 1000):
                         captcha_spots.update_one({"table_name": 'captcha_spots_table'}, { "$set":{spot : 'empty'}})
         
 
