@@ -350,7 +350,7 @@ def demographic_control():
     spot_tsv_address = 'static/prototypes/'+spot_id[5:]+'/task_info.tsv'
     spot_tsv = pd.read_csv(spot_tsv_address, header=None, sep='\t')
 
-    task_order_file_name = 'participant_task_ordering_2021-06-01-19-33'
+    task_order_file_name = 'participant_task_ordering_2021-06-03-14-57'
     task_order_address = 'static/prototypes/'+task_order_file_name+'.tsv'
     task_order_tsv = pd.read_csv(task_order_address, header=None, sep='\t')
     spot_num = int(spot_id[5:])

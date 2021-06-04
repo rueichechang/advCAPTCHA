@@ -63,19 +63,87 @@
           </select>
 
           <br><br><br><br>
-          <label for="familiaritynum">(*)您對於利用聽力分辨英文語音數字 (0~9) 的信心程度為何？</label>
-          <input type="number" id="familiaritynum" name="familiaritynum" placeholder="請輸入數字 1-5（1: 非常沒信心 - 5: 非常有信心）"required/>
-          
+          <label for="familiaritynum">(*)您對於利用聽力分辨英文語音數字 (one, two, three...) 的信心程度為何？</label>
+          <!-- <input type="number" id="familiaritynum" name="familiaritynum" placeholder="請輸入數字 1-5（1: 非常沒信心 - 5: 非常有信心）"required/> -->
+          <ul class='likert'>
+            <li>
+              <input type="radio" name="familiaritynum" value="1">
+              <label>1</label>
+            </li>
+            <li>
+              <input type="radio" name="familiaritynum" value="2">
+              <label>2</label>
+            </li>
+            <li>
+              <input type="radio" name="familiaritynum" value="3">
+              <label>3</label>
+            </li>
+            <li>
+              <input type="radio" name="familiaritynum" value="4">
+              <label>4</label>
+            </li>
+            <li>
+              <input type="radio" name="familiaritynum" value="5" checked>
+              <label>5</label>
+            </li>
+          </ul>
+
           <br><br><br><br>
           <label for="familiaritycaptcha" style="font-size: 14px;">(*)您在這個實驗之前，對於「人機驗證」(CAPTCHA，亦即全自動公開化圖靈測驗人機辨識) <b style="font-weight: bold;">熟悉程度</b>為：(例如下圖)</label>
           <img src="../static/images/captcha_ex.png" with="600" heigh="400" alt="captcha example, answer is xbMDNX">
-          <input type="number" id="familiaritycaptcha" name="familiaritycaptcha" placeholder="請輸入數字 1-5（1: 非常沒信心 - 5: 非常有信心）"required/>
+          <!-- <input type="number" id="familiaritycaptcha" name="familiaritycaptcha" placeholder="請輸入數字 1-5（1: 非常沒信心 - 5: 非常有信心）"required/> -->
+          <ul class='likert'>
+            <li>
+              <input type="radio" name="familiaritycaptcha" value="1">
+              <label>1</label>
+            </li>
+            <li>
+              <input type="radio" name="familiaritycaptcha" value="2">
+              <label>2</label>
+            </li>
+            <li>
+              <input type="radio" name="familiaritycaptcha" value="3">
+              <label>3</label>
+            </li>
+            <li>
+              <input type="radio" name="familiaritycaptcha" value="4">
+              <label>4</label>
+            </li>
+            <li>
+              <input type="radio" name="familiaritycaptcha" value="5" checked>
+              <label>5</label>
+            </li>
+          </ul>
 
           <br><br><br><br>
           <label for="familiarityaudio">(*)您在這個實驗之前，對於「語音版本的」人機驗證 (Audio Captcha) <b style="font-weight: bold;">熟悉程度為</b>： (例：點擊「播放鍵」撥出語音版本之人機驗證，或參考: <a href="https://www.phpcaptcha.org/try-securimage/">https://www.phpcaptcha.org/try-securimage/</a> 中的第一個例子)
           </label>
           <img src="../static/images/audio_captcha_ex.png" with="600" heigh="400" alt="captcha example, answer is xbMDNX">
-          <input type="number" id="familiarityaudio" name="familiarityaudio" placeholder="請輸入數字 1-5（1: 非常沒信心 - 5: 非常有信心）"required/>
+          <!-- <input type="number" id="familiarityaudio" name="familiarityaudio" placeholder="請輸入數字 1-5（1: 非常沒信心 - 5: 非常有信心）"required/> -->
+          
+          <ul class='likert'>
+            <li>
+              <input type="radio" name="familiarityaudio" value="1">
+              <label>1</label>
+            </li>
+            <li>
+              <input type="radio" name="familiarityaudio" value="2">
+              <label>2</label>
+            </li>
+            <li>
+              <input type="radio" name="familiarityaudio" value="3">
+              <label>3</label>
+            </li>
+            <li>
+              <input type="radio" name="familiarityaudio" value="4">
+              <label>4</label>
+            </li>
+            <li>
+              <input type="radio" name="familiarityaudio" value="5" checked>
+              <label>5</label>
+            </li>
+          </ul>
+
 
           <br><br><br><br>
           <label for="apparatus" style="font-size: 14px;">(*)請問您預計在待會的實驗中使用什麼語音播放方式完成 audio captcha 的測驗（請使用相同之方式完成接下來的所有測驗 </label>
