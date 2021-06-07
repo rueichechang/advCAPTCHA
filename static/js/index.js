@@ -8,7 +8,9 @@ $(document).ready(function() {
     socket.on('connect', function() {
         socket.emit('my_event', {data: 'I\'m connected!'});
     });
+
 });
+
 
 //randomized cards code
 // var prototypecard = $(".prototypecard");
@@ -302,7 +304,7 @@ function checkPro1_3(){
   }else return true;
 }
 function checkfeedback1(){
-  if(!($("#text_fb1_1").get(0).value && $("#text_fb1_2").get(0).value && $("#text_fb1_3").get(0).value)) {
+  if(!($("#text_fb1_1").get(0).value && $("#text_fb1_2").get(0).value)) {
     alert(alert_msg);
     return false;
   }else return true;
@@ -331,7 +333,7 @@ function checkPro2_3(){
   }else return true;
 }
 function checkfeedback2(){
-  if(!($("#text_fb2_1").get(0).value && $("#text_fb2_2").get(0).value && $("#text_fb2_3").get(0).value)) {
+  if(!($("#text_fb2_1").get(0).value && $("#text_fb2_2").get(0).value)) {
     alert(alert_msg);
     return false;
   }else return true;
@@ -360,7 +362,7 @@ function checkPro3_3(){
   }else return true;
 }
 function checkfeedback3(){
-  if(!($("#text_fb3_1").get(0).value && $("#text_fb3_2").get(0).value && $("#text_fb3_3").get(0).value)) {
+  if(!($("#text_fb3_1").get(0).value && $("#text_fb3_2").get(0).value)) {
     alert(alert_msg);
     return false;
   }else return true;
@@ -388,7 +390,7 @@ function checkPro4_3(){
   }else return true;
 }
 function checkfeedback4(){
-  if(!($("#text_fb4_1").get(0).value && $("#text_fb4_2").get(0).value && $("#text_fb4_3").get(0).value)) {
+  if(!($("#text_fb4_1").get(0).value && $("#text_fb4_2").get(0).value)) {
     alert(alert_msg);
     return false;
   }else return true;

@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
   <form id = "myform" method="post" action="/submit">
   <div id="msform">
     <!-- progressbar -->
@@ -26,6 +25,7 @@
       <li>Feedback 4</li>
       <li>Finish</li>
     </ul>
+    
       <fieldset>
           <h1 class="fs-title" style="font-size:24px">實驗練習與介紹</h1>
           <p style= "line-height: 1.5;">在待會的實驗中，您總共會測試 4 種不同的 Audio CAPTCHA，每一種 Audio CAPTCHA 共會完成 3 個不同的題目，共 12 道 Audio CAPTCHA 題目。每完成一種語音驗證碼，您會回答關於該種語音驗證碼時的體驗：如 ”好不好用“、及 ”難不難回答“ 等等，以及您對於該語音驗證碼之建議與回饋。
@@ -190,7 +190,7 @@
           <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼缺點，讓你覺得不喜歡或難回答？</label>
           <input type="text" name="text_fb1_2" id = "text_fb1_2" />
 
-          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？若沒有其他意見請填 "無"</label>
+          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？ </label>
           <input type="text" name="text_fb1_3" id = "text_fb1_3"/>
 
           <input type="button" id="feedbacknext1" name="next" class="next action-button" value="Next" />
@@ -322,7 +322,7 @@
           <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼缺點，讓你覺得不喜歡或難回答？</label>
           <input type="text" name="text_fb2_2" id="text_fb2_2"/>
 
-          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？若沒有其他意見請填 "無"</label>
+          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？ </label>
           <input type="text" name="text_fb2_3" id = "text_fb2_3"/>
 
           <input type="button" id="feedbacknext2" name="next" class="next action-button" value="Next" />
@@ -454,7 +454,7 @@
           <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼缺點，讓你覺得不喜歡或難回答？</label>
           <input type="text" name="text_fb3_2" id = "text_fb3_2"/>
 
-          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？若沒有其他意見請填 "無"</label>
+          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？ </label>
           <input type="text" name="text_fb3_3" id = "text_fb3_3"/>
 
           <input type="button" id = "feedbacknext3" name="next" class="next action-button" value="Next" />
@@ -585,14 +585,14 @@
           <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼缺點，讓你覺得不喜歡或難回答？</label>
           <input type="text" name="text_fb4_2" id="text_fb4_2"/>
 
-          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？若沒有其他意見請填 "無"</label>
+          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？ </label>
           <input type="text" name="text_fb4_3" id="text_fb4_3"/>
 
           <!-- <input type="button" id="feedbacknext4" name="feedbacknext4" class="feedbacknext4 action-button" value="Submit" onclick="before_submit();"/> -->
           <input type="button" id="feedbacknext4" name="next" class="next action-button" value="Next"/>
         </fieldset>
 
-        <fieldset>
+        <fieldset id = "post_question">
           <h2 class="fs-title">測驗結束，請給予我們最後的回饋!</h2>
           <input name="answer1" id="answer1" type="hidden" value="" />
           <input name="answer2" id="answer2" type="hidden" value="" />
@@ -601,16 +601,16 @@
       
           <p style = "font-weight: bold;">(*)請按照您的喜好程度，排序您剛剛測試的所有 audio captcha，最喜歡的放在最上面，依序排列下去。</p><br>
           <ul id="input_ul">
-            <li class="ui-state"><span>&#x21C5;</span><input type="text" disabled/><audio id="{{instance1_1}}" controls preload src="{{instance1_1}}">
+            <li class="ui-state"><span id='span_tag'>&#x21C5;</span><input type="text" disabled/><audio id="{{instance1_1}}" controls preload src="{{instance1_1}}">
               Your browser does not support the audio element.
             </audio></li>
-            <li class="ui-state"><span>&#x21C5;</span><input type="text" disabled/><audio id="{{instance2_1}}" controls preload src="{{instance2_1}}">
+            <li class="ui-state"><span id='span_tag'>&#x21C5;</span><input type="text" disabled/><audio id="{{instance2_1}}" controls preload src="{{instance2_1}}">
               Your browser does not support the audio element.
             </audio></li>
-            <li class="ui-state"><span>&#x21C5;</span><input type="text" disabled/><audio id="{{instance3_1}}" controls preload src="{{instance3_1}}">
+            <li class="ui-state"><span id='span_tag'>&#x21C5;</span><input type="text" disabled/><audio id="{{instance3_1}}" controls preload src="{{instance3_1}}">
               Your browser does not support the audio element.
             </audio></li>
-            <li class="ui-state"><span>&#x21C5;</span><input type="text" disabled/><audio id="{{instance4_1}}" controls preload src="{{instance4_1}}"s>
+            <li class="ui-state"><span id='span_tag'>&#x21C5;</span><input type="text" disabled/><audio id="{{instance4_1}}" controls preload src="{{instance4_1}}">
               Your browser does not support the audio element.
             </audio></li>
           </ul>
@@ -625,6 +625,7 @@
       
           <br><br><br><br>
           <p>非常感謝您參與本實驗，接下來之資訊為研究團隊為您申報實驗報酬所使用之資訊，請如實填答以免報酬給予失敗，此一資訊不會挪為他用並在報酬發送後刪除！</p>
+          <br><br><br>
           <label for="name">名字</label><input type="text" id="name" name="name" placeholder="名字"/>
           <label for="email">Email</label><input type="email" id="email" name="email" placeholder="Email"/>
       
@@ -636,7 +637,7 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
   
 
 <script  src="js/index.js"></script>
@@ -646,14 +647,13 @@
       document.getElementById('late').value = 'yes';
       document.getElementById("myform").submit();
     }, 3600000);
-</script>
 
-<script>  
   // this is for sorting list
-  sort_ul = $('#input_ul');
+  sort_ul = $('#post_question #input_ul');
   itemsCount = $('#input_ul li').length;
   
   function updateIndexes(){
+      console.log('111111');
       $('#input_ul li input').each(function(i){
                 $(this).val(i+1);
             });
@@ -666,14 +666,16 @@
   });
   
   $('#input_ul li input').keyup(function(event) {
+    console.log('222222');
     if(event.keyCode == '13'){      
       event.preventDefault();
         
+      console.log('333333');
       order = parseInt($(this).val());
         
       li = $(this).parent();
       if(order>=1 && order <= itemsCount){      
-          
+        console.log('4444');
           li.effect('drop', function(){
               li.detach();
                   
