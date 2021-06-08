@@ -28,14 +28,14 @@
     
       <fieldset>
           <h1 class="fs-title" style="font-size:24px">實驗練習與介紹</h1>
-          <p style= "line-height: 1.5;">在待會的實驗中，您總共會測試 4 種不同的 Audio CAPTCHA，每一種 Audio CAPTCHA 共會完成 3 個不同的題目，共 12 道 Audio CAPTCHA 題目。每完成一種語音驗證碼，您會回答關於該種語音驗證碼時的體驗：如 ”好不好用“、及 ”難不難回答“ 等等，以及您對於該語音驗證碼之建議與回饋。
+          <p style= "line-height: 1.5;">本實驗中您總共會測試 4 種不同的 Audio CAPTCHA，每一種 Audio CAPTCHA 您共會完成 3 道不同的題目，共 12 道 Audio CAPTCHA 題目。每道題目皆是由 6 個英文 0~9 的數字所組成。每完成一種語音驗證碼，您會回答關於使用該 Audio CAPTCHA 上的體驗的相關問題： ”喜不喜歡“、及 ”難不難回答“ 等等，以及您對於該 Audio CAPTCHA 之建議與回饋。
             <br><br>
             為了讓您熟悉本實驗之研究介面，此一頁面與您待會在正式實驗中所會採用的介面相同以供您進行練習。請確保您處於一個可以正常聆聽語音之環境，利用下方練習試題進行音量之調整。
             <br><br>
             回答下列練習試題後，從下一頁開始為正式研究。
             <br><br>
             <b style="color:red">註：為確保本實驗之參與品質，若我們有偵測到「非正常」之回覆行為（例：異常回覆時間），我們將不給予實驗受測費用。</b>
-            <br><br>按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：
+            <br><br>按下「播放鍵」後，請邊聽邊輸入您所聽到的六位阿拉伯數字（數字之間不需要空格）：
           </p>
           <audio id="0_1" controls preload src="{{practice}}" onplay="audio_play('0'); focustext('pro0');">
               Your browser does not support the audio element.
@@ -125,8 +125,8 @@
 
       <fieldset class="feedbackcard">
           <h2 class="fs-title">Feedback1</h2>
-          <h3 class="fs-subtitle">請回答以下問題（皆必填）</h3>
-          <label class="statement">(*)請問您喜歡剛剛測試的 Audio Captcha 嗎？（1: 非常不喜歡; 5: 非常喜歡）</label>
+          <h3 class="fs-subtitle">請回答以下問題（*必填）</h3>
+          <label class="statement">(*)請問您喜歡剛剛測試的 Audio CAPTCHA 嗎？（1: 非常不喜歡; 5: 非常喜歡）</label>
           <ul class='likert'>
           <li>
             <input type="radio" name="likert_fb1_1" value="1">
@@ -149,7 +149,7 @@
             <label>5</label>
           </li>
           </ul>
-          <label class="statement">(*)請問您剛剛測試的 Audio Captcha 容易回答嗎？（1: 非常難回答; 5: 非常好回答）</label>
+          <label class="statement">(*)請問您剛剛測試的 Audio CAPTCHA 容易回答嗎？（1: 非常難回答; 5: 非常好回答）</label>
           <ul class='likert'>
             <li>
               <input type="radio" name="likert_fb1_2" value="1">
@@ -173,7 +173,7 @@
             </li>
             </ul>
 
-          <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼優點，讓你覺得喜歡或容易回答？</label>
+          <label class="statement">(*)請問您認為這個 Audio CAPTCHA 有什麼優點，讓你覺得喜歡或容易回答？</label>
           <input type="text" name="text_fb1_1" id = "text_fb1_1"/>
 
           <!-- <label class="statement">Do you prefer the current alphanumeric audio CAPTCHAs you already use relative to this design?</label>
@@ -187,10 +187,10 @@
               <label>No</label>
             </li>
           </ul> -->
-          <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼缺點，讓你覺得不喜歡或難回答？</label>
+          <label class="statement">(*)請問您認為這個 Audio CAPTCHA 有什麼缺點，讓你覺得不喜歡或難回答？</label>
           <input type="text" name="text_fb1_2" id = "text_fb1_2" />
 
-          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？ </label>
+          <label class="statement">對於這個 Audio CAPTCHA 您是否有什麼建議以及想法可以分享給我們？ </label>
           <input type="text" name="text_fb1_3" id = "text_fb1_3"/>
 
           <input type="button" id="feedbacknext1" name="next" class="next action-button" value="Next" />
@@ -257,8 +257,8 @@
 
     <fieldset class="feedbackcard">
       <h2 class="fs-title">Feedback2</h2>
-          <h3 class="fs-subtitle">請回答以下問題（皆必填）</h3>
-          <label class="statement">(*)請問您喜歡剛剛測試的 Audio Captcha 嗎？（1: 非常不喜歡; 5: 非常喜歡）</label>
+          <h3 class="fs-subtitle">請回答以下問題（*必填）</h3>
+          <label class="statement">(*)請問您喜歡剛剛測試的 Audio CAPTCHA 嗎？（1: 非常不喜歡; 5: 非常喜歡）</label>
           <ul class='likert'>
           <li>
             <input type="radio" name="likert_fb2_1" value="1">
@@ -281,7 +281,7 @@
             <label>5</label>
           </li>
           </ul>
-          <label class="statement">(*)請問您剛剛測試的 Audio Captcha 容易回答嗎？（1: 非常難回答; 5: 非常好回答）</label>
+          <label class="statement">(*)請問您剛剛測試的 Audio CAPTCHA 容易回答嗎？（1: 非常難回答; 5: 非常好回答）</label>
           <ul class='likert'>
             <li>
               <input type="radio" name="likert_fb2_2" value="1">
@@ -305,7 +305,7 @@
             </li>
             </ul>
 
-          <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼優點，讓你覺得喜歡或容易回答？</label>
+          <label class="statement">(*)請問您認為這個 Audio CAPTCHA 有什麼優點，讓你覺得喜歡或容易回答？</label>
           <input type="text" name="text_fb2_1" id="text_fb2_1"/>
 
           <!-- <label class="statement">Do you prefer the current alphanumeric audio CAPTCHAs you already use relative to this design?</label>
@@ -319,10 +319,10 @@
               <label>No</label>
             </li>
           </ul> -->
-          <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼缺點，讓你覺得不喜歡或難回答？</label>
+          <label class="statement">(*)請問您認為這個 Audio CAPTCHA 有什麼缺點，讓你覺得不喜歡或難回答？</label>
           <input type="text" name="text_fb2_2" id="text_fb2_2"/>
 
-          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？ </label>
+          <label class="statement">對於這個 Audio CAPTCHA 您是否有什麼建議以及想法可以分享給我們？ </label>
           <input type="text" name="text_fb2_3" id = "text_fb2_3"/>
 
           <input type="button" id="feedbacknext2" name="next" class="next action-button" value="Next" />
@@ -389,8 +389,8 @@
 
     <fieldset class="feedbackcard">
       <h2 class="fs-title">Feedback3</h2>
-          <h3 class="fs-subtitle">請回答以下問題（皆必填）</h3>
-          <label class="statement">(*)請問您喜歡剛剛測試的 Audio Captcha 嗎？（1: 非常不喜歡; 5: 非常喜歡）</label>
+          <h3 class="fs-subtitle">請回答以下問題（*必填）</h3>
+          <label class="statement">(*)請問您喜歡剛剛測試的 Audio CAPTCHA 嗎？（1: 非常不喜歡; 5: 非常喜歡）</label>
           <ul class='likert'>
           <li>
             <input type="radio" name="likert_fb3_1" value="1">
@@ -413,7 +413,7 @@
             <label>5</label>
           </li>
           </ul>
-          <label class="statement">(*)請問您剛剛測試的 Audio Captcha 容易回答嗎？（1: 非常難回答; 5: 非常好回答）</label>
+          <label class="statement">(*)請問您剛剛測試的 Audio CAPTCHA 容易回答嗎？（1: 非常難回答; 5: 非常好回答）</label>
           <ul class='likert'>
             <li>
               <input type="radio" name="likert_fb3_2" value="1">
@@ -437,7 +437,7 @@
             </li>
             </ul>
 
-          <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼優點，讓你覺得喜歡或容易回答？</label>
+          <label class="statement">(*)請問您認為這個 Audio CAPTCHA 有什麼優點，讓你覺得喜歡或容易回答？</label>
           <input type="text" name="text_fb3_1" id = "text_fb3_1"/>
 
           <!-- <label class="statement">Do you prefer the current alphanumeric audio CAPTCHAs you already use relative to this design?</label>
@@ -451,10 +451,10 @@
               <label>No</label>
             </li>
           </ul> -->
-          <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼缺點，讓你覺得不喜歡或難回答？</label>
+          <label class="statement">(*)請問您認為這個 Audio CAPTCHA 有什麼缺點，讓你覺得不喜歡或難回答？</label>
           <input type="text" name="text_fb3_2" id = "text_fb3_2"/>
 
-          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？ </label>
+          <label class="statement">對於這個 Audio CAPTCHA 您是否有什麼建議以及想法可以分享給我們？ </label>
           <input type="text" name="text_fb3_3" id = "text_fb3_3"/>
 
           <input type="button" id = "feedbacknext3" name="next" class="next action-button" value="Next" />
@@ -520,8 +520,8 @@
 
     <fieldset class="feedbackcard">
       <h2 class="fs-title">Feedback4</h2>
-          <h3 class="fs-subtitle">請回答以下問題（皆必填）</h3>
-          <label class="statement">(*)請問您喜歡剛剛測試的 Audio Captcha 嗎？（1: 非常不喜歡; 5: 非常喜歡）</label>
+          <h3 class="fs-subtitle">請回答以下問題（*必填）</h3>
+          <label class="statement">(*)請問您喜歡剛剛測試的 Audio CAPTCHA 嗎？（1: 非常不喜歡; 5: 非常喜歡）</label>
           <ul class='likert'>
           <li>
             <input type="radio" name="likert_fb4_1" value="1">
@@ -544,7 +544,7 @@
             <label>5</label>
           </li>
           </ul>
-          <label class="statement">(*)請問您剛剛測試的 Audio Captcha 容易回答嗎？（1: 非常難回答; 5: 非常好回答）</label>
+          <label class="statement">(*)請問您剛剛測試的 Audio CAPTCHA 容易回答嗎？（1: 非常難回答; 5: 非常好回答）</label>
           <ul class='likert'>
             <li>
               <input type="radio" name="likert_fb4_2" value="1">
@@ -568,7 +568,7 @@
             </li>
             </ul>
 
-          <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼優點，讓你覺得喜歡或容易回答？</label>
+          <label class="statement">(*)請問您認為這個 Audio CAPTCHA 有什麼優點，讓你覺得喜歡或容易回答？</label>
           <input type="text" name="text_fb4_1" id="text_fb4_1"/>
 
           <!-- <label class="statement">Do you prefer the current alphanumeric audio CAPTCHAs you already use relative to this design?</label>
@@ -582,10 +582,10 @@
               <label>No</label>
             </li>
           </ul> -->
-          <label class="statement">(*)請問您認為這個 Audio Captcha 有什麼缺點，讓你覺得不喜歡或難回答？</label>
+          <label class="statement">(*)請問您認為這個 Audio CAPTCHA 有什麼缺點，讓你覺得不喜歡或難回答？</label>
           <input type="text" name="text_fb4_2" id="text_fb4_2"/>
 
-          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？ </label>
+          <label class="statement">對於這個 Audio CAPTCHA 您是否有什麼建議以及想法可以分享給我們？ </label>
           <input type="text" name="text_fb4_3" id="text_fb4_3"/>
 
           <!-- <input type="button" id="feedbacknext4" name="feedbacknext4" class="feedbacknext4 action-button" value="Submit" onclick="before_submit();"/> -->
@@ -599,7 +599,7 @@
           <input name="answer3" id="answer3" type="hidden" value="" />
           <input name="answer4" id="answer4" type="hidden" value="" />
       
-          <p style = "font-weight: bold;">(*)請按照您的喜好程度，排序您剛剛測試的所有 audio captcha，最喜歡的放在最上面，依序排列下去。</p><br>
+          <p style = "font-weight: bold;">(*)請按照您的喜好程度，排序您剛剛測試的所有 Audio CAPTCHA，最喜歡的放在最上面，依序排列下去。</p><br>
           <ul id="input_ul">
             <li class="ui-state"><span id='span_tag'>&#x21C5;</span><input type="text" disabled/><audio id="{{instance1_1}}" controls preload src="{{instance1_1}}">
               Your browser does not support the audio element.
@@ -617,10 +617,10 @@
       
           <br><br>
       
-          <label class="statement">(*)請簡述您最喜愛該 audio captcha 的原因：</label>
+          <label class="statement">(*)請簡述您最喜愛該 Audio CAPTCHA 的原因：</label>
           <input type="text" id= "reasontolove" name="reasontolove" />
       
-          <label class="statement">對於這個 Audio Captcha 您是否有什麼建議以及想法可以分享給我們？</label>
+          <label class="statement">對於這個 Audio CAPTCHA 您是否有什麼建議以及想法可以分享給我們？</label>
           <input type="text" id= "reasontohate" name="reasontohate" />
       
           <br><br><br><br>
