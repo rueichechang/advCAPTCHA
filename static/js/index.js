@@ -275,31 +275,56 @@ $(document).on("keypress", "input", function (e) {
 });
 
 var alert_msg = "請確認回答了所有問題！";
+var alert_digit = "請確認輸入答案為六位數字";
 function checkPro0() {
-  if(!$("#pro0").get(0).value) {
+  var audio = document.getElementById('0_1');
+  audioStop(audio);
+  var input = $("#pro0").get(0).value;
+  if(!input) {
     alert(alert_msg);
     console.log($("#pro0").get(0).value);
+    return false;
+  }else if (!checkDigit(input)){
+    alert(alert_digit);
     return false;
   }else return true;
 }
 function checkPro1_1() {
-  if(!$("#pro1_1").get(0).value) {
+  var audio = document.getElementById('1_1');
+  audioStop(audio);
+  var input = $("#pro1_1").get(0).value;
+  if(!input) {
     alert(alert_msg);
     console.log($("#pro1_1").get(0).value);
+    return false;
+  }else if (!checkDigit(input)){
+    alert(alert_digit);
     return false;
   }else return true;
 }
 function checkPro1_2() {
-  if(!$("#pro1_2").get(0).value) {
+  var audio = document.getElementById('1_2');
+  audioStop(audio);
+  var input = $("#pro1_2").get(0).value;
+  if(!input) {
     alert(alert_msg);
     console.log($("#pro1_2").get(0).value);
+    return false;
+  }else if (!checkDigit(input)){
+    alert(alert_digit);
     return false;
   }else return true;
 }
 function checkPro1_3(){
-  if(!$("#pro1_3").get(0).value) {
+  var audio = document.getElementById('1_3');
+  audioStop(audio);
+  var input = $("#pro1_3").get(0).value;
+  if(!input) {
     alert(alert_msg);
     console.log($("#pro1_3").get(0).value);
+    return false;
+  }else if (!checkDigit(input)){
+    alert(alert_digit);
     return false;
   }else return true;
 }
@@ -312,23 +337,41 @@ function checkfeedback1(){
   
 
 function checkPro2_1() {
-  if(!$("#pro2_1").get(0).value) {
+  var audio = document.getElementById('2_1');
+  audioStop(audio);
+  var input = $("#pro2_1").get(0).value;
+  if(!input) {
     alert(alert_msg);
     console.log($("#pro2_1").get(0).value);
+    return false;
+  }else if (!checkDigit(input)){
+    alert(alert_digit);
     return false;
   }else return true;
 }
 function checkPro2_2() {
-  if(!$("#pro2_2").get(0).value) {
+  var audio = document.getElementById('2_2');
+  audioStop(audio);
+  var input = $("#pro2_2").get(0).value;
+  if(!input) {
     alert(alert_msg);
     console.log($("#pro2_2").get(0).value);
+    return false;
+  }else if (!checkDigit(input)){
+    alert(alert_digit);
     return false;
   }else return true;
 }
 function checkPro2_3(){
-  if(!$("#pro2_3").get(0).value) {
+  var audio = document.getElementById('2_3');
+  audioStop(audio);
+  var input = $("#pro2_3").get(0).value;
+  if(!input) {
     alert(alert_msg);
     console.log($("#pro2_3").get(0).value);
+    return false;
+  }else if (!checkDigit(input)){
+    alert(alert_digit);
     return false;
   }else return true;
 }
@@ -341,23 +384,41 @@ function checkfeedback2(){
 
 
 function checkPro3_1() {
-  if(!$("#pro3_1").get(0).value) {
+  var audio = document.getElementById('3_1');
+  audioStop(audio);
+  var input = $("#pro3_1").get(0).value;
+  if(!input) {
     alert(alert_msg);
     console.log($("#pro3_1").get(0).value);
+    return false;
+  }else if (!checkDigit(input)){
+    alert(alert_digit);
     return false;
   }else return true;
 }
 function checkPro3_2() {
-  if(!$("#pro3_2").get(0).value) {
+  var audio = document.getElementById('3_2');
+  audioStop(audio);
+  var input = $("#pro3_2").get(0).value;
+  if(!input) {
     alert(alert_msg);
     console.log($("#pro3_2").get(0).value);
+    return false;
+  }else if (!checkDigit(input)){
+    alert(alert_digit);
     return false;
   }else return true;
 }
 function checkPro3_3(){
-  if(!$("#pro3_3").get(0).value) {
+  var audio = document.getElementById('3_3');
+  audioStop(audio);
+  var input = $("#pro3_3").get(0).value;
+  if(!input) {
     alert(alert_msg);
     console.log($("#pro3_3").get(0).value);
+    return false;
+  }else if (!checkDigit(input)){
+    alert(alert_digit);
     return false;
   }else return true;
 }
@@ -369,23 +430,41 @@ function checkfeedback3(){
 }
 
 function checkPro4_1() {
-  if(!$("#pro4_1").get(0).value) {
+  var audio = document.getElementById('4_1');
+  audioStop(audio);
+  var input = $("#pro4_1").get(0).value;
+  if(!input) {
     alert(alert_msg);
     console.log($("#pro4_1").get(0).value);
+    return false;
+  }else if (!checkDigit(input)){
+    alert(alert_digit);
     return false;
   }else return true;
 }
 function checkPro4_2() {
-  if(!$("#pro4_2").get(0).value) {
+  var audio = document.getElementById('4_2');
+  audioStop(audio);
+  var input = $("#pro4_2").get(0).value;
+  if(!input) {
     alert(alert_msg);
     console.log($("#pro4_2").get(0).value);
+    return false;
+  }else if (!checkDigit(input)){
+    alert(alert_digit);
     return false;
   }else return true;
 }
 function checkPro4_3(){
-  if(!$("#pro4_3").get(0).value) {
+  var audio = document.getElementById('4_3');
+  audioStop(audio);
+  var input = $("#pro4_3").get(0).value;
+  if(!input) {
     alert(alert_msg);
     console.log($("#pro4_3").get(0).value);
+    return false;
+  }else if (!checkDigit(input)){
+    alert(alert_digit);
     return false;
   }else return true;
 }
@@ -395,23 +474,28 @@ function checkfeedback4(){
     return false;
   }else return true;
 }
-
-
+function audioStop(input_audio){
+  input_audio.pause();
+  input_audio.currentTime = 0;
+}
+function checkDigit(input_answer){
+  if (input_answer.length != 6 || !/^\d+$/.test(input_answer)){
+    return false;
+  }else return true;
+}
 
 //jQuery time
 (function($) {
   var current_fs, next_fs, previous_fs; //fieldsets
   var left, opacity, scale; //fieldset properties which we will animate
   var animating; //flag to prevent quick multi-click glitches
-
   $(".next").click(function() {
-    // console.log("get into next");
-    // console.log(animating)
     if (animating) return false;
     animating = true;
 
     current_fs = $(this).parent();
     next_fs = $(this).parent().next();
+    console.log(this.id);
 
     if(this.id === 'pronext0') {
       if(!checkPro0()) {
