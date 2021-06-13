@@ -620,7 +620,7 @@
           <label class="statement">(*)請簡述您最喜愛該 Audio CAPTCHA 的原因：</label>
           <input type="text" id= "reasontolove" name="reasontolove" />
       
-          <label class="statement">對於這個 Audio CAPTCHA 您是否有什麼建議以及想法可以分享給我們？</label>
+          <label class="statement">(*)請簡述您把該 audio captcha 放在最後第一位（最喜歡）的原因：</label>
           <input type="text" id= "reasontohate" name="reasontohate" />
       
           <br><br><br><br>
@@ -666,16 +666,13 @@
   });
   
   $('#input_ul li input').keyup(function(event) {
-    console.log('222222');
     if(event.keyCode == '13'){      
       event.preventDefault();
         
-      console.log('333333');
       order = parseInt($(this).val());
         
       li = $(this).parent();
       if(order>=1 && order <= itemsCount){      
-        console.log('4444');
           li.effect('drop', function(){
               li.detach();
                   
