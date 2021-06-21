@@ -28,14 +28,17 @@
     
       <fieldset>
           <h1 class="fs-title" style="font-size:24px">實驗練習與介紹</h1>
-          <p style= "line-height: 1.5;">本實驗中您總共會測試 4 種不同的 Audio CAPTCHA，每一種 Audio CAPTCHA 您共會完成 3 道不同的題目，共 12 道 Audio CAPTCHA 題目。每道題目皆是由 6 個英文 0~9 的數字所組成。每完成一種語音驗證碼，您會回答關於使用該 Audio CAPTCHA 上的體驗的相關問題： ”喜不喜歡“、及 ”難不難回答“ 等等，以及您對於該 Audio CAPTCHA 之建議與回饋。
+          <p style= "line-height: 1.5;">本實驗中您總共會測試 4 種不同的 Audio CAPTCHA，每一種 Audio CAPTCHA 您會完成 3 道不同的題目，共 12 道 Audio CAPTCHA 題目。每道題目皆是由 6 個英文 0~9 的數字所組成。每完成一種語音驗證碼，您會回答關於使用該 Audio CAPTCHA 上的體驗的相關問題： ”喜不喜歡“、及 ”難不難回答“ 等等，以及您對於該 Audio CAPTCHA 之建議與回饋。
             <br><br>
             為了讓您熟悉本實驗之研究介面，此一頁面與您待會在正式實驗中所會採用的介面相同以供您進行練習。請確保您處於一個可以正常聆聽語音之環境，利用下方練習試題進行音量之調整。
             <br><br>
             回答下列練習試題後，從下一頁開始為正式研究。
             <br><br>
             <b style="color:red">註：為確保本實驗之參與品質，若我們有偵測到「非正常」之回覆行為（例：異常回覆時間），我們將不給予實驗受測費用。</b>
-            <br><br>按下「播放鍵」後，請邊聽邊輸入您所聽到的六位阿拉伯數字（數字之間不需要空格）：
+            <br><br>按下「播放鍵」後，請邊聽邊輸入您所聽到的六位阿拉伯數字:<br>
+            註 1：數字之間不需要空格<br>
+            註 2：若想要重新播放題目，亦可重新按下「播放鍵」
+
           </p>
           <audio id="0_1" controls preload src="{{practice}}" onplay="audio_play('0'); focustext('pro0');">
               Your browser does not support the audio element.
@@ -130,46 +133,46 @@
           <ul class='likert'>
           <li>
             <input type="radio" name="likert_fb1_1" value="1">
-            <label>1</label>
+            <label>(1)非常不喜歡</label>
           </li>
           <li>
             <input type="radio" name="likert_fb1_1" value="2">
-            <label>2</label>
+            <label>(2)不喜歡</label>
           </li>
           <li>
             <input type="radio" name="likert_fb1_1" value="3">
-            <label>3</label>
+            <label>(3)中立</label>
           </li>
           <li>
             <input type="radio" name="likert_fb1_1" value="4">
-            <label>4</label>
+            <label>(4)喜歡</label>
           </li>
           <li>
             <input type="radio" name="likert_fb1_1" value="5">
-            <label>5</label>
+            <label>(5)非常喜歡</label>
           </li>
           </ul>
           <label class="statement">(*)請問您剛剛測試的 Audio CAPTCHA 容易回答嗎？（1: 非常難回答; 5: 非常好回答）</label>
           <ul class='likert'>
             <li>
               <input type="radio" name="likert_fb1_2" value="1">
-              <label>1</label>
+              <label>(1)非常難回答</label>
             </li>
             <li>
               <input type="radio" name="likert_fb1_2" value="2">
-              <label>2</label>
+              <label>(2)難回答</label>
             </li>
             <li>
               <input type="radio" name="likert_fb1_2" value="3">
-              <label>3</label>
+              <label>(3)中立</label>
             </li>
             <li>
               <input type="radio" name="likert_fb1_2" value="4">
-              <label>4</label>
+              <label>(4)好回答</label>
             </li>
             <li>
               <input type="radio" name="likert_fb1_2" value="5">
-              <label>5</label>
+              <label>(5)非常好回答</label>
             </li>
             </ul>
 
@@ -262,46 +265,46 @@
           <ul class='likert'>
           <li>
             <input type="radio" name="likert_fb2_1" value="1">
-            <label>1</label>
+            <label>(1)非常不喜歡</label>
           </li>
           <li>
             <input type="radio" name="likert_fb2_1" value="2">
-            <label>2</label>
+            <label>(2)不喜歡</label>
           </li>
           <li>
             <input type="radio" name="likert_fb2_1" value="3">
-            <label>3</label>
+            <label>(3)中立</label>
           </li>
           <li>
             <input type="radio" name="likert_fb2_1" value="4">
-            <label>4</label>
+            <label>(4)喜歡</label>
           </li>
           <li>
             <input type="radio" name="likert_fb2_1" value="5">
-            <label>5</label>
+            <label>(5)非常喜歡</label>
           </li>
           </ul>
           <label class="statement">(*)請問您剛剛測試的 Audio CAPTCHA 容易回答嗎？（1: 非常難回答; 5: 非常好回答）</label>
           <ul class='likert'>
             <li>
               <input type="radio" name="likert_fb2_2" value="1">
-              <label>1</label>
+              <label>(1)非常難回答</label>
             </li>
             <li>
               <input type="radio" name="likert_fb2_2" value="2">
-              <label>2</label>
+              <label>(2)難回答</label>
             </li>
             <li>
               <input type="radio" name="likert_fb2_2" value="3">
-              <label>3</label>
+              <label>(3)中立</label>
             </li>
             <li>
               <input type="radio" name="likert_fb2_2" value="4">
-              <label>4</label>
+              <label>(4)好回答</label>
             </li>
             <li>
               <input type="radio" name="likert_fb2_2" value="5">
-              <label>5</label>
+              <label>(5)非常好回答</label>
             </li>
             </ul>
 
@@ -394,46 +397,46 @@
           <ul class='likert'>
           <li>
             <input type="radio" name="likert_fb3_1" value="1">
-            <label>1</label>
+            <label>(1)非常不喜歡</label>
           </li>
           <li>
             <input type="radio" name="likert_fb3_1" value="2">
-            <label>2</label>
+            <label>(2)不喜歡</label>
           </li>
           <li>
             <input type="radio" name="likert_fb3_1" value="3">
-            <label>3</label>
+            <label>(3)中立</label>
           </li>
           <li>
             <input type="radio" name="likert_fb3_1" value="4">
-            <label>4</label>
+            <label>(4)喜歡</label>
           </li>
           <li>
             <input type="radio" name="likert_fb3_1" value="5">
-            <label>5</label>
+            <label>(5)非常喜歡</label>
           </li>
           </ul>
           <label class="statement">(*)請問您剛剛測試的 Audio CAPTCHA 容易回答嗎？（1: 非常難回答; 5: 非常好回答）</label>
           <ul class='likert'>
             <li>
               <input type="radio" name="likert_fb3_2" value="1">
-              <label>1</label>
+              <label>(1)非常難回答</label>
             </li>
             <li>
               <input type="radio" name="likert_fb3_2" value="2">
-              <label>2</label>
+              <label>(2)難回答</label>
             </li>
             <li>
               <input type="radio" name="likert_fb3_2" value="3">
-              <label>3</label>
+              <label>(3)中立</label>
             </li>
             <li>
               <input type="radio" name="likert_fb3_2" value="4">
-              <label>4</label>
+              <label>(4)好回答</label>
             </li>
             <li>
               <input type="radio" name="likert_fb3_2" value="5">
-              <label>5</label>
+              <label>(5)非常好回答</label>
             </li>
             </ul>
 
@@ -525,46 +528,46 @@
           <ul class='likert'>
           <li>
             <input type="radio" name="likert_fb4_1" value="1">
-            <label>1</label>
+            <label>(1)非常不喜歡</label>
           </li>
           <li>
             <input type="radio" name="likert_fb4_1" value="2">
-            <label>2</label>
+            <label>(2)不喜歡</label>
           </li>
           <li>
             <input type="radio" name="likert_fb4_1" value="3">
-            <label>3</label>
+            <label>(3)中立</label>
           </li>
           <li>
             <input type="radio" name="likert_fb4_1" value="4">
-            <label>4</label>
+            <label>(4)喜歡</label>
           </li>
           <li>
             <input type="radio" name="likert_fb4_1" value="5">
-            <label>5</label>
+            <label>(5)非常喜歡</label>
           </li>
           </ul>
           <label class="statement">(*)請問您剛剛測試的 Audio CAPTCHA 容易回答嗎？（1: 非常難回答; 5: 非常好回答）</label>
           <ul class='likert'>
             <li>
               <input type="radio" name="likert_fb4_2" value="1">
-              <label>1</label>
+              <label>(1)非常難回答</label>
             </li>
             <li>
               <input type="radio" name="likert_fb4_2" value="2">
-              <label>2</label>
+              <label>(2)難回答</label>
             </li>
             <li>
               <input type="radio" name="likert_fb4_2" value="3">
-              <label>3</label>
+              <label>(3)中立</label>
             </li>
             <li>
               <input type="radio" name="likert_fb4_2" value="4">
-              <label>4</label>
+              <label>(4)好回答</label>
             </li>
             <li>
               <input type="radio" name="likert_fb4_2" value="5">
-              <label>5</label>
+              <label>(5)非常好回答</label>
             </li>
             </ul>
 
@@ -588,28 +591,28 @@
           <input name="answer3" id="answer3" type="hidden" value="" />
           <input name="answer4" id="answer4" type="hidden" value="" />
       
-          <p style = "font-weight: bold;">(*)請按照您的喜好程度，排序您剛剛測試的所有 Audio CAPTCHA，最喜歡的放在最上面，依序排列下去。</p><br>
+          <p style = "font-weight: bold;">(*)請按照您的喜好程度，以拖曳的方式排序您剛剛測試的所有 Audio CAPTCHA，最喜歡的放在最上面，依序排列下去。</p><br>
           <ul id="input_ul">
-            <li class="ui-state"><span id='span_tag'>請按此上下拖曳</span><input type="text" disabled/>種類1<audio id="{{instance1_1}}" controls preload src="{{instance1_1}}">
+            <li class="ui-state"><span id='span_tag'>請按此上下拖曳</span><input type="text" disabled/>種類 1<audio id="{{instance1_1}}" controls preload src="{{instance1_1}}">
               Your browser does not support the audio element.
             </audio></li>
-            <li class="ui-state"><span id='span_tag'>請按此上下拖曳</span><input type="text" disabled/>種類2<audio id="{{instance2_1}}" controls preload src="{{instance2_1}}">
+            <li class="ui-state"><span id='span_tag'>請按此上下拖曳</span><input type="text" disabled/>種類 2<audio id="{{instance2_1}}" controls preload src="{{instance2_1}}">
               Your browser does not support the audio element.
             </audio></li>
-            <li class="ui-state"><span id='span_tag'>請按此上下拖曳</span><input type="text" disabled/>種類3<audio id="{{instance3_1}}" controls preload src="{{instance3_1}}">
+            <li class="ui-state"><span id='span_tag'>請按此上下拖曳</span><input type="text" disabled/>種類 3<audio id="{{instance3_1}}" controls preload src="{{instance3_1}}">
               Your browser does not support the audio element.
             </audio></li>
-            <li class="ui-state"><span id='span_tag'>請按此上下拖曳</span><input type="text" disabled/>種類4<audio id="{{instance4_1}}" controls preload src="{{instance4_1}}">
+            <li class="ui-state"><span id='span_tag'>請按此上下拖曳</span><input type="text" disabled/>種類 4<audio id="{{instance4_1}}" controls preload src="{{instance4_1}}">
               Your browser does not support the audio element.
             </audio></li>
           </ul>
       
           <br><br>
       
-          <label class="statement">(*)請簡述您最喜愛該 Audio CAPTCHA 的原因：</label>
+          <label class="statement">(*)請簡述您把該 Audio CAPTCHA 放在第一位（最喜歡）的原因：</label>
           <input type="text" id= "reasontolove" name="reasontolove" />
       
-          <label class="statement">(*)請簡述您把該 audio captcha 放在最後第一位（最喜歡）的原因：</label>
+          <label class="statement">(*)請簡述您把該 Audio CAPTCHA 放在最後第一位（最不喜歡）的原因：</label>
           <input type="text" id= "reasontohate" name="reasontohate" />
       
           <br><br><br><br>

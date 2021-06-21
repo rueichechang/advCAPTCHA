@@ -274,7 +274,7 @@ $(document).on("keypress", "input", function (e) {
   }
 });
 
-var alert_msg = "請確認回答了所有問題！";
+var alert_msg = "請確認回答了所有（*必填）問題！";
 var alert_digit = "請確認輸入答案為六位數字";
 function checkPro0() {
   var audio = document.getElementById('0_1');
