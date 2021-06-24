@@ -350,7 +350,7 @@ def demographic_control():
     spot_tsv_address = 'static/prototypes/'+spot_id[5:]+'/task_info.tsv'
     spot_tsv = pd.read_csv(spot_tsv_address, header=None, sep='\t')
 
-    task_order_file_name = 'participant_task_ordering_2021-06-03-14-57'
+    task_order_file_name = 'participant_task_ordering_2021-06-21-16-49'
     task_order_address = 'static/prototypes/'+task_order_file_name+'.tsv'
     task_order_tsv = pd.read_csv(task_order_address, header=None, sep='\t')
     spot_num = int(spot_id[5:])
@@ -470,7 +470,7 @@ def timer():
                         captcha_spots.update_one({"table_name": 'captcha_spots_table'}, { "$set":{spot : 'empty'}})
         
 
-if __name__ == '__main__':
+if __name__ == '__main__':ㄌ
     t = Thread(target=timer)
     t.start()
-    socketio.run(app, debug=False, host='0.0.0.0', port=5000)
+    socketio.run(app, debug=False, host='0.0.0.0', port=20)
