@@ -517,4 +517,4 @@ def timer():
 if __name__ == '__main__':
     t = Thread(target=timer)
     t.start()
-    socketio.run(app, debug=False, host='0.0.0.0', port=80)
+    socketio.run(app, debug=False, host='0.0.0.0', port=5000)
