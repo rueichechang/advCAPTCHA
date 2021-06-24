@@ -470,7 +470,7 @@ def timer():
                         captcha_spots.update_one({"table_name": 'captcha_spots_table'}, { "$set":{spot : 'empty'}})
         
 
-if __name__ == '__main__':ㄌ
+if __name__ == '__main__':
     t = Thread(target=timer)
     t.start()
-    socketio.run(app, debug=False, host='0.0.0.0', port=20)
+    socketio.run(app, debug=False, host='0.0.0.0', port=80)
