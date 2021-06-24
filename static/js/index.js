@@ -124,7 +124,8 @@ function checkfinalform(){
   if( $("#reasontolove").get(0).value == ""||
         $("#reasontohate").get(0).value == ""||
         $("#name").get(0).value == ""||
-        $("#email").get(0).value == "") {
+        $("#email").get(0).value == "" ||
+        $("#technical_report").get(0).value == "") {
           alert(alert_msg);
           return false;
         }else return true;
@@ -134,7 +135,7 @@ function before_submit(){
   if(!checkfinalform()) {
     return;
   }
-
+  document.getElementById('end_time').value = Date.now();
   var answer1 = document.getElementsByClassName("ui-state")[0].lastChild.id;
   var answer2 = document.getElementsByClassName("ui-state")[1].lastChild.id;
   var answer3 = document.getElementsByClassName("ui-state")[2].lastChild.id;
@@ -174,9 +175,7 @@ function record_end(key){
   console.log("end_times", key, end_times[key]);
 }
 function audio_play(key){
-  if(start_times[key]==="0")
-  start_times[key]=Date.now();
-  console.log("start_times", key, start_times[key]);
+  if(start_times[key]==="0")start_times[key]=Date.now();
   play_times[key]=play_times[key]+1;
 }
 
@@ -328,12 +327,6 @@ function checkPro1_3(){
     return false;
   }else return true;
 }
-function checkfeedback1(){
-  if(!($("#text_fb1_1").get(0).value && $("#text_fb1_2").get(0).value)) {
-    alert(alert_msg);
-    return false;
-  }else return true;
-}
   
 
 function checkPro2_1() {
@@ -372,12 +365,6 @@ function checkPro2_3(){
     return false;
   }else if (!checkDigit(input)){
     alert(alert_digit);
-    return false;
-  }else return true;
-}
-function checkfeedback2(){
-  if(!($("#text_fb2_1").get(0).value && $("#text_fb2_2").get(0).value)) {
-    alert(alert_msg);
     return false;
   }else return true;
 }
@@ -422,12 +409,6 @@ function checkPro3_3(){
     return false;
   }else return true;
 }
-function checkfeedback3(){
-  if(!($("#text_fb3_1").get(0).value && $("#text_fb3_2").get(0).value)) {
-    alert(alert_msg);
-    return false;
-  }else return true;
-}
 
 function checkPro4_1() {
   var audio = document.getElementById('4_1');
@@ -468,8 +449,39 @@ function checkPro4_3(){
     return false;
   }else return true;
 }
+
+function checkfeedback1(){
+  var likert_fb1_1 = $("input[name=likert_fb1_1]:checked").length;
+  var likert_fb1_2 = $("input[name=likert_fb1_2]:checked").length;
+
+  if(!($("#text_fb1_1").get(0).value && $("#text_fb1_2").get(0).value && likert_fb1_1 && likert_fb1_2)) {
+    alert(alert_msg);
+    return false;
+  }else return true;
+}
+
+function checkfeedback2(){
+  var likert_fb2_1 = $("input[name=likert_fb1_1]:checked").length;
+  var likert_fb2_2 = $("input[name=likert_fb1_2]:checked").length;
+  if(!($("#text_fb2_1").get(0).value && $("#text_fb2_2").get(0).value && likert_fb2_1 && likert_fb2_2)) {
+    alert(alert_msg);
+    return false;
+  }else return true;
+}
+
+function checkfeedback3(){
+  var likert_fb3_1 = $("input[name=likert_fb1_1]:checked").length;
+  var likert_fb3_2 = $("input[name=likert_fb1_2]:checked").length;
+  if(!($("#text_fb3_1").get(0).value && $("#text_fb3_2").get(0).value && likert_fb3_1 && likert_fb3_2)) {
+    alert(alert_msg);
+    return false;
+  }else return true;
+}
+
 function checkfeedback4(){
-  if(!($("#text_fb4_1").get(0).value && $("#text_fb4_2").get(0).value)) {
+  var likert_fb4_1 = $("input[name=likert_fb1_1]:checked").length;
+  var likert_fb4_2 = $("input[name=likert_fb1_2]:checked").length;
+  if(!($("#text_fb4_1").get(0).value && $("#text_fb4_2").get(0).value && likert_fb4_1 && likert_fb4_2)) {
     alert(alert_msg);
     return false;
   }else return true;

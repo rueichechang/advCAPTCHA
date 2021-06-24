@@ -172,7 +172,28 @@
     <script  src="js/index.js"></script>
     <script>
       function on_submit(){
-        document.getElementById('start_time').value = Date.now();;
+        document.getElementById('start_time').value = Date.now();
+
+        var familiaritynum = $("input[name=familiaritynum]:checked").length;
+        var familiaritycaptcha = $("input[name=familiaritycaptcha]:checked").length;
+        var familiarityaudio = $("input[name=familiarityaudio]:checked").length;
+
+        var alert_message = "請確認已回答所有問題"
+
+        if (!familiaritynum){
+          alert(alert_message);
+          return false;
+        }
+        if (!familiaritycaptcha){
+          alert(alert_message);
+          return;
+        }
+        if (!familiarityaudio){
+          alert(alert_message);
+          return;
+        }
+
+
         document.getElementById("first_form").submit();
       }
     </script>

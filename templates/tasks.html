@@ -51,6 +51,7 @@
           <input name="spot_id" id="spot_id" type="hidden" value="{{spot_id}}" />
           <input name="group" id="group" type="hidden" value="{{group}}" />
           <input name="task_order" id="task_order" type="hidden" value="{{task_order}}" />
+          <input name="end_time" id="end_time" type="hidden" value="{{end_time}}" />
 
           <!-- record captcha id and question type (ABC) and the ground truth -->
           <input name="captcha_type0" id="captcha_type0" type="hidden" value="{{captcha_type0}}" />
@@ -79,6 +80,7 @@
               <input name="captcha_type1_1" id="captcha_type1_1" type="hidden" value="{{captcha_type1_1}}" />
               <input name="task_type1_1" id="task_type1_1" type="hidden" value="{{task_type1_1}}" />
               <input name="ground_truth1_1" id="ground_truth1_1" type="hidden" value="{{ground_truth1_1}}" />
+              <input name="task_time_ground_truth1_1" id="task_time_ground_truth1_1" type="hidden" value="{{task_time_ground_truth1_1}}" />
               
               <!-- task data including user's answer, time elasped, and click counts -->
               <input type="text" name="pro1_1" id="pro1_1" onblur="record_end('11')" onfocus="playonCtrl(this, '1_1')"/><br/>
@@ -96,6 +98,7 @@
               <input name="captcha_type1_2" id="captcha_type1_2" type="hidden" value="{{captcha_type1_2}}" />
               <input name="task_type1_2" id="task_type1_2" type="hidden" value="{{task_type1_2}}" />
               <input name="ground_truth1_2" id="ground_truth1_2" type="hidden" value="{{ground_truth1_2}}" />
+              <input name="task_time_ground_truth1_2" id="task_time_ground_truth1_2" type="hidden" value="{{task_time_ground_truth1_2}}" />
               
               <!-- task data including user's answer, time elasped, and click counts -->
               <input type="text" name="pro1_2" id="pro1_2" onblur="record_end('12')" onfocus="playonCtrl(this, '1_2')"/><br/>
@@ -113,7 +116,7 @@
               <input name="captcha_type1_3" id="captcha_type1_3" type="hidden" value="{{captcha_type1_3}}" />
               <input name="task_type1_3" id="task_type1_3" type="hidden" value="{{task_type1_3}}" />
               <input name="ground_truth1_3" id="ground_truth1_3" type="hidden" value="{{ground_truth1_3}}" />
-              
+              <input name="task_time_ground_truth1_3" id="task_time_ground_truth1_3" type="hidden" value="{{task_time_ground_truth1_3}}" />
               <!-- task data including user's answer, time elasped, and click counts -->
               <input type="text" name="pro1_3" id="pro1_3" onblur="record_end('13')" onfocus="playonCtrl(this, '1_3')"/><br/>
               <input name="13" id="13" type="hidden" value=""/>
@@ -215,7 +218,7 @@
         <input name="captcha_type2_1" id="captcha_type2_1" type="hidden" value="{{captcha_type2_1}}" />
         <input name="task_type2_1" id="task_type2_1" type="hidden" value="{{task_type2_1}}" />
         <input name="ground_truth2_1" id="ground_truth2_1" type="hidden" value="{{ground_truth2_1}}" />
-        
+        <input name="task_time_ground_truth2_1" id="task_time_ground_truth2_1" type="hidden" value="{{task_time_ground_truth2_1}}" />
         <!-- task data including user's answer, time elasped, and click counts -->
         <input type="text" name="pro2_1" id="pro2_1" onblur="record_end('21')" onfocus="playonCtrl(this, '2_1')"/><br />
         <input name="21" id="21" type="hidden" value=""/>
@@ -232,7 +235,7 @@
         <input name="captcha_type2_2" id="captcha_type2_2" type="hidden" value="{{captcha_type2_2}}" />
         <input name="task_type2_2" id="task_type2_2" type="hidden" value="{{task_type2_2}}" />
         <input name="ground_truth2_2" id="ground_truth2_2" type="hidden" value="{{ground_truth2_2}}" />
-        
+        <input name="task_time_ground_truth2_2" id="task_time_ground_truth2_2" type="hidden" value="{{task_time_ground_truth2_2}}" />
         <!-- task data including user's answer, time elasped, and click counts -->
         <input type="text" name="pro2_2" id="pro2_2" onblur="record_end('22')" onfocus="playonCtrl(this, '2_2')"/><br />
         <input name="22" id="22" type="hidden" value=""/>
@@ -249,7 +252,7 @@
         <input name="captcha_type2_3" id="captcha_type2_3" type="hidden" value="{{captcha_type2_3}}" />
         <input name="task_type2_3" id="task_type2_3" type="hidden" value="{{task_type2_3}}" />
         <input name="ground_truth2_3" id="ground_truth2_3" type="hidden" value="{{ground_truth2_3}}" />
-        
+        <input name="task_time_ground_truth2_3" id="task_time_ground_truth2_3" type="hidden" value="{{task_time_ground_truth2_3}}" />
         <!-- task data including user's answer, time elasped, and click counts -->
         <input type="text" name="pro2_3" id="pro2_3" onblur="record_end('23')" onfocus="playonCtrl(this, '2_3')"/><br />
         <input name="23" id="23" type="hidden" value=""/>
@@ -349,7 +352,7 @@
       <input name="captcha_type3_1" id="captcha_type3_1" type="hidden" value="{{captcha_type3_1}}" />
       <input name="task_type3_1" id="task_type3_1" type="hidden" value="{{task_type3_1}}" />
       <input name="ground_truth3_1" id="ground_truth3_1" type="hidden" value="{{ground_truth3_1}}" />
-      
+      <input name="task_time_ground_truth3_1" id="task_time_ground_truth3_1" type="hidden" value="{{task_time_ground_truth3_1}}" />
       <!-- task data including user's answer, time elasped, and click counts -->
       <input type="text" name="pro3_1" id="pro3_1" onblur="record_end('31')" onfocus="playonCtrl(this, '3_1')"/><br />
       <input name="31" id="31" type="hidden" value=""/>
@@ -367,7 +370,7 @@
       <input name="captcha_type3_2" id="captcha_type3_2" type="hidden" value="{{captcha_type3_2}}" />
       <input name="task_type3_2" id="task_type3_2" type="hidden" value="{{task_type3_2}}"/>
       <input name="ground_truth3_2" id="ground_truth3_2" type="hidden" value="{{ground_truth3_2}}" />
-      
+      <input name="task_time_ground_truth3_2" id="task_time_ground_truth3_2" type="hidden" value="{{task_time_ground_truth3_2}}" />
       <!-- task data including user's answer, time elasped, and click counts -->
       <input type="text" name="pro3_2" id="pro3_2" onblur="record_end('32')" onfocus="playonCtrl(this, '3_2')"/><br />
       <input name="32" id="32" type="hidden" value=""/>
@@ -384,7 +387,7 @@
       <input name="captcha_type3_3" id="captcha_type3_3" type="hidden" value="{{captcha_type3_3}}" />
       <input name="task_type3_3" id="task_type3_3" type="hidden" value="{{task_type3_3}}" />
       <input name="ground_truth3_3" id="ground_truth3_3" type="hidden" value="{{ground_truth3_3}}" />
-      
+      <input name="task_time_ground_truth3_3" id="task_time_ground_truth3_3" type="hidden" value="{{task_time_ground_truth3_3}}" />
       <!-- task data including user's answer, time elasped, and click counts -->
       <input type="text" name="pro3_3" id="pro3_3" onblur="record_end('33')"  onfocus="playonCtrl(this, '3_3')"/><br />
       <input name="33" id="33" type="hidden" value=""/>
@@ -483,7 +486,7 @@
       <input name="captcha_type4_1" id="captcha_type4_1" type="hidden" value="{{captcha_type4_1}}"/>
       <input name="task_type4_1" id="task_type4_1" type="hidden" value="{{task_type4_1}}" />
       <input name="ground_truth4_1" id="ground_truth4_1" type="hidden" value="{{ground_truth4_1}}" />
-      
+      <input name="task_time_ground_truth4_1" id="task_time_ground_truth4_1" type="hidden" value="{{task_time_ground_truth4_1}}" />
       <!-- task data including user's answer, time elasped, and click counts -->
       <input type="text" name="pro4_1" id="pro4_1" onblur="record_end('41')" onfocus="playonCtrl(this, '4_1')"/><br />
       <input name="41" id="41" type="hidden" value=""/>
@@ -500,7 +503,7 @@
       <input name="captcha_type4_2" id="captcha_type4_2" type="hidden" value="{{captcha_type4_2}}" />
       <input name="task_type4_2" id="task_type4_2" type="hidden" value="{{task_type4_2}}" />
       <input name="ground_truth4_2" id="ground_truth4_2" type="hidden" value="{{ground_truth4_2}}" />
-      
+      <input name="task_time_ground_truth4_2" id="task_time_ground_truth4_2" type="hidden" value="{{task_time_ground_truth4_2}}" />
       <!-- task data including user's answer, time elasped, and click counts -->
       <input type="text" name="pro4_2" id="pro4_2" onblur="record_end('42')" onfocus="playonCtrl(this, '4_2')"/><br />
       <input name="42" id="42" type="hidden" value=""/>
@@ -517,7 +520,7 @@
       <input name="captcha_type4_3" id="captcha_type4_3" type="hidden" value="{{captcha_type4_3}}" />
       <input name="task_type4_3" id="task_type4_3" type="hidden" value="{{task_type4_3}}" />
       <input name="ground_truth4_3" id="ground_truth4_3" type="hidden" value="{{ground_truth4_3}}" />
-      
+      <input name="task_time_ground_truth4_3" id="task_time_ground_truth4_3" type="hidden" value="{{task_time_ground_truth4_3}}" />
       <!-- task data including user's answer, time elasped, and click counts -->
       <input type="text" name="pro4_3" id="pro4_3" onblur="record_end('43')" onfocus="playonCtrl(this, '4_3')"/><br />
       <input name="43" id="43" type="hidden" value=""/>
@@ -620,7 +623,10 @@
       
           <label class="statement">(*)請簡述您把該 Audio CAPTCHA 放在最後第一位（最不喜歡）的原因：</label>
           <input type="text" id= "reasontohate" name="reasontohate" />
-      
+
+          <label class="statement">(*)請問剛剛實驗過程中有沒有遇到技術上或是網路上的問題？（若無請填寫 “無”）</label>
+          <input type="text" id= "technical_report" name="technical_report" />
+          
           <br><br><br><br>
           <p>非常感謝您參與本實驗，接下來之資訊為研究團隊為您申報實驗報酬所使用之資訊，請如實填答以免報酬給予失敗，此一資訊不會挪為他用並在報酬發送後刪除！</p>
           <br><br><br>
@@ -651,7 +657,6 @@
   itemsCount = $('#input_ul li').length;
   
   function updateIndexes(){
-      console.log('111111');
       $('#input_ul li input').each(function(i){
                 $(this).val(i+1);
             });
