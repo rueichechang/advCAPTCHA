@@ -382,6 +382,7 @@ def demographic_control():
     task_order = task_order_tsv.iloc[spot_num,1]
 
     # update user data to the database
+    demographic['task order'] = task_order
     demographic['spot_id'] = spot_id
     demographic_data.insert_one(demographic)
 

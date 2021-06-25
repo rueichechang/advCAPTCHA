@@ -198,7 +198,7 @@ function hideCaptcha1(){
     document.getElementById("sub1").innerHTML="第三題";
     count += 1;
   }
-  else return false;
+  else return;
 }
 
 function hideCaptcha2(){
@@ -219,7 +219,7 @@ function hideCaptcha2(){
     document.getElementById("sub2").innerHTML="第三題";
     count += 1;
   }
-  else return false;
+  else return;
 }
 
 function hideCaptcha3(){
@@ -240,7 +240,7 @@ function hideCaptcha3(){
     document.getElementById("sub3").innerHTML="第三題";
     count += 1;
   }
-  else return false;
+  else return;
 }
 
 function hideCaptcha4(){
@@ -261,7 +261,7 @@ function hideCaptcha4(){
     document.getElementById("sub4").innerHTML="第三題";
     count += 1;
   }
-  else return false;
+  else return;
 }
 
 
@@ -275,6 +275,8 @@ $(document).on("keypress", "input", function (e) {
 
 var alert_msg = "請確認回答了所有（*必填）問題！";
 var alert_digit = "請確認輸入答案為六位數字";
+var alert_play_time = "請確實作答完畢再送出答案";
+
 function checkPro0() {
   var audio = document.getElementById('0_1');
   audioStop(audio);
@@ -299,6 +301,9 @@ function checkPro1_1() {
   }else if (!checkDigit(input)){
     alert(alert_digit);
     return false;
+  }else if (play_times['11']==0){
+    alert(alert_play_time);
+    return false;
   }else return true;
 }
 function checkPro1_2() {
@@ -312,6 +317,9 @@ function checkPro1_2() {
   }else if (!checkDigit(input)){
     alert(alert_digit);
     return false;
+  }else if (play_times['12']==0){
+    alert(alert_play_time);
+    return false;
   }else return true;
 }
 function checkPro1_3(){
@@ -324,6 +332,9 @@ function checkPro1_3(){
     return false;
   }else if (!checkDigit(input)){
     alert(alert_digit);
+    return false;
+  }else if (play_times['13']==0){
+    alert(alert_play_time);
     return false;
   }else return true;
 }
@@ -340,6 +351,9 @@ function checkPro2_1() {
   }else if (!checkDigit(input)){
     alert(alert_digit);
     return false;
+  }else if (play_times['21']==0){
+    alert(alert_play_time);
+    return false;
   }else return true;
 }
 function checkPro2_2() {
@@ -353,6 +367,9 @@ function checkPro2_2() {
   }else if (!checkDigit(input)){
     alert(alert_digit);
     return false;
+  }else if (play_times['22']==0){
+    alert(alert_play_time);
+    return false;
   }else return true;
 }
 function checkPro2_3(){
@@ -365,6 +382,9 @@ function checkPro2_3(){
     return false;
   }else if (!checkDigit(input)){
     alert(alert_digit);
+    return false;
+  }else if (play_times['23']==0){
+    alert(alert_play_time);
     return false;
   }else return true;
 }
@@ -381,6 +401,9 @@ function checkPro3_1() {
   }else if (!checkDigit(input)){
     alert(alert_digit);
     return false;
+  }else if (play_times['31']==0){
+    alert(alert_play_time);
+    return false;
   }else return true;
 }
 function checkPro3_2() {
@@ -394,6 +417,9 @@ function checkPro3_2() {
   }else if (!checkDigit(input)){
     alert(alert_digit);
     return false;
+  }else if (play_times['32']==0){
+    alert(alert_play_time);
+    return false;
   }else return true;
 }
 function checkPro3_3(){
@@ -406,6 +432,9 @@ function checkPro3_3(){
     return false;
   }else if (!checkDigit(input)){
     alert(alert_digit);
+    return false;
+  }else if (play_times['33']==0){
+    alert(alert_play_time);
     return false;
   }else return true;
 }
@@ -421,6 +450,9 @@ function checkPro4_1() {
   }else if (!checkDigit(input)){
     alert(alert_digit);
     return false;
+  }else if (play_times['41']==0){
+    alert(alert_play_time);
+    return false;
   }else return true;
 }
 function checkPro4_2() {
@@ -434,6 +466,9 @@ function checkPro4_2() {
   }else if (!checkDigit(input)){
     alert(alert_digit);
     return false;
+  }else if (play_times['42']==0){
+    alert(alert_play_time);
+    return false;
   }else return true;
 }
 function checkPro4_3(){
@@ -446,6 +481,9 @@ function checkPro4_3(){
     return false;
   }else if (!checkDigit(input)){
     alert(alert_digit);
+    return false;
+  }else if (play_times['43']==0){
+    alert(alert_play_time);
     return false;
   }else return true;
 }
