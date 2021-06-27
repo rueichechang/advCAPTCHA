@@ -30,137 +30,9 @@
         <h3 class="fs-subtitle">若您具有正常，或是矯正後的視力以及聽力，且法定為20歲以上之成年人，<br>請您詳閱此份線上 
           <a href="https://drive.google.com/file/d/1pfOMcxbxmiNqfzGwli-BvpY_D8GpkyiW/view?usp=sharing">「研究參與者知情說明書」</a>，它將詳述您本研究之相關資訊及您的權利。
         </h3>
-        <div class="termsx"> 
-          <p style="margin-top: 4.0pt; text-align: center; line-height: normal;">
-            <strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">
-              唯有您 “同意” 本同意書您才可以開始正式參與本實驗。<br> 若您同意，請繼續完成以下之問卷內容；若您不同意本同意書，您可以關閉此線上問卷停止實驗參與。<br>
-              <b style="text-decoration:underline;font-weight:bold;">本實驗每一位受試者僅能參與一次，請勿重複填寫問卷！</b>
-          </span></strong></p>
-          
-        <input name="table_id" id="table_id" type="hidden" value={{table_id}} />
-        <input name="start_time" id="start_time" type="hidden" value="" />
-
-        <!-- <input name="order" id="order" type="hidden" value={{order}} />
-        <input name="id1" id="id1" type="hidden" value={{id1}} />
-        <input name="id2" id="id2" type="hidden" value={{id2}} />
-        <input name="id3" id="id3" type="hidden" value={{id3}} /> -->
-  
-        
-          <!-- <h2 class="fs-title">Personal Detail</h2>
-          <h3 class="fs-subtitle">We will never sell it</h3> -->
-          <!-- <label for="fname">First Name</label><input type="text" id="fname" name="fname" placeholder="First Name" required/>
-          <label for="lname">Last Name</label><input type="text" id="lname" name="lname" placeholder="Last Name" required/> -->
-          <br><br><br>
-          <label for="age">(*)年齡</label>
-          <input type="number" id="age" name="age" placeholder="年齡（請輸入數字）"required/>
-          
-          <br><br><br><br>
-          <label for="gender">(*)性別</label>
-          <select name="gender" required>
-            <!-- <option value="gender">性別</option> -->
-            <option value="male">生理男性</option>
-            <option value="female">生理女性</option>
-          </select>
-
-          <br><br><br><br>
-          <label for="familiaritynum">(*)您對於利用聽力去分辨英文語音數字的 0 至 9 (zero, one, two ...) 多有信心？</label>
-          <!-- <input type="number" id="familiaritynum" name="familiaritynum" placeholder="請輸入數字 1-5（1: 非常沒信心 - 5: 非常有信心）"required/> -->
-          <ul class='likert'>
-            <li>
-              <input type="radio" name="familiaritynum" value="1">
-              <label>(1)非常沒信心</label>
-            </li>
-            <li>
-              <input type="radio" name="familiaritynum" value="2">
-              <label>(2)沒有信心</label>
-            </li>
-            <li>
-              <input type="radio" name="familiaritynum" value="3">
-              <label>(3)中立</label>
-            </li>
-            <li>
-              <input type="radio" name="familiaritynum" value="4">
-              <label>(4)有信心</label>
-            </li>
-            <li>
-              <input type="radio" name="familiaritynum" value="5">
-              <label>(5)非常有信心</label>
-            </li>
-          </ul>
-
-          <br><br><br><br>
-          <label for="familiaritycaptcha">(*)您在這個實驗之前，對於「人機驗證」(CAPTCHA) <u>使用上的熟悉程度</u>為：(如下圖網頁截圖範例)</label>
-          <img src="../static/images/captcha_ex.png" with="600" heigh="400" alt="captcha example, answer is xbMDNX">
-          <!-- <input type="number" id="familiaritycaptcha" name="familiaritycaptcha" placeholder="請輸入數字 1-5（1: 非常沒信心 - 5: 非常有信心）"required/> -->
-          <ul class='likert'>
-            <li>
-              <input type="radio" name="familiaritycaptcha" value="1">
-              <label>(1)非常不熟悉</label>
-            </li>
-            <li>
-              <input type="radio" name="familiaritycaptcha" value="2">
-              <label>(2)不熟悉</label>
-            </li>
-            <li>
-              <input type="radio" name="familiaritycaptcha" value="3">
-              <label>(3)中立</label>
-            </li>
-            <li>
-              <input type="radio" name="familiaritycaptcha" value="4">
-              <label>(4)熟悉</label>
-            </li>
-            <li>
-              <input type="radio" name="familiaritycaptcha" value="5">
-              <label>(5)非常熟悉</label>
-            </li>
-          </ul>
-
-          <br><br><br><br>
-          <label for="familiarityaudio">(*)您在這個實驗之前，對於「語音版本的」人機驗證 (Audio CAPTCHA) <u>使用上的熟悉程度</u>： (下圖為網頁截圖之範例：題目會要求您點擊播放鍵，撥出語音版本之人機驗證題目，並請您輸入聽到的數字及英文字母；可參閱: <a href="https://www.phpcaptcha.org/try-securimage/">https://www.phpcaptcha.org/try-securimage/</a> 中的第一個例子)
-          </label>
-          <img src="../static/images/audio_captcha_ex.png" with="600" heigh="400" alt="captcha example, answer is xbMDNX">
-          <!-- <input type="number" id="familiarityaudio" name="familiarityaudio" placeholder="請輸入數字 1-5（1: 非常沒信心 - 5: 非常有信心）"required/> -->
-          
-          <ul class='likert'>
-            <li>
-              <input type="radio" name="familiarityaudio" value="1">
-              <label>(1)非常不熟悉</label>
-            </li>
-            <li>
-              <input type="radio" name="familiarityaudio" value="2">
-              <label>(2)不熟悉</label>
-            </li>
-            <li>
-              <input type="radio" name="familiarityaudio" value="3">
-              <label>(3)中立</label>
-            </li>
-            <li>
-              <input type="radio" name="familiarityaudio" value="4">
-              <label>(4)熟悉</label>
-            </li>
-            <li>
-              <input type="radio" name="familiarityaudio" value="5">
-              <label>(5)非常熟悉</label>
-            </li>
-          </ul>
-
-
-          <br><br><br><br>
-          <label for="apparatus" style="font-size: 14px;">(*)請問您預計在待會的實驗中使用什麼語音播放方式完成 Audio CAPTCHA 的測驗（請使用相同之方式完成接下來的所有測驗 </label>
-          <select name="apparatus" required>
-            <option value="earphone"> 耳機 </option>
-            <option value="speaker"> 喇叭（包含電腦或是螢幕之內建喇叭）</option>
-          </select>
-          
-          <p style="margin-top: 4.0pt; text-align: center; line-height: normal;">
-            <strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">
-              按下此 [Submit & Next] 按鈕後，您將開始正式之實驗參與。本實驗大約需花費 15 分鐘左右，煩請您在開始後不要中途中斷研究，否則可能會被研究系統判定為實驗中斷而中止實驗，感謝您的配合！
-          </span></strong></p>
-
-          <!-- <br><br><br>
-          <label for="email">Email</label><input type="email" id="email" name="email" placeholder="Email" required/> -->
-          
-          <input type="button" name="entry" class="entry action-button" value="Submit&Next" onclick="on_submit();"/>
+          <input name="table_id" id="table_id" type="hidden" value={{table_id}} />
+          <input name="start_time" id="start_time" type="hidden" value="" />
+          <input type="button" name="entry" class="entry action-button" value="開始進行測驗" onclick="on_submit();"/>
         </div>
       </fieldset>
     </div>
@@ -173,27 +45,6 @@
     <script>
       function on_submit(){
         document.getElementById('start_time').value = Date.now();
-
-        var familiaritynum = $("input[name=familiaritynum]:checked").length;
-        var familiaritycaptcha = $("input[name=familiaritycaptcha]:checked").length;
-        var familiarityaudio = $("input[name=familiarityaudio]:checked").length;
-
-        var alert_message = "請確認已回答所有問題"
-
-        if (!familiaritynum){
-          alert(alert_message);
-          return false;
-        }
-        if (!familiaritycaptcha){
-          alert(alert_message);
-          return;
-        }
-        if (!familiarityaudio){
-          alert(alert_message);
-          return;
-        }
-
-
         document.getElementById("first_form").submit();
       }
     </script>
