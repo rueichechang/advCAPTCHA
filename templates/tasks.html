@@ -27,11 +27,11 @@
     </ul>
     
       <fieldset>
-          <h1 class="fs-title" style="font-size:24px">{{spot_id}}</h1>
-          <h2 class="fs-title" style="font-size:18px">{{task_type1_1}}</h2>
-          <h2 class="fs-title" style="font-size:18px">{{task_type2_1}}</h2>
+          <h1 class="fs-title" style="font-size:24px">您的研究編號：{{spot_id}}</h1>
+          <h2 class="fs-title" style="font-size:18px">您的題目編號：{{task_order_config}}</h2>
+          <!-- <h2 class="fs-title" style="font-size:18px">{{task_type2_1}}</h2>
           <h2 class="fs-title" style="font-size:18px">{{task_type3_1}}</h2>
-          <h2 class="fs-title" style="font-size:18px">{{task_type4_1}}</h2>
+          <h2 class="fs-title" style="font-size:18px">{{task_type4_1}}</h2> -->
 
 
           <audio id="0_1" controls preload src="{{practice}}" onplay="audio_play('0'); focustext('pro0');">
@@ -54,7 +54,8 @@
           <input name="file_address0" id="file_address0" type="hidden" value="{{practice}}" />
           
           <!-- task data including user's answer, time elasped, and click counts -->
-          <input type="text" name="pro0" id="pro0" placeholder="請輸入聽到的數字" onblur="record_end('0')" onfocus="playonCtrl(this, '0_1')"/>
+          按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：<br/>
+          <input type="text" name="pro0" id="pro0" onblur="record_end('0')" onfocus="playonCtrl(this, '0_1')"/>
           <input name="0" id="0" type="hidden" value=""/>
           <input name="c0" id="c0" type="hidden" value=""/>
           <input type="button" id="pronext0" name="next" class="next action-button" value="Next"/>
@@ -124,7 +125,7 @@
       </fieldset>
 
       <fieldset class="feedbackcard">
-          <h2 class="fs-title">作答完畢後，請通知實驗執行人員。</h2>
+          <h2 class="fs-title">本階段測驗完畢，請通知實驗執行人員。</h2>
           <input type="button" id="feedbacknext1" name="next" class="next action-button" value="Next" />
       </fieldset>
 
@@ -188,7 +189,7 @@
     </fieldset>
 
     <fieldset class="feedbackcard">
-      <h2 class="fs-title">作答完畢後，請通知實驗執行人員。</h2>
+      <h2 class="fs-title">本階段測驗完畢，請通知實驗執行人員。</h2>
       <input type="button" id="feedbacknext2" name="next" class="next action-button" value="Next" />
     </fieldset>
 
@@ -252,7 +253,7 @@
     </fieldset>
 
     <fieldset class="feedbackcard">
-      <h2 class="fs-title">作答完畢後，請通知實驗執行人員。</h2>
+      <h2 class="fs-title">本階段測驗完畢，請通知實驗執行人員。</h2>
       <input type="button" id = "feedbacknext3" name="next" class="next action-button" value="Next" />
     </fieldset>
 
@@ -315,19 +316,19 @@
     </fieldset>
 
     <fieldset class="feedbackcard">
-      <h2 class="fs-title">作答完畢後，請通知實驗執行人員。</h2>
+      <h2 class="fs-title">本階段測驗完畢，請通知實驗執行人員。</h2>
       <input type="button" id="feedbacknext4" name="next" class="next action-button" value="Next"/>
     </fieldset>
 
         <fieldset id = "post_question">
-          <h2 class="fs-title">測驗結束，請給予我們最後的回饋!</h2>
+          <!-- <h2 class="fs-title">測驗結束，請給予我們最後的回饋!</h2> -->
           <input name="answer1" id="answer1" type="hidden" value="" />
           <input name="answer2" id="answer2" type="hidden" value="" />
           <input name="answer3" id="answer3" type="hidden" value="" />
           <input name="answer4" id="answer4" type="hidden" value="" />
       
-          <p style = "font-weight: bold;">(*)請按照您的喜好程度，以拖曳的方式排序您剛剛測試的所有 Audio CAPTCHA，最喜歡的放在最上面，依序排列下去。</p><br>
-          <ul id="input_ul">
+          <p style = "font-weight: bold;">以下是按照您剛剛的測試順序的所有 Audio CAPTCHA 種類：</p><br>
+          <!-- <ul id="input_ul">
             <li class="ui-state"><span id='span_tag'>請按此上下拖曳</span><input type="text" disabled/>種類 1<audio id="{{task_type1_1}}" controls preload src="{{instance1_1}}">
               Your browser does not support the audio element.
             </audio></li>
@@ -340,10 +341,27 @@
             <li class="ui-state"><span id='span_tag'>請按此上下拖曳</span><input type="text" disabled/>種類 4<audio id="{{task_type4_1}}" controls preload src="{{instance4_1}}">
               Your browser does not support the audio element.
             </audio></li>
+          </ul> -->
+
+          <ul>
+            <li>種類 1<audio id="{{task_type1_1}}" controls preload src="{{instance1_1}}">
+              Your browser does not support the audio element.
+            </audio></li>
+            <li>種類 2<audio id="{{task_type2_1}}" controls preload src="{{instance2_1}}">
+              Your browser does not support the audio element.
+            </audio></li>
+            <li>種類 3<audio id="{{task_type3_1}}" controls preload src="{{instance3_1}}">
+              Your browser does not support the audio element.
+            </audio></li>
+            <li>種類 4<audio id="{{task_type4_1}}" controls preload src="{{instance4_1}}">
+              Your browser does not support the audio element.
+            </audio></li>
           </ul>
+
+
       
           <br><br>
-      
+<!--       
           <label class="statement">(*)請簡述您把該 Audio CAPTCHA 放在第一位（最喜歡）的原因：</label>
           <input type="text" id= "reasontolove" name="reasontolove" />
       
@@ -357,7 +375,7 @@
           <p>非常感謝您參與本實驗，接下來之資訊為研究團隊為您申報實驗報酬所使用之資訊，請如實填答以免報酬給予失敗，此一資訊不會挪為他用並在報酬發送後刪除！</p>
           <br><br><br>
           <label for="name">(*) 名字</label><input type="text" id="name" name="name" placeholder="名字"/>
-          <label for="email">(*) Email</label><input type="email" id="email" name="email" placeholder="Email"/>
+          <label for="email">(*) Email</label><input type="email" id="email" name="email" placeholder="Email"/> -->
       
           <input type="button" name="btnsubmit" class="btnsubmit action-button" value="Submit" onclick="before_submit()"/>
       

@@ -280,10 +280,24 @@ def demographic_control():
     demographic['spot_id'] = spot_id
     blind_only.insert_one(demographic)
 
+    # generate task ordering config
+    task_name_mapping = {
+        "baseline": "0",
+        "kenan_ibm": "1",
+        "kenan_ibm_ambient": "2",
+        "kenan_google_beta-phone_call_ambient": "3"
+    }
+    
+    task_order_config = ""
+    task_ordering_list = [spot_tsv.iloc[0,1],spot_tsv.iloc[3,1],spot_tsv.iloc[6,1],spot_tsv.iloc[9,1]]
+    for task_i in task_ordering_list:
+        task_order_config+=task_name_mapping[task_i]
+
     return render_template('tasks.html', async_mode=socketio.async_mode,
                                         table_id        = table_id,
                                         spot_id         = spot_id,
                                         task_order      = task_order,
+                                        task_order_config = task_order_config,
                                         
                                         practice       = "prototypes/example/example.wav",
                                         captcha_type0  = "0",
