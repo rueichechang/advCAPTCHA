@@ -37,7 +37,7 @@
           <audio id="0_1" controls preload src="{{practice}}" onplay="audio_play('0'); focustext('pro0');">
               Your browser does not support the audio element.
           </audio>
-          <br/>
+          <br hidden = true/>
 
           <!-- record table id and participant's id -->
           <input name="late" id="late" type="hidden" value="" />
@@ -54,7 +54,7 @@
           <input name="file_address0" id="file_address0" type="hidden" value="{{practice}}" />
           
           <!-- task data including user's answer, time elasped, and click counts -->
-          按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：<br/>
+          <h2 class="fs-title">按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：</h2><br hidden = true />
           <input type="text" name="pro0" id="pro0" onblur="record_end('0')" onfocus="playonCtrl(this, '0_1')"/>
           <input name="0" id="0" type="hidden" value=""/>
           <input name="c0" id="c0" type="hidden" value=""/>
@@ -62,14 +62,14 @@
       </fieldset>
 
       <fieldset class="prototypecard">
-          <h2 class="fs-title">種類 1</h2>
+          <h3 class="fs-title">種類 1</h3>
           <h3 id="sub1" class="fs-subtitle">第一題</h3>
           <div id="instance1_1">
-            按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：<br/>
+            <h2 class="fs-title">按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：</h2><br hidden = true/>
               <audio id="1_1" controls preload src="{{instance1_1}}" onplay="audio_play('11'); focustext('pro1_1');">
                   Your browser does not support the audio element.
               </audio>
-              <br/>
+              <br hidden = true/>
               <!-- record captcha id and question type (ABC) and the ground truth -->
               <input name="file_address1_1" id="file_address1_1" type="hidden" value="{{instance1_1}}" />
               <input name="captcha_type1_1" id="captcha_type1_1" type="hidden" value="{{captcha_type1_1}}" />
@@ -78,12 +78,12 @@
               <input name="task_time_ground_truth1_1" id="task_time_ground_truth1_1" type="hidden" value="{{task_time_ground_truth1_1}}" />
               
               <!-- task data including user's answer, time elasped, and click counts -->
-              <input type="text" name="pro1_1" id="pro1_1" onblur="record_end('11')" onfocus="playonCtrl(this, '1_1')"/><br/>
+              <input type="text" name="pro1_1" id="pro1_1" onblur="record_end('11')" onfocus="playonCtrl(this, '1_1')"/><br hidden = true/>
               <input name="11" id="11" type="hidden" value=""/>
               <input name="c11" id="c11" type="hidden" value=""/>
           </div>
           <div id="instance1_2" style="display: none;">
-            按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：<br/>
+            <h2 class="fs-title">按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：</h2><br hidden = true/>
               <audio id="1_2" controls preload onplay="audio_play('12');focustext('pro1_2');">
                   <source src="{{instance1_2}}" type="audio/mpeg">
                   Your browser does not support the audio element.
@@ -96,12 +96,12 @@
               <input name="task_time_ground_truth1_2" id="task_time_ground_truth1_2" type="hidden" value="{{task_time_ground_truth1_2}}" />
               
               <!-- task data including user's answer, time elasped, and click counts -->
-              <input type="text" name="pro1_2" id="pro1_2" onblur="record_end('12')" onfocus="playonCtrl(this, '1_2')"/><br/>
+              <input type="text" name="pro1_2" id="pro1_2" onblur="record_end('12')" onfocus="playonCtrl(this, '1_2')"/><br hidden = true/>
               <input name="12" id="12" type="hidden" value=""/>
               <input name="c12" id="c12" type="hidden" value=""/>
           </div>
           <div id="instance1_3" style="display: none;">
-            按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：<br/>
+            <h2 class="fs-title">按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：</h2><br hidden = true/>
               <audio id="1_3" controls preload onplay="audio_play('13');focustext('pro1_3');">
                   <source src="{{instance1_3}}" type="audio/mpeg">
                   Your browser does not support the audio element.
@@ -113,7 +113,7 @@
               <input name="ground_truth1_3" id="ground_truth1_3" type="hidden" value="{{ground_truth1_3}}" />
               <input name="task_time_ground_truth1_3" id="task_time_ground_truth1_3" type="hidden" value="{{task_time_ground_truth1_3}}" />
               <!-- task data including user's answer, time elasped, and click counts -->
-              <input type="text" name="pro1_3" id="pro1_3" onblur="record_end('13')" onfocus="playonCtrl(this, '1_3')"/><br/>
+              <input type="text" name="pro1_3" id="pro1_3" onblur="record_end('13')" onfocus="playonCtrl(this, '1_3')"/><br hidden = true/>
               <input name="13" id="13" type="hidden" value=""/>
               <input name="c13" id="c13" type="hidden" value=""/>
           </div>
@@ -130,14 +130,14 @@
       </fieldset>
 
     <fieldset class="prototypecard">
-      <h2 class="fs-title">種類 2</h2>
+      <h3 class="fs-title">種類 2</h3>
       <h3 id="sub2" class="fs-subtitle">第一題</h3>
       <div id="instance2_1">
-        按下「播放鍵」後，請邊聽邊輸入您所聽到的數字： <br/>
+        <h2 class="fs-title">按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：</h2> <br hidden = true/>
         <audio id="2_1" controls preload  onplay="audio_play('21');focustext('pro2_1');">
           <source src="{{instance2_1}}" type="audio/mpeg">
           Your browser does not support the audio element.
-        </audio><br />
+        </audio><br hidden = true />
         <!-- record captcha id and question type (ABC) and the ground truth -->
         <input name="file_address2_1" id="file_address2_1" type="hidden" value="{{instance2_1}}" />
         <input name="captcha_type2_1" id="captcha_type2_1" type="hidden" value="{{captcha_type2_1}}" />
@@ -145,12 +145,12 @@
         <input name="ground_truth2_1" id="ground_truth2_1" type="hidden" value="{{ground_truth2_1}}" />
         <input name="task_time_ground_truth2_1" id="task_time_ground_truth2_1" type="hidden" value="{{task_time_ground_truth2_1}}" />
         <!-- task data including user's answer, time elasped, and click counts -->
-        <input type="text" name="pro2_1" id="pro2_1" onblur="record_end('21')" onfocus="playonCtrl(this, '2_1')"/><br />
+        <input type="text" name="pro2_1" id="pro2_1" onblur="record_end('21')" onfocus="playonCtrl(this, '2_1')"/><br hidden = true />
         <input name="21" id="21" type="hidden" value=""/>
         <input name="c21" id="c21" type="hidden" value=""/>
       </div>
       <div id="instance2_2" style="display: none;">
-        按下「播放鍵」後，請邊聽邊輸入您所聽到的數字： <br/>
+        <h2 class="fs-title">按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：</h2> <br hidden = true/>
         <audio id="2_2" controls preload  onplay="audio_play('22');focustext('pro2_2');">
           <source src="{{instance2_2}}" type="audio/mpeg">
           Your browser does not support the audio element.
@@ -162,12 +162,12 @@
         <input name="ground_truth2_2" id="ground_truth2_2" type="hidden" value="{{ground_truth2_2}}" />
         <input name="task_time_ground_truth2_2" id="task_time_ground_truth2_2" type="hidden" value="{{task_time_ground_truth2_2}}" />
         <!-- task data including user's answer, time elasped, and click counts -->
-        <input type="text" name="pro2_2" id="pro2_2" onblur="record_end('22')" onfocus="playonCtrl(this, '2_2')"/><br />
+        <input type="text" name="pro2_2" id="pro2_2" onblur="record_end('22')" onfocus="playonCtrl(this, '2_2')"/><br hidden = true />
         <input name="22" id="22" type="hidden" value=""/>
         <input name="c22" id="c22" type="hidden" value=""/>
       </div>
       <div id="instance2_3" style="display: none;">
-        按下「播放鍵」後，請邊聽邊輸入您所聽到的數字： <br/>
+        <h2 class="fs-title">按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：</h2> <br hidden = true/>
         <audio id="2_3" controls preload  onplay="audio_play('23');focustext('pro2_3');">
           <source src="{{instance2_3}}"type="audio/mpeg">
           Your browser does not support the audio element.
@@ -179,7 +179,7 @@
         <input name="ground_truth2_3" id="ground_truth2_3" type="hidden" value="{{ground_truth2_3}}" />
         <input name="task_time_ground_truth2_3" id="task_time_ground_truth2_3" type="hidden" value="{{task_time_ground_truth2_3}}" />
         <!-- task data including user's answer, time elasped, and click counts -->
-        <input type="text" name="pro2_3" id="pro2_3" onblur="record_end('23')" onfocus="playonCtrl(this, '2_3')"/><br />
+        <input type="text" name="pro2_3" id="pro2_3" onblur="record_end('23')" onfocus="playonCtrl(this, '2_3')"/><br hidden = true />
         <input name="23" id="23" type="hidden" value=""/>
         <input name="c23" id="c23" type="hidden" value=""/>
       </div>
@@ -194,14 +194,14 @@
     </fieldset>
 
     <fieldset class="prototypecard">
-      <h2 class="fs-title">種類 3</h2>
+      <h3 class="fs-title">種類 3</h3>
       <h3 id="sub3" class="fs-subtitle">第一題</h3>
       <div id="instance3_1">
-        按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：<br/>
+        <h2 class="fs-title">按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：</h2><br hidden = true/>
       <audio id="3_1" controls preload  onplay="audio_play('31');focustext('pro3_1');">
         <source src="{{instance3_1}}" type="audio/mpeg">
         Your browser does not support the audio element.
-      </audio><br />
+      </audio><br hidden = true />
       <!-- record captcha id and question type (ABC) and the ground truth -->
       <input name="file_address3_1" id="file_address3_1" type="hidden" value="{{instance3_1}}" />
       <input name="captcha_type3_1" id="captcha_type3_1" type="hidden" value="{{captcha_type3_1}}" />
@@ -209,13 +209,13 @@
       <input name="ground_truth3_1" id="ground_truth3_1" type="hidden" value="{{ground_truth3_1}}" />
       <input name="task_time_ground_truth3_1" id="task_time_ground_truth3_1" type="hidden" value="{{task_time_ground_truth3_1}}" />
       <!-- task data including user's answer, time elasped, and click counts -->
-      <input type="text" name="pro3_1" id="pro3_1" onblur="record_end('31')" onfocus="playonCtrl(this, '3_1')"/><br />
+      <input type="text" name="pro3_1" id="pro3_1" onblur="record_end('31')" onfocus="playonCtrl(this, '3_1')"/><br hidden = true />
       <input name="31" id="31" type="hidden" value=""/>
       <input name="c31" id="c31" type="hidden" value=""/>
       </div>
 
       <div id="instance3_2" style="display: none;">
-        按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：<br/>
+        <h2 class="fs-title">按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：</h2><br hidden = true/>
       <audio id="3_2" controls preload  onplay="audio_play('32');focustext('pro3_2');">
         <source src="{{instance3_2}}" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -227,12 +227,12 @@
       <input name="ground_truth3_2" id="ground_truth3_2" type="hidden" value="{{ground_truth3_2}}" />
       <input name="task_time_ground_truth3_2" id="task_time_ground_truth3_2" type="hidden" value="{{task_time_ground_truth3_2}}" />
       <!-- task data including user's answer, time elasped, and click counts -->
-      <input type="text" name="pro3_2" id="pro3_2" onblur="record_end('32')" onfocus="playonCtrl(this, '3_2')"/><br />
+      <input type="text" name="pro3_2" id="pro3_2" onblur="record_end('32')" onfocus="playonCtrl(this, '3_2')"/><br hidden = true />
       <input name="32" id="32" type="hidden" value=""/>
       <input name="c32" id="c32" type="hidden" value=""/>
       </div>
       <div id="instance3_3" style="display: none;">
-        按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：<br/>
+        <h2 class="fs-title">按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：</h2><br hidden = true/>
       <audio id="3_3" controls preload  onplay="audio_play('33');focustext('pro3_3');">
         <source src="{{instance3_3}}" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -244,7 +244,7 @@
       <input name="ground_truth3_3" id="ground_truth3_3" type="hidden" value="{{ground_truth3_3}}" />
       <input name="task_time_ground_truth3_3" id="task_time_ground_truth3_3" type="hidden" value="{{task_time_ground_truth3_3}}" />
       <!-- task data including user's answer, time elasped, and click counts -->
-      <input type="text" name="pro3_3" id="pro3_3" onblur="record_end('33')"  onfocus="playonCtrl(this, '3_3')"/><br />
+      <input type="text" name="pro3_3" id="pro3_3" onblur="record_end('33')"  onfocus="playonCtrl(this, '3_3')"/><br hidden = true />
       <input name="33" id="33" type="hidden" value=""/>
       <input name="c33" id="c33" type="hidden" value=""/>
       </div>
@@ -258,14 +258,14 @@
     </fieldset>
 
     <fieldset class="prototypecard">
-      <h2 class="fs-title">種類 4</h2>
+      <h3 class="fs-title">種類 4</h3>
       <h3 id="sub4" class="fs-subtitle">第一題</h3>
       <div id="instance4_1">
-        按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：<br/>
+        <h2 class="fs-title">按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：</h2><br hidden = true/>
       <audio id="4_1" controls preload  onplay="audio_play('41');focustext('pro4_1');">
         <source src="{{instance4_1}}" type="audio/mpeg">
         Your browser does not support the audio element.
-      </audio><br />
+      </audio><br hidden = true />
       <!-- record captcha id and question type (ABC) and the ground truth -->
       <input name="file_address4_1" id="file_address4_1" type="hidden" value="{{instance4_1}}" />
       <input name="captcha_type4_1" id="captcha_type4_1" type="hidden" value="{{captcha_type4_1}}"/>
@@ -273,12 +273,12 @@
       <input name="ground_truth4_1" id="ground_truth4_1" type="hidden" value="{{ground_truth4_1}}" />
       <input name="task_time_ground_truth4_1" id="task_time_ground_truth4_1" type="hidden" value="{{task_time_ground_truth4_1}}" />
       <!-- task data including user's answer, time elasped, and click counts -->
-      <input type="text" name="pro4_1" id="pro4_1" onblur="record_end('41')" onfocus="playonCtrl(this, '4_1')"/><br />
+      <input type="text" name="pro4_1" id="pro4_1" onblur="record_end('41')" onfocus="playonCtrl(this, '4_1')"/><br hidden = true />
       <input name="41" id="41" type="hidden" value=""/>
       <input name="c41" id="c41" type="hidden" value=""/>
       </div>
       <div id="instance4_2" style="display: none;">
-        按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：<br/>
+        <h2 class="fs-title">按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：</h2><br hidden = true/>
       <audio id="4_2" controls preload  onplay="audio_play('42');focustext('pro4_2');">
         <source src="{{instance4_2}}" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -290,12 +290,12 @@
       <input name="ground_truth4_2" id="ground_truth4_2" type="hidden" value="{{ground_truth4_2}}" />
       <input name="task_time_ground_truth4_2" id="task_time_ground_truth4_2" type="hidden" value="{{task_time_ground_truth4_2}}" />
       <!-- task data including user's answer, time elasped, and click counts -->
-      <input type="text" name="pro4_2" id="pro4_2" onblur="record_end('42')" onfocus="playonCtrl(this, '4_2')"/><br />
+      <input type="text" name="pro4_2" id="pro4_2" onblur="record_end('42')" onfocus="playonCtrl(this, '4_2')"/><br hidden = true />
       <input name="42" id="42" type="hidden" value=""/>
       <input name="c42" id="c42" type="hidden" value=""/>
       </div>
       <div id="instance4_3" style="display: none;">
-        按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：<br/>
+        <h2 class="fs-title"><h2 class="fs-title">按下「播放鍵」後，請邊聽邊輸入您所聽到的數字：</h2></h2><br hidden = true/>
       <audio id="4_3" controls preload  onplay="audio_play('43');focustext('pro4_3');">
         <source src="{{instance4_3}}" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -307,7 +307,7 @@
       <input name="ground_truth4_3" id="ground_truth4_3" type="hidden" value="{{ground_truth4_3}}" />
       <input name="task_time_ground_truth4_3" id="task_time_ground_truth4_3" type="hidden" value="{{task_time_ground_truth4_3}}" />
       <!-- task data including user's answer, time elasped, and click counts -->
-      <input type="text" name="pro4_3" id="pro4_3" onblur="record_end('43')" onfocus="playonCtrl(this, '4_3')"/><br />
+      <input type="text" name="pro4_3" id="pro4_3" onblur="record_end('43')" onfocus="playonCtrl(this, '4_3')"/><br hidden = true />
       <input name="43" id="43" type="hidden" value=""/>
       <input name="c43" id="c43" type="hidden" value=""/>
       </div>
@@ -327,7 +327,7 @@
           <input name="answer3" id="answer3" type="hidden" value="" />
           <input name="answer4" id="answer4" type="hidden" value="" />
       
-          <p style = "font-weight: bold;">以下是按照您剛剛的測試順序的所有 Audio CAPTCHA 種類：</p><br>
+          <p style = "font-weight: bold;">以下是按照您剛剛的測試順序的所有 Audio CAPTCHA 種類：</p><br hidden = true>
           <!-- <ul id="input_ul">
             <li class="ui-state"><span id='span_tag'>請按此上下拖曳</span><input type="text" disabled/>種類 1<audio id="{{task_type1_1}}" controls preload src="{{instance1_1}}">
               Your browser does not support the audio element.
@@ -344,23 +344,23 @@
           </ul> -->
 
           <ul>
-            <li>種類 1<audio id="{{task_type1_1}}" controls preload src="{{instance1_1}}">
+            <li><h3>種類 1</h3><audio id="{{task_type1_1}}" controls preload src="{{instance1_1}}">
               Your browser does not support the audio element.
             </audio></li>
-            <li>種類 2<audio id="{{task_type2_1}}" controls preload src="{{instance2_1}}">
+            <li><h3>種類 2</h3><audio id="{{task_type2_1}}" controls preload src="{{instance2_1}}">
               Your browser does not support the audio element.
             </audio></li>
-            <li>種類 3<audio id="{{task_type3_1}}" controls preload src="{{instance3_1}}">
+            <li><h3>種類 3</h3><audio id="{{task_type3_1}}" controls preload src="{{instance3_1}}">
               Your browser does not support the audio element.
             </audio></li>
-            <li>種類 4<audio id="{{task_type4_1}}" controls preload src="{{instance4_1}}">
+            <li><h3>種類 4</h3><audio id="{{task_type4_1}}" controls preload src="{{instance4_1}}">
               Your browser does not support the audio element.
             </audio></li>
           </ul>
 
 
       
-          <br><br>
+          <br hidden = true><br hidden = true>
 <!--       
           <label class="statement">(*)請簡述您把該 Audio CAPTCHA 放在第一位（最喜歡）的原因：</label>
           <input type="text" id= "reasontolove" name="reasontolove" />
@@ -371,9 +371,9 @@
           <label class="statement">(*)請問剛剛實驗過程中有沒有遇到技術上或是網路上的問題？（若無請填寫 “無”）</label>
           <input type="text" id= "technical_report" name="technical_report" />
           
-          <br><br><br><br>
+          <br hidden = true><br hidden = true><br hidden = true><br hidden = true>
           <p>非常感謝您參與本實驗，接下來之資訊為研究團隊為您申報實驗報酬所使用之資訊，請如實填答以免報酬給予失敗，此一資訊不會挪為他用並在報酬發送後刪除！</p>
-          <br><br><br>
+          <br hidden = true><br hidden = true><br hidden = true>
           <label for="name">(*) 名字</label><input type="text" id="name" name="name" placeholder="名字"/>
           <label for="email">(*) Email</label><input type="email" id="email" name="email" placeholder="Email"/> -->
       
@@ -391,10 +391,12 @@
 <script  src="js/index.js"></script>
 <script>
   // for counter
-  var timer = setTimeout(function() {
-      document.getElementById('late').value = 'yes';
-      document.getElementById("myform").submit();
-    }, 3600000);
+  // var timer = setTimeout(function() {
+  //     document.getElementById('late').value = 'yes';
+  //     document.getElementById("myform").submit();
+  //   }, 3600000);
+
+  document.getElementById("pro0").focus();
 
   // this is for sorting list
   sort_ul = $('#post_question #input_ul');

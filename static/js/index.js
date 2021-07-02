@@ -6,14 +6,14 @@ $(document).ready(function() {
   namespace = '/test';
     socket = io(namespace);
     socket.on('connect', function() {
-        socket.emit('my_event', {data: 'I\'m connected!'});
+      socket.emit('my_event', {data: 'I\'m connected!'});
     });
-
 });
 
 //focus textbox on play code
-function focustext(text) {
-  document.getElementById(text).focus();
+function focustext(pro_id) {
+  document.getElementById(pro_id).focus();
+  console.log(pro_id, "already focus");
 }
 
 //ctrl button to focus
@@ -21,7 +21,8 @@ var aud;
 function playonCtrl(text, audioid){
   aud = audioid;
   document.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && document.activeElement == text) {
+    console.log("qwe", e.key);
+    if (e.ctrlKey && e.shiftKey && e.key == 'z' && document.activeElement == text) {
       document.getElementById(aud).play();
     }
   });
@@ -86,11 +87,6 @@ $("#audio").click(function() {
 });*/
 
 function checkfinalform(){
-  console.log("reasontolove", $("#reasontolove").get(0).value);
-  console.log("reasontohate", $("#reasontohate").get(0).value);
-  console.log("name", $("#name").get(0).value);
-  console.log("email", $("#email").get(0).value);
-
   if( $("#reasontolove").get(0).value == ""||
         $("#reasontohate").get(0).value == ""||
         $("#name").get(0).value == ""||
@@ -102,24 +98,24 @@ function checkfinalform(){
 }
 
 function before_submit(){
-  if(!checkfinalform()) {
-    return;
-  }
+  // if(!checkfinalform()) {
+  //   return;
+  // }
   document.getElementById('end_time').value = Date.now();
-  var answer1 = document.getElementsByClassName("ui-state")[0].lastChild.id;
-  var answer2 = document.getElementsByClassName("ui-state")[1].lastChild.id;
-  var answer3 = document.getElementsByClassName("ui-state")[2].lastChild.id;
-  var answer4 = document.getElementsByClassName("ui-state")[3].lastChild.id;
+  // var answer1 = document.getElementsByClassName("ui-state")[0].lastChild.id;
+  // var answer2 = document.getElementsByClassName("ui-state")[1].lastChild.id;
+  // var answer3 = document.getElementsByClassName("ui-state")[2].lastChild.id;
+  // var answer4 = document.getElementsByClassName("ui-state")[3].lastChild.id;
 
-  document.getElementById('answer1').value = answer1;
-  document.getElementById('answer2').value = answer2;
-  document.getElementById('answer3').value = answer3;
-  document.getElementById('answer4').value = answer4;
+  // document.getElementById('answer1').value = answer1;
+  // document.getElementById('answer2').value = answer2;
+  // document.getElementById('answer3').value = answer3;
+  // document.getElementById('answer4').value = answer4;
 
-  console.log(answer1);
-  console.log(answer2);
-  console.log(answer3);
-  console.log(answer4);
+  // console.log(answer1);
+  // console.log(answer2);
+  // console.log(answer3);
+  // console.log(answer4);
   
   var i=0;
   var j=0;
@@ -142,7 +138,6 @@ function before_submit(){
 
 function record_end(key){
   end_times[key]=Date.now();
-  console.log("end_times", key, end_times[key]);
 }
 function audio_play(key){
   if(start_times[key]==="0")start_times[key]=Date.now();
@@ -157,6 +152,7 @@ function hideCaptcha1(){
     document.getElementById("instance1_3").style.display = "none";
     document.getElementById("sub1").innerHTML="第二題";
     count += 1;
+    focustext("pro1_2");
   }
   else if(count == 1 && checkPro1_2()){
     document.getElementById("instance1_1").style.display = "none";
@@ -167,6 +163,7 @@ function hideCaptcha1(){
     count = -1;
     document.getElementById("sub1").innerHTML="第三題";
     count += 1;
+    focustext("pro1_3");
   }
   else return;
 }
@@ -178,6 +175,7 @@ function hideCaptcha2(){
     document.getElementById("instance2_3").style.display = "none";
     document.getElementById("sub2").innerHTML="第二題";
     count += 1;
+    focustext("pro2_2");
   }
   else if(count == 1 && checkPro2_2()){
     document.getElementById("instance2_1").style.display = "none";
@@ -188,6 +186,7 @@ function hideCaptcha2(){
     count = -1;
     document.getElementById("sub2").innerHTML="第三題";
     count += 1;
+    focustext("pro2_3");
   }
   else return;
 }
@@ -199,6 +198,7 @@ function hideCaptcha3(){
     document.getElementById("instance3_3").style.display = "none";
     document.getElementById("sub3").innerHTML="第二題";
     count += 1;
+    focustext("pro3_2");
   }
   else if(count == 1 && checkPro3_2()){
     document.getElementById("instance3_1").style.display = "none";
@@ -209,6 +209,7 @@ function hideCaptcha3(){
     count = -1;
     document.getElementById("sub3").innerHTML="第三題";
     count += 1;
+    focustext("pro3_3");
   }
   else return;
 }
@@ -220,6 +221,7 @@ function hideCaptcha4(){
     document.getElementById("instance4_3").style.display = "none";
     document.getElementById("sub4").innerHTML="第二題";
     count += 1;
+    focustext("pro4_2");
   }
   else if(count == 1 && checkPro4_2()){
     document.getElementById("instance4_1").style.display = "none";
@@ -230,6 +232,7 @@ function hideCaptcha4(){
     count = -1;
     document.getElementById("sub4").innerHTML="第三題";
     count += 1;
+    focustext("pro4_3");
   }
   else return;
 }
@@ -518,7 +521,8 @@ function checkDigit(input_answer){
     console.log(this.id);
 
     if(this.id === 'pronext0') {
-      if(!checkPro0()) {
+      var practice = $("#pro0").get(0).value;
+      if(!(checkPro0() && checkDigit(practice) && play_times['0'] != 0)) {
         animating = false;
         return;
       }
@@ -542,13 +546,18 @@ function checkDigit(input_answer){
         animating = false;
         return;
       }
-    }
+    } 
 
     //activate next step on progressbar using the index of next_fs
     $("#progressbar li").eq($("fieldset").index(next_fs) + 1).addClass("active");
 
     //show the next fieldset
     next_fs.show();
+    if(this.id === 'pronext0') focustext("pro1_1");
+    else if (this.id === "feedbacknext1")focustext("pro2_1");
+    else if (this.id === "feedbacknext2")focustext("pro3_1");
+    else if (this.id === "feedbacknext3")focustext("pro4_1");
+    
     //hide the current fieldset with style
     current_fs.animate({
       opacity: 0

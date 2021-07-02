@@ -165,59 +165,84 @@ def submit():
     task_time_ground_truth4_2 = request.values['task_time_ground_truth4_2']
     task_time_ground_truth4_3 = request.values['task_time_ground_truth4_3']
 
+    # calculate accuracy
+    print("111111")
+    denominator = 0
+    numerator = 0
+    for i in range (1,5):
+        for j in range (1,4):
+            denominator += 1
+            pro_name = 'pro' + str(i) + '_' + str(j)
+            ground_truth =  'ground_truth' + str(i) + '_' + str(j)
+            if request.values[pro_name] == request.values [ground_truth]: 
+                numerator +=1
+            print("request.values[pro_name]", request.values[pro_name])
+            print("request.values [ground_truth]", request.values [ground_truth])
+    accuracy = float(numerator/denominator)
+    
+    # calculate time diff
+    print("2222222")
+    time_diff = []
+    for i in range (1,5):
+        for j in range (1,4):
+            user_spent = str(i)+str(j)
+            ground_truth_time = 'task_time_ground_truth' + str(i) + '_' + str(j)
+            diff = float(request.values[user_spent]) - float(request.values[ground_truth_time])
+            time_diff.append(diff)
+            print('request.values[user_spent]', request.values[user_spent])
+            print('request.values[ground_truth_time]', request.values[ground_truth_time])
+
     dataJson = {}
     feedback = {}
 
     group = "none"
+    print("3333333")
 
     dataJson["practice"]    = dict(iteration=0, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address0,captcha_type=captcha_type0,task_type=task_type0,digit_ground_truth=ground_truth0,user_spent_time=time_0, count=count_0, user_input=user_input0)
-    dataJson["instance1_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_1,captcha_type=captcha_type1_1,task_type=task_type1_1,digit_ground_truth=ground_truth1_1, task_time_ground_truth=task_time_ground_truth1_1, user_spent_time=time1_1, count=count1_1, user_input=user_input1_1)
-    dataJson["instance1_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_2,captcha_type=captcha_type1_2,task_type=task_type1_2,digit_ground_truth=ground_truth1_2, task_time_ground_truth=task_time_ground_truth1_2, user_spent_time=time1_2, count=count1_2, user_input=user_input1_2)
-    dataJson["instance1_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_3,captcha_type=captcha_type1_3,task_type=task_type1_3,digit_ground_truth=ground_truth1_3, task_time_ground_truth=task_time_ground_truth1_3, user_spent_time=time1_3, count=count1_3, user_input=user_input1_3)
+    dataJson["instance1_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_1,captcha_type=captcha_type1_1,task_type=task_type1_1,digit_ground_truth=ground_truth1_1, task_time_ground_truth=task_time_ground_truth1_1, user_spent_time=time1_1, time_diff = time_diff[0], count=count1_1, user_input=user_input1_1)
+    dataJson["instance1_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_2,captcha_type=captcha_type1_2,task_type=task_type1_2,digit_ground_truth=ground_truth1_2, task_time_ground_truth=task_time_ground_truth1_2, user_spent_time=time1_2, time_diff = time_diff[1], count=count1_2, user_input=user_input1_2)
+    dataJson["instance1_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_3,captcha_type=captcha_type1_3,task_type=task_type1_3,digit_ground_truth=ground_truth1_3, task_time_ground_truth=task_time_ground_truth1_3, user_spent_time=time1_3, time_diff = time_diff[2], count=count1_3, user_input=user_input1_3)
     
-    dataJson["instance2_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_1,captcha_type=captcha_type2_1,task_type=task_type2_1,digit_ground_truth=ground_truth2_1, task_time_ground_truth=task_time_ground_truth2_1, user_spent_time=time2_1, count=count2_1, user_input=user_input2_1)
-    dataJson["instance2_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_2,captcha_type=captcha_type2_2,task_type=task_type2_2,digit_ground_truth=ground_truth2_2, task_time_ground_truth=task_time_ground_truth2_2, user_spent_time=time2_2, count=count2_2, user_input=user_input2_2)
-    dataJson["instance2_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_3,captcha_type=captcha_type2_3,task_type=task_type2_3,digit_ground_truth=ground_truth2_3, task_time_ground_truth=task_time_ground_truth2_3, user_spent_time=time2_3, count=count2_3, user_input=user_input2_3)
+    dataJson["instance2_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_1,captcha_type=captcha_type2_1,task_type=task_type2_1,digit_ground_truth=ground_truth2_1, task_time_ground_truth=task_time_ground_truth2_1, user_spent_time=time2_1, time_diff = time_diff[3], count=count2_1, user_input=user_input2_1)
+    dataJson["instance2_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_2,captcha_type=captcha_type2_2,task_type=task_type2_2,digit_ground_truth=ground_truth2_2, task_time_ground_truth=task_time_ground_truth2_2, user_spent_time=time2_2, time_diff = time_diff[4], count=count2_2, user_input=user_input2_2)
+    dataJson["instance2_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_3,captcha_type=captcha_type2_3,task_type=task_type2_3,digit_ground_truth=ground_truth2_3, task_time_ground_truth=task_time_ground_truth2_3, user_spent_time=time2_3, time_diff = time_diff[5], count=count2_3, user_input=user_input2_3)
     
-    dataJson["instance3_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_1,captcha_type=captcha_type3_1,task_type=task_type3_1,digit_ground_truth=ground_truth3_1, task_time_ground_truth=task_time_ground_truth3_1, user_spent_time=time3_1, count=count3_1, user_input=user_input3_1)
-    dataJson["instance3_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_2,captcha_type=captcha_type3_2,task_type=task_type3_2,digit_ground_truth=ground_truth3_2, task_time_ground_truth=task_time_ground_truth3_2, user_spent_time=time3_2, count=count3_2, user_input=user_input3_2)
-    dataJson["instance3_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_3,captcha_type=captcha_type3_3,task_type=task_type3_3,digit_ground_truth=ground_truth3_3, task_time_ground_truth=task_time_ground_truth3_3, user_spent_time=time3_3, count=count3_3, user_input=user_input3_3)
+    dataJson["instance3_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_1,captcha_type=captcha_type3_1,task_type=task_type3_1,digit_ground_truth=ground_truth3_1, task_time_ground_truth=task_time_ground_truth3_1, user_spent_time=time3_1, time_diff = time_diff[6], count=count3_1, user_input=user_input3_1)
+    dataJson["instance3_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_2,captcha_type=captcha_type3_2,task_type=task_type3_2,digit_ground_truth=ground_truth3_2, task_time_ground_truth=task_time_ground_truth3_2, user_spent_time=time3_2, time_diff = time_diff[7], count=count3_2, user_input=user_input3_2)
+    dataJson["instance3_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_3,captcha_type=captcha_type3_3,task_type=task_type3_3,digit_ground_truth=ground_truth3_3, task_time_ground_truth=task_time_ground_truth3_3, user_spent_time=time3_3, time_diff = time_diff[8], count=count3_3, user_input=user_input3_3)
     
-    dataJson["instance4_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_1,captcha_type=captcha_type4_1,task_type=task_type4_1,digit_ground_truth=ground_truth4_1, task_time_ground_truth=task_time_ground_truth4_1, user_spent_time=time4_1, count=count4_1, user_input=user_input4_1)
-    dataJson["instance4_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_2,captcha_type=captcha_type4_2,task_type=task_type4_2,digit_ground_truth=ground_truth4_2, task_time_ground_truth=task_time_ground_truth4_2, user_spent_time=time4_2, count=count4_2, user_input=user_input4_2)
-    dataJson["instance4_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_3,captcha_type=captcha_type4_3,task_type=task_type4_3,digit_ground_truth=ground_truth4_3, task_time_ground_truth=task_time_ground_truth4_3, user_spent_time=time4_3, count=count4_3, user_input=user_input4_3)
+    dataJson["instance4_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_1,captcha_type=captcha_type4_1,task_type=task_type4_1,digit_ground_truth=ground_truth4_1, task_time_ground_truth=task_time_ground_truth4_1, user_spent_time=time4_1, time_diff = time_diff[9], count=count4_1, user_input=user_input4_1)
+    dataJson["instance4_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_2,captcha_type=captcha_type4_2,task_type=task_type4_2,digit_ground_truth=ground_truth4_2, task_time_ground_truth=task_time_ground_truth4_2, user_spent_time=time4_2, time_diff = time_diff[10], count=count4_2, user_input=user_input4_2)
+    dataJson["instance4_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_3,captcha_type=captcha_type4_3,task_type=task_type4_3,digit_ground_truth=ground_truth4_3, task_time_ground_truth=task_time_ground_truth4_3, user_spent_time=time4_3, time_diff = time_diff[11], count=count4_3, user_input=user_input4_3)
  
     # blind_only.insert_one(dataJson)
 
+    print("4444444")
     #for submit form
-    name = request.values['name']
-    email = request.values['email']
-    final_like_reason = request.values['reasontolove']
-    final_dislike_reason = request.values['reasontohate']
-    technical_report = request.values['technical_report']
+    # name = request.values['name']
+    # email = request.values['email']
+    # final_like_reason = request.values['reasontolove']
+    # final_dislike_reason = request.values['reasontohate']
+    # technical_report = request.values['technical_report']
     end_time = request.values['end_time']
 
-    answer1 = request.values['answer1']
-    answer2 = request.values['answer2']
-    answer3 = request.values['answer3']
-    answer4 = request.values['answer4']
+    # answer1 = request.values['answer1']
+    # answer2 = request.values['answer2']
+    # answer3 = request.values['answer3']
+    # answer4 = request.values['answer4']
 
     start_time = captcha_spots.find_one({"table_name" : "captcha_spots_table"})[spot_id]
     try:
         total_spent_time = int(end_time) - int(start_time)
     except:
         total_spent_time = 0
+    print("total_spent_time", total_spent_time)
+    print("accuracy", accuracy)
     query = { "table_id": table_id }
-    newvalues = { "$set": { "name": name , 
-                            "email": email, 
-                            "final_like_reason": final_like_reason, 
-                            "final_dislike_reason": final_dislike_reason,
-                            "technical_report" : technical_report,
+    newvalues = { "$set": { 
                             "total_spent_time" : total_spent_time,
-                            "final_preference_order":dict(answer1=answer1,
-                                                        answer2=answer2,
-                                                        answer3=answer3,
-                                                        answer4=answer4,)} }
+                            "accuracy" : accuracy
+                                                        } }
     blind_only.update_one(query, newvalues)
     blind_only.update_one(query, {"$set":dataJson})
     # blind_only.update_one({"table_name": 'captcha_spots_table'}, { "$set":{spot_id:'complete'}})
@@ -236,15 +261,15 @@ def demographic_control():
     demographic["table_id"]     = table_id
 
     # generate empty variables that user will fill in in the final survey
-    demographic['name'] = ''
-    demographic['email'] = ''
-    demographic['final_like_reason'] = ''
-    demographic['final_dislike_reason'] = ''
-    demographic['final_preference_order'] = ''
+    # demographic['name'] = ''
+    # demographic['email'] = ''
+    # demographic['final_like_reason'] = ''
+    # demographic['final_dislike_reason'] = ''
+    # demographic['final_preference_order'] = ''
     demographic['total_spent_time'] = ''
-
+    demographic['accuracy'] = ''
     # generate captcha spots if empty
-    spot_limit = 25
+    spot_limit = 120
     if captcha_spots.count() == 0:
         spots = {"table_name":'captcha_spots_table'}
         for i in range (1,spot_limit):
@@ -405,7 +430,7 @@ def test_disconnect():
 
 def timer():
     # time_ref = round(time.time() * 1000)
-    time_dur = 1800 #seconds
+    time_dur = 9000 #seconds
     while True:
         sleep(time_dur)
         spots = captcha_spots.find_one({"table_name": 'captcha_spots_table'})
