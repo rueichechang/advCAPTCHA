@@ -21,8 +21,8 @@ var aud;
 function playonCtrl(text, audioid){
   aud = audioid;
   document.addEventListener('keydown', function(e) {
-    console.log("qwe", e.key);
-    if (e.ctrlKey && e.shiftKey && e.key == 'z' && document.activeElement == text) {
+    console.log("the pressed key is", e.key);
+    if (e.ctrlKey && e.shiftKey && e.key == 'Z' && document.activeElement == text) {
       document.getElementById(aud).play();
     }
   });
@@ -86,16 +86,16 @@ $("#audio").click(function() {
 
 });*/
 
-function checkfinalform(){
-  if( $("#reasontolove").get(0).value == ""||
-        $("#reasontohate").get(0).value == ""||
-        $("#name").get(0).value == ""||
-        $("#email").get(0).value == "" ||
-        $("#technical_report").get(0).value == "") {
-          alert(alert_msg);
-          return false;
-        }else return true;
-}
+// function checkfinalform(){
+//   if( $("#reasontolove").get(0).value == ""||
+//         $("#reasontohate").get(0).value == ""||
+//         $("#name").get(0).value == ""||
+//         $("#email").get(0).value == "" ||
+//         $("#technical_report").get(0).value == "") {
+//           alert(alert_msg);
+//           return false;
+//         }else return true;
+// }
 
 function before_submit(){
   // if(!checkfinalform()) {
@@ -522,8 +522,12 @@ function checkDigit(input_answer){
 
     if(this.id === 'pronext0') {
       var practice = $("#pro0").get(0).value;
-      if(!(checkPro0() && checkDigit(practice) && play_times['0'] != 0)) {
+      if(!(checkPro0() && checkDigit(practice))) {
         animating = false;
+        return;
+      }else if (play_times['0'] == 0){
+        animating = false;
+        alert(alert_play_time);
         return;
       }
     }else if(this.id === 'pronext1') {
