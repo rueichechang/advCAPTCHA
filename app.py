@@ -233,30 +233,60 @@ def submit():
     text_fb4_2 = request.values['text_fb4_2']
     text_fb4_3 = request.values['text_fb4_3']
 
+
+    # calculate accuracy
+    print("111111")
+    denominator = 0
+    numerator = 0
+    for i in range (1,5):
+        for j in range (1,4):
+            denominator += 1
+            pro_name = 'pro' + str(i) + '_' + str(j)
+            ground_truth =  'ground_truth' + str(i) + '_' + str(j)
+            if request.values[pro_name] == request.values [ground_truth]: 
+                numerator +=1
+            print("request.values[pro_name]", request.values[pro_name])
+            print("request.values [ground_truth]", request.values [ground_truth])
+    accuracy = float(numerator/denominator)
+    
+    # calculate time diff
+    print("2222222")
+    time_diff = []
+    for i in range (1,5):
+        for j in range (1,4):
+            user_spent = str(i)+str(j)
+            ground_truth_time = 'task_time_ground_truth' + str(i) + '_' + str(j)
+            diff = float(request.values[user_spent]) - float(request.values[ground_truth_time])
+            time_diff.append(diff)
+            print('request.values[user_spent]', request.values[user_spent])
+            print('request.values[ground_truth_time]', request.values[ground_truth_time])
+
+
+
     dataJson = {}
     feedback = {}
 
     dataJson["practice"]    = dict(iteration=0, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address0,captcha_type=captcha_type0,task_type=task_type0,digit_ground_truth=ground_truth0,user_spent_time=time_0, count=count_0, user_input=user_input0)
-    dataJson["instance1_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_1,captcha_type=captcha_type1_1,task_type=task_type1_1,digit_ground_truth=ground_truth1_1, task_time_ground_truth=task_time_ground_truth1_1, user_spent_time=time1_1, count=count1_1, user_input=user_input1_1)
-    dataJson["instance1_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_2,captcha_type=captcha_type1_2,task_type=task_type1_2,digit_ground_truth=ground_truth1_2, task_time_ground_truth=task_time_ground_truth1_2, user_spent_time=time1_2, count=count1_2, user_input=user_input1_2)
-    dataJson["instance1_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_3,captcha_type=captcha_type1_3,task_type=task_type1_3,digit_ground_truth=ground_truth1_3, task_time_ground_truth=task_time_ground_truth1_3, user_spent_time=time1_3, count=count1_3, user_input=user_input1_3)
+    dataJson["instance1_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_1,captcha_type=captcha_type1_1,task_type=task_type1_1,digit_ground_truth=ground_truth1_1, task_time_ground_truth=task_time_ground_truth1_1, user_spent_time=time1_1, time_diff = time_diff[0], count=count1_1, user_input=user_input1_1)
+    dataJson["instance1_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_2,captcha_type=captcha_type1_2,task_type=task_type1_2,digit_ground_truth=ground_truth1_2, task_time_ground_truth=task_time_ground_truth1_2, user_spent_time=time1_2, time_diff = time_diff[1], count=count1_2, user_input=user_input1_2)
+    dataJson["instance1_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_3,captcha_type=captcha_type1_3,task_type=task_type1_3,digit_ground_truth=ground_truth1_3, task_time_ground_truth=task_time_ground_truth1_3, user_spent_time=time1_3, time_diff = time_diff[2], count=count1_3, user_input=user_input1_3)
     
-    dataJson["instance2_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_1,captcha_type=captcha_type2_1,task_type=task_type2_1,digit_ground_truth=ground_truth2_1, task_time_ground_truth=task_time_ground_truth2_1, user_spent_time=time2_1, count=count2_1, user_input=user_input2_1)
-    dataJson["instance2_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_2,captcha_type=captcha_type2_2,task_type=task_type2_2,digit_ground_truth=ground_truth2_2, task_time_ground_truth=task_time_ground_truth2_2, user_spent_time=time2_2, count=count2_2, user_input=user_input2_2)
-    dataJson["instance2_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_3,captcha_type=captcha_type2_3,task_type=task_type2_3,digit_ground_truth=ground_truth2_3, task_time_ground_truth=task_time_ground_truth2_3, user_spent_time=time2_3, count=count2_3, user_input=user_input2_3)
+    dataJson["instance2_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_1,captcha_type=captcha_type2_1,task_type=task_type2_1,digit_ground_truth=ground_truth2_1, task_time_ground_truth=task_time_ground_truth2_1, user_spent_time=time2_1, time_diff = time_diff[3], count=count2_1, user_input=user_input2_1)
+    dataJson["instance2_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_2,captcha_type=captcha_type2_2,task_type=task_type2_2,digit_ground_truth=ground_truth2_2, task_time_ground_truth=task_time_ground_truth2_2, user_spent_time=time2_2, time_diff = time_diff[4], count=count2_2, user_input=user_input2_2)
+    dataJson["instance2_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address2_3,captcha_type=captcha_type2_3,task_type=task_type2_3,digit_ground_truth=ground_truth2_3, task_time_ground_truth=task_time_ground_truth2_3, user_spent_time=time2_3, time_diff = time_diff[5], count=count2_3, user_input=user_input2_3)
     
-    dataJson["instance3_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_1,captcha_type=captcha_type3_1,task_type=task_type3_1,digit_ground_truth=ground_truth3_1, task_time_ground_truth=task_time_ground_truth3_1, user_spent_time=time3_1, count=count3_1, user_input=user_input3_1)
-    dataJson["instance3_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_2,captcha_type=captcha_type3_2,task_type=task_type3_2,digit_ground_truth=ground_truth3_2, task_time_ground_truth=task_time_ground_truth3_2, user_spent_time=time3_2, count=count3_2, user_input=user_input3_2)
-    dataJson["instance3_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_3,captcha_type=captcha_type3_3,task_type=task_type3_3,digit_ground_truth=ground_truth3_3, task_time_ground_truth=task_time_ground_truth3_3, user_spent_time=time3_3, count=count3_3, user_input=user_input3_3)
+    dataJson["instance3_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_1,captcha_type=captcha_type3_1,task_type=task_type3_1,digit_ground_truth=ground_truth3_1, task_time_ground_truth=task_time_ground_truth3_1, user_spent_time=time3_1, time_diff = time_diff[6], count=count3_1, user_input=user_input3_1)
+    dataJson["instance3_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_2,captcha_type=captcha_type3_2,task_type=task_type3_2,digit_ground_truth=ground_truth3_2, task_time_ground_truth=task_time_ground_truth3_2, user_spent_time=time3_2, time_diff = time_diff[7], count=count3_2, user_input=user_input3_2)
+    dataJson["instance3_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address3_3,captcha_type=captcha_type3_3,task_type=task_type3_3,digit_ground_truth=ground_truth3_3, task_time_ground_truth=task_time_ground_truth3_3, user_spent_time=time3_3, time_diff = time_diff[8], count=count3_3, user_input=user_input3_3)
     
-    dataJson["instance4_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_1,captcha_type=captcha_type4_1,task_type=task_type4_1,digit_ground_truth=ground_truth4_1, task_time_ground_truth=task_time_ground_truth4_1, user_spent_time=time4_1, count=count4_1, user_input=user_input4_1)
-    dataJson["instance4_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_2,captcha_type=captcha_type4_2,task_type=task_type4_2,digit_ground_truth=ground_truth4_2, task_time_ground_truth=task_time_ground_truth4_2, user_spent_time=time4_2, count=count4_2, user_input=user_input4_2)
-    dataJson["instance4_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_3,captcha_type=captcha_type4_3,task_type=task_type4_3,digit_ground_truth=ground_truth4_3, task_time_ground_truth=task_time_ground_truth4_3, user_spent_time=time4_3, count=count4_3, user_input=user_input4_3)
+    dataJson["instance4_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_1,captcha_type=captcha_type4_1,task_type=task_type4_1,digit_ground_truth=ground_truth4_1, task_time_ground_truth=task_time_ground_truth4_1, user_spent_time=time4_1, time_diff = time_diff[9], count=count4_1, user_input=user_input4_1)
+    dataJson["instance4_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_2,captcha_type=captcha_type4_2,task_type=task_type4_2,digit_ground_truth=ground_truth4_2, task_time_ground_truth=task_time_ground_truth4_2, user_spent_time=time4_2, time_diff = time_diff[10], count=count4_2, user_input=user_input4_2)
+    dataJson["instance4_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_3,captcha_type=captcha_type4_3,task_type=task_type4_3,digit_ground_truth=ground_truth4_3, task_time_ground_truth=task_time_ground_truth4_3, user_spent_time=time4_3, time_diff = time_diff[11], count=count4_3, user_input=user_input4_3)
     
-    feedback["feedback1"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb1_1=likert_fb1_1, likert_fb1_2=likert_fb1_2, text_fb1_1=text_fb1_1, text_fb1_2=text_fb1_2, text_fb1_3=text_fb1_3)
-    feedback["feedback2"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb2_1=likert_fb2_1, likert_fb2_2=likert_fb2_2, text_fb2_1=text_fb2_1, text_fb2_2=text_fb2_2, text_fb2_3=text_fb2_3)
-    feedback["feedback3"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb3_1=likert_fb3_1, likert_fb3_2=likert_fb3_2, text_fb3_1=text_fb3_1, text_fb3_2=text_fb3_2, text_fb3_3=text_fb3_3)
-    feedback["feedback4"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb4_1=likert_fb4_1, likert_fb4_2=likert_fb4_2, text_fb4_1=text_fb4_1, text_fb4_2=text_fb4_2, text_fb4_3=text_fb4_3)
+    feedback["feedback1"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb1_1=likert_fb1_1,captcha_type=captcha_type1_1 likert_fb1_2=likert_fb1_2, text_fb1_1=text_fb1_1, text_fb1_2=text_fb1_2, text_fb1_3=text_fb1_3)
+    feedback["feedback2"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb2_1=likert_fb2_1,captcha_type=captcha_type2_1, likert_fb2_2=likert_fb2_2, text_fb2_1=text_fb2_1, text_fb2_2=text_fb2_2, text_fb2_3=text_fb2_3)
+    feedback["feedback3"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb3_1=likert_fb3_1,captcha_type=captcha_type3_1, likert_fb3_2=likert_fb3_2, text_fb3_1=text_fb3_1, text_fb3_2=text_fb3_2, text_fb3_3=text_fb3_3)
+    feedback["feedback4"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb4_1=likert_fb4_1,captcha_type=captcha_type4_1, likert_fb4_2=likert_fb4_2, text_fb4_1=text_fb4_1, text_fb4_2=text_fb4_2, text_fb4_3=text_fb4_3)
     
     task_data.insert_one(dataJson)
     feedback_collection.insert_one(feedback)
@@ -286,6 +316,7 @@ def submit():
                             "final_dislike_reason": final_dislike_reason,
                             "technical_report" : technical_report,
                             "total_spent_time" : total_spent_time,
+                            "accuracy" : accuracy,
                             "final_preference_order":dict(answer1=answer1,
                                                         answer2=answer2,
                                                         answer3=answer3,
@@ -339,7 +370,7 @@ def demographic_control():
     demographic['final_dislike_reason'] = ''
     demographic['final_preference_order'] = ''
     demographic['total_spent_time'] = ''
-    
+    demographic['accuracy'] = ''
 
     # get group
     group = "test group"
@@ -350,7 +381,7 @@ def demographic_control():
     # participants_id = str(doc["count"])
 
     # generate captcha spots if empty
-    spot_limit = 25
+    spot_limit = 120
     if captcha_spots.count() == 0:
         spots = {"table_name":'captcha_spots_table'}
         for i in range (1,spot_limit):
@@ -375,12 +406,12 @@ def demographic_control():
     spot_tsv_address = 'static/prototypes/'+spot_id[5:]+'/task_info.tsv'
     spot_tsv = pd.read_csv(spot_tsv_address, header=None, sep='\t', dtype = str)
 
-    task_order_file_name = 'participant_task_ordering_2021-06-21-16-49'
+    task_order_file_name = 'participant_task_ordering_2021-07-02-19-31'
     task_order_address = 'static/prototypes/'+task_order_file_name+'.tsv'
     task_order_tsv = pd.read_csv(task_order_address, header=None, sep='\t')
     spot_num = int(spot_id[5:])
     task_order = task_order_tsv.iloc[spot_num,1]
-
+    captcha_types = task_order.replace("'","").replace(" ","")[1:-1].split(',')
     # update user data to the database
     demographic['task order'] = task_order
     demographic['spot_id'] = spot_id
@@ -399,49 +430,49 @@ def demographic_control():
                                         
 
                                         instance1_1         = "prototypes/"+spot_id[5:]+"/task1_1.wav", 
-                                        captcha_type1_1     = "0",
+                                        captcha_type1_1     = captcha_types[0],
                                         task_type1_1        = spot_tsv.iloc[0,1],
                                         ground_truth1_1     = spot_tsv.iloc[0,2],
                                         task_time_ground_truth1_1 = spot_tsv.iloc[0,4],
 
                                         instance1_2         ="prototypes/"+spot_id[5:]+"/task1_2.wav", 
-                                        captcha_type1_2     = "0",
+                                        captcha_type1_2     = captcha_types[0],
                                         task_type1_2        = spot_tsv.iloc[1,1],
                                         ground_truth1_2     = spot_tsv.iloc[1,2],
                                         task_time_ground_truth1_2 = spot_tsv.iloc[1,4],
 
                                         instance1_3         ="prototypes/"+spot_id[5:]+"/task1_3.wav", 
-                                        captcha_type1_3     = "0",
+                                        captcha_type1_3     = captcha_types[0],
                                         task_type1_3        = spot_tsv.iloc[2,1],
                                         ground_truth1_3     = spot_tsv.iloc[2,2],
                                         task_time_ground_truth1_3 = spot_tsv.iloc[2,4],
 
                                         instance2_1         ="prototypes/"+spot_id[5:]+"/task2_1.wav", 
-                                        captcha_type2_1     = "0",
+                                        captcha_type2_1     = captcha_types[1],
                                         task_type2_1        = spot_tsv.iloc[3,1],
                                         ground_truth2_1     = spot_tsv.iloc[3,2],
                                         task_time_ground_truth2_1 = spot_tsv.iloc[3,4],
 
                                         instance2_2         ="prototypes/"+spot_id[5:]+"/task2_2.wav", 
-                                        captcha_type2_2     = "0",
+                                        captcha_type2_2     = captcha_types[1],
                                         task_type2_2        = spot_tsv.iloc[4,1],
                                         ground_truth2_2     = spot_tsv.iloc[4,2],
                                         task_time_ground_truth2_2 = spot_tsv.iloc[4,4],
 
                                         instance2_3         ="prototypes/"+spot_id[5:]+"/task2_3.wav", 
-                                        captcha_type2_3     = "0",
+                                        captcha_type2_3     = captcha_types[1],
                                         task_type2_3        = spot_tsv.iloc[5,1],
                                         ground_truth2_3     = spot_tsv.iloc[5,2],
                                         task_time_ground_truth2_3 = spot_tsv.iloc[5,4],
 
                                         instance3_1         ="prototypes/"+spot_id[5:]+"/task3_1.wav", 
-                                        captcha_type3_1     = "0",
+                                        captcha_type3_1     = captcha_types[2],
                                         task_type3_1        = spot_tsv.iloc[6,1],
                                         ground_truth3_1     = spot_tsv.iloc[6,2],
                                         task_time_ground_truth3_1 = spot_tsv.iloc[6,4],
 
                                         instance3_2         ="prototypes/"+spot_id[5:]+"/task3_2.wav", 
-                                        captcha_type3_2     = "0",
+                                        captcha_type3_2     = captcha_types[2],
                                         task_type3_2        = spot_tsv.iloc[7,1],
                                         ground_truth3_2     = spot_tsv.iloc[7,2],
                                         task_time_ground_truth3_2 = spot_tsv.iloc[7,4],
@@ -459,13 +490,13 @@ def demographic_control():
                                         task_time_ground_truth4_1 = spot_tsv.iloc[9,4],
 
                                         instance4_2         ="prototypes/"+spot_id[5:]+"/task4_2.wav", 
-                                        captcha_type4_2     = "0",
+                                        captcha_type4_2     = captcha_types[2],
                                         task_type4_2        = spot_tsv.iloc[10,1],
                                         ground_truth4_2     = spot_tsv.iloc[10,2],
                                         task_time_ground_truth4_2 = spot_tsv.iloc[10,4],
 
                                         instance4_3         ="prototypes/"+spot_id[5:]+"/task4_3.wav",
-                                        captcha_type4_3     = "0",
+                                        captcha_type4_3     = captcha_types[2],
                                         task_type4_3        = spot_tsv.iloc[11,1],
                                         ground_truth4_3     = spot_tsv.iloc[11,2],
                                         task_time_ground_truth4_3 = spot_tsv.iloc[11,4],
