@@ -266,7 +266,7 @@ def submit():
     dataJson = {}
     feedback = {}
 
-    dataJson["practice"]    = dict(iteration=0, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address0,captcha_type=captcha_type0,task_type=task_type0,digit_ground_truth=ground_truth0,user_spent_time=time_0, count=count_0, user_input=user_input0)
+    dataJson["practice"]    = dict(iteration=0, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address0,task_type=task_type0,digit_ground_truth=ground_truth0,user_spent_time=time_0, count=count_0, user_input=user_input0)
     dataJson["instance1_1"] = dict(iteration=1, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_1,captcha_type=captcha_type1_1,task_type=task_type1_1,digit_ground_truth=ground_truth1_1, task_time_ground_truth=task_time_ground_truth1_1, user_spent_time=time1_1, time_diff = time_diff[0], count=count1_1, user_input=user_input1_1)
     dataJson["instance1_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_2,captcha_type=captcha_type1_2,task_type=task_type1_2,digit_ground_truth=ground_truth1_2, task_time_ground_truth=task_time_ground_truth1_2, user_spent_time=time1_2, time_diff = time_diff[1], count=count1_2, user_input=user_input1_2)
     dataJson["instance1_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address1_3,captcha_type=captcha_type1_3,task_type=task_type1_3,digit_ground_truth=ground_truth1_3, task_time_ground_truth=task_time_ground_truth1_3, user_spent_time=time1_3, time_diff = time_diff[2], count=count1_3, user_input=user_input1_3)
@@ -283,7 +283,7 @@ def submit():
     dataJson["instance4_2"] = dict(iteration=2, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_2,captcha_type=captcha_type4_2,task_type=task_type4_2,digit_ground_truth=ground_truth4_2, task_time_ground_truth=task_time_ground_truth4_2, user_spent_time=time4_2, time_diff = time_diff[10], count=count4_2, user_input=user_input4_2)
     dataJson["instance4_3"] = dict(iteration=3, table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,file_address=file_address4_3,captcha_type=captcha_type4_3,task_type=task_type4_3,digit_ground_truth=ground_truth4_3, task_time_ground_truth=task_time_ground_truth4_3, user_spent_time=time4_3, time_diff = time_diff[11], count=count4_3, user_input=user_input4_3)
     
-    feedback["feedback1"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb1_1=likert_fb1_1,captcha_type=captcha_type1_1 likert_fb1_2=likert_fb1_2, text_fb1_1=text_fb1_1, text_fb1_2=text_fb1_2, text_fb1_3=text_fb1_3)
+    feedback["feedback1"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb1_1=likert_fb1_1,captcha_type=captcha_type1_1, likert_fb1_2=likert_fb1_2, text_fb1_1=text_fb1_1, text_fb1_2=text_fb1_2, text_fb1_3=text_fb1_3)
     feedback["feedback2"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb2_1=likert_fb2_1,captcha_type=captcha_type2_1, likert_fb2_2=likert_fb2_2, text_fb2_1=text_fb2_1, text_fb2_2=text_fb2_2, text_fb2_3=text_fb2_3)
     feedback["feedback3"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb3_1=likert_fb3_1,captcha_type=captcha_type3_1, likert_fb3_2=likert_fb3_2, text_fb3_1=text_fb3_1, text_fb3_2=text_fb3_2, text_fb3_3=text_fb3_3)
     feedback["feedback4"]   = dict(table_id=table_id,spot_id=spot_id,group=group,task_order=task_order,likert_fb4_1=likert_fb4_1,captcha_type=captcha_type4_1, likert_fb4_2=likert_fb4_2, text_fb4_1=text_fb4_1, text_fb4_2=text_fb4_2, text_fb4_3=text_fb4_3)
@@ -410,7 +410,7 @@ def demographic_control():
     task_order_address = 'static/prototypes/'+task_order_file_name+'.tsv'
     task_order_tsv = pd.read_csv(task_order_address, header=None, sep='\t')
     spot_num = int(spot_id[5:])
-    task_order = task_order_tsv.iloc[spot_num,1]
+    task_order = task_order_tsv.iloc[spot_num-1,1]
     captcha_types = task_order.replace("'","").replace(" ","")[1:-1].split(',')
     # update user data to the database
     demographic['task order'] = task_order
@@ -478,25 +478,25 @@ def demographic_control():
                                         task_time_ground_truth3_2 = spot_tsv.iloc[7,4],
 
                                         instance3_3         ="prototypes/"+spot_id[5:]+"/task3_3.wav", 
-                                        captcha_type3_3     = "0",
+                                        captcha_type3_3     = captcha_types[2],
                                         task_type3_3        = spot_tsv.iloc[8,1],
                                         ground_truth3_3     = spot_tsv.iloc[8,2],
                                         task_time_ground_truth3_3 = spot_tsv.iloc[8,4],
 
                                         instance4_1         ="prototypes/"+spot_id[5:]+"/task4_1.wav", 
-                                        captcha_type4_1     = "0",
+                                        captcha_type4_1     = captcha_types[3],
                                         task_type4_1        = spot_tsv.iloc[9,1],
                                         ground_truth4_1     = spot_tsv.iloc[9,2],
                                         task_time_ground_truth4_1 = spot_tsv.iloc[9,4],
 
                                         instance4_2         ="prototypes/"+spot_id[5:]+"/task4_2.wav", 
-                                        captcha_type4_2     = captcha_types[2],
+                                        captcha_type4_2     = captcha_types[3],
                                         task_type4_2        = spot_tsv.iloc[10,1],
                                         ground_truth4_2     = spot_tsv.iloc[10,2],
                                         task_time_ground_truth4_2 = spot_tsv.iloc[10,4],
 
                                         instance4_3         ="prototypes/"+spot_id[5:]+"/task4_3.wav",
-                                        captcha_type4_3     = captcha_types[2],
+                                        captcha_type4_3     = captcha_types[3],
                                         task_type4_3        = spot_tsv.iloc[11,1],
                                         ground_truth4_3     = spot_tsv.iloc[11,2],
                                         task_time_ground_truth4_3 = spot_tsv.iloc[11,4],
