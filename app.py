@@ -294,12 +294,13 @@ def demographic_control():
     spot_tsv_address = 'static/prototypes/'+spot_id[5:]+'/task_info.tsv'
     spot_tsv = pd.read_csv(spot_tsv_address, header=None, sep='\t', dtype = str)
 
-    task_order_file_name = 'participant_task_ordering_2021-06-21-16-49'
+    task_order_file_name = 'participant_task_ordering_2021-07-02-19-31'
     task_order_address = 'static/prototypes/'+task_order_file_name+'.tsv'
     task_order_tsv = pd.read_csv(task_order_address, header=None, sep='\t')
     spot_num = int(spot_id[5:])
-    task_order = task_order_tsv.iloc[spot_num,1]
-
+    task_order = task_order_tsv.iloc[spot_num-1,1]
+    captcha_types = task_order.replace("'","").replace(" ","")[1:-1].split(',')
+    
     # update user data to the database
     demographic['task order'] = task_order
     demographic['spot_id'] = spot_id
@@ -331,73 +332,73 @@ def demographic_control():
                                         
 
                                         instance1_1         = "prototypes/"+spot_id[5:]+"/task1_1.wav", 
-                                        captcha_type1_1     = "0",
+                                        captcha_type1_1     = captcha_types[0],
                                         task_type1_1        = spot_tsv.iloc[0,1],
                                         ground_truth1_1     = spot_tsv.iloc[0,2],
                                         task_time_ground_truth1_1 = spot_tsv.iloc[0,4],
 
-                                        instance1_2         ="prototypes/"+spot_id[5:]+"/task1_2.wav", 
-                                        captcha_type1_2     = "0",
+                                        instance1_2         = "prototypes/"+spot_id[5:]+"/task1_2.wav", 
+                                        captcha_type1_2     = captcha_types[0],
                                         task_type1_2        = spot_tsv.iloc[1,1],
                                         ground_truth1_2     = spot_tsv.iloc[1,2],
                                         task_time_ground_truth1_2 = spot_tsv.iloc[1,4],
 
-                                        instance1_3         ="prototypes/"+spot_id[5:]+"/task1_3.wav", 
-                                        captcha_type1_3     = "0",
+                                        instance1_3         = "prototypes/"+spot_id[5:]+"/task1_3.wav", 
+                                        captcha_type1_3     = captcha_types[0],
                                         task_type1_3        = spot_tsv.iloc[2,1],
                                         ground_truth1_3     = spot_tsv.iloc[2,2],
                                         task_time_ground_truth1_3 = spot_tsv.iloc[2,4],
 
                                         instance2_1         ="prototypes/"+spot_id[5:]+"/task2_1.wav", 
-                                        captcha_type2_1     = "0",
+                                        captcha_type2_1     = captcha_types[1],
                                         task_type2_1        = spot_tsv.iloc[3,1],
                                         ground_truth2_1     = spot_tsv.iloc[3,2],
                                         task_time_ground_truth2_1 = spot_tsv.iloc[3,4],
 
                                         instance2_2         ="prototypes/"+spot_id[5:]+"/task2_2.wav", 
-                                        captcha_type2_2     = "0",
+                                        captcha_type2_2     = captcha_types[1],
                                         task_type2_2        = spot_tsv.iloc[4,1],
                                         ground_truth2_2     = spot_tsv.iloc[4,2],
                                         task_time_ground_truth2_2 = spot_tsv.iloc[4,4],
 
                                         instance2_3         ="prototypes/"+spot_id[5:]+"/task2_3.wav", 
-                                        captcha_type2_3     = "0",
+                                        captcha_type2_3     = captcha_types[1],
                                         task_type2_3        = spot_tsv.iloc[5,1],
                                         ground_truth2_3     = spot_tsv.iloc[5,2],
                                         task_time_ground_truth2_3 = spot_tsv.iloc[5,4],
 
                                         instance3_1         ="prototypes/"+spot_id[5:]+"/task3_1.wav", 
-                                        captcha_type3_1     = "0",
+                                        captcha_type3_1     = captcha_types[2],
                                         task_type3_1        = spot_tsv.iloc[6,1],
                                         ground_truth3_1     = spot_tsv.iloc[6,2],
                                         task_time_ground_truth3_1 = spot_tsv.iloc[6,4],
 
                                         instance3_2         ="prototypes/"+spot_id[5:]+"/task3_2.wav", 
-                                        captcha_type3_2     = "0",
+                                        captcha_type3_2     = captcha_types[2],
                                         task_type3_2        = spot_tsv.iloc[7,1],
                                         ground_truth3_2     = spot_tsv.iloc[7,2],
                                         task_time_ground_truth3_2 = spot_tsv.iloc[7,4],
 
                                         instance3_3         ="prototypes/"+spot_id[5:]+"/task3_3.wav", 
-                                        captcha_type3_3     = "0",
+                                        captcha_type3_3     = captcha_types[2],
                                         task_type3_3        = spot_tsv.iloc[8,1],
                                         ground_truth3_3     = spot_tsv.iloc[8,2],
                                         task_time_ground_truth3_3 = spot_tsv.iloc[8,4],
 
                                         instance4_1         ="prototypes/"+spot_id[5:]+"/task4_1.wav", 
-                                        captcha_type4_1     = "0",
+                                        captcha_type4_1     = captcha_types[3],
                                         task_type4_1        = spot_tsv.iloc[9,1],
                                         ground_truth4_1     = spot_tsv.iloc[9,2],
                                         task_time_ground_truth4_1 = spot_tsv.iloc[9,4],
 
                                         instance4_2         ="prototypes/"+spot_id[5:]+"/task4_2.wav", 
-                                        captcha_type4_2     = "0",
+                                        captcha_type4_2     = captcha_types[3],
                                         task_type4_2        = spot_tsv.iloc[10,1],
                                         ground_truth4_2     = spot_tsv.iloc[10,2],
                                         task_time_ground_truth4_2 = spot_tsv.iloc[10,4],
 
                                         instance4_3         ="prototypes/"+spot_id[5:]+"/task4_3.wav",
-                                        captcha_type4_3     = "0",
+                                        captcha_type4_3     = captcha_types[3],
                                         task_type4_3        = spot_tsv.iloc[11,1],
                                         ground_truth4_3     = spot_tsv.iloc[11,2],
                                         task_time_ground_truth4_3 = spot_tsv.iloc[11,4],
